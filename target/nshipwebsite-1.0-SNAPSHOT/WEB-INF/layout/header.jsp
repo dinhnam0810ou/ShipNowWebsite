@@ -8,8 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<p><spring:message code="greeting"/></p>
-<a href="?lang=vi">VI</a> | <a href="?lang=en">EN</a>
+
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="javascript:void(0)">SHIPNOW ONLINE</a>
@@ -28,8 +27,19 @@
                     <a class="nav-link" href="<c:url value="/product"/>">Đơn hàng</a>
                 </li>
             </ul>
+
+            <div class="dropdown" style="padding: 5px">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                    Chọn ngôn ngữ
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="?lang=vi">Tiếng Việt</a></li>
+                    <li><a class="dropdown-item" href="?lang=en">Tiếng Anh</a></li>
+                </ul>
+            </div>
+
             <c:url value="/" var="action" />
-           
+
             <form method="get" action="${action}" class="d-flex">
                 <input class="form-control me-2" type="text" name="kw" placeholder="Nhập từ khó để tim...">
                 <button type="submit" class="btn btn-primary" type="button">Tìm</button>
