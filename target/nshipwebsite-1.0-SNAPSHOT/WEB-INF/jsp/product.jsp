@@ -15,6 +15,10 @@
 </form>
 <br>
 
+<button type="button" class="btn btn-danger" type="button"><a href="/nshipwebsite/addproduct" style="text-decoration: none;color: white;">Thêm đơn hàng mới</a></button>  
+
+
+
 
 <c:if test="${products.size() == 0}">
     <p>
@@ -48,7 +52,7 @@
                 <td>${p.weight}</td>
                 <td>${p.shipaddress}</td>
                 <td>${p.active}</td>
-                <td><img src="${p.image}"  class="card-img-top rounded-circle" width="20" height="20" /></td>         
+                <td><img src="${p.image}"  class="card-img-top rounded-circle" width="40" height="40" /></td>         
                 <td>${p.description}</td>                   
                 <td>${p.createdDate}</td>  
                 <td>

@@ -4,6 +4,7 @@ com.ndn.configs.WebApplicationContextConfig=org.springframework.stereotype.Compo
 com.ndn.controllers.AdminController=org.springframework.stereotype.Component
 com.ndn.controllers.ApiCommentController=org.springframework.stereotype.Component
 com.ndn.controllers.ApiShipperController=org.springframework.stereotype.Component
+com.ndn.controllers.CustomerController=org.springframework.stereotype.Component
 com.ndn.controllers.IndexController=org.springframework.stereotype.Component
 com.ndn.controllers.ProductController=org.springframework.stereotype.Component
 com.ndn.controllers.ShipperController=org.springframework.stereotype.Component

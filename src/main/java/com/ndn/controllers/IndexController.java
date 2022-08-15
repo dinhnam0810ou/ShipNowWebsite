@@ -4,14 +4,21 @@
  */
 package com.ndn.controllers;
 
+import com.ndn.pojos.Product;
+import com.ndn.service.ProductService;
 import com.ndn.service.ShipperService;
 import java.util.Map;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -34,4 +41,5 @@ public class IndexController {
         model.addAttribute("pageSize", Integer.parseInt(env.getProperty("page.size")));
         return "index";
     }
+   
 }

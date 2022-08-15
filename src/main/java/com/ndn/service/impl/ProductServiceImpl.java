@@ -4,6 +4,8 @@
  */
 package com.ndn.service.impl;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.ndn.pojos.Product;
 import com.ndn.repository.ProductRepository;
 import com.ndn.service.ProductService;
@@ -18,9 +20,13 @@ import org.springframework.stereotype.Service;
  * @author Nguyen Dinh Nam
  */
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
+
+    @Autowired
+    private Cloudinary cloudinary;
     @Autowired
     private ProductRepository productRepository;
+
     @Override
     public List<Product> getProducts(Map<String, String> params, int page) {
         return this.productRepository.getProducts(params, page);
@@ -33,8 +39,16 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public boolean addProduct(Product p) {
-        p.setCreatedDate(new Date());
-        return this.productRepository.addProduct(p);
-    }
-    
+        try {
+            Map result = this.cloudinary.uploader().upload(p.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
+            String img = (String) result.get("secure_url");
+            p.setImage(img);
+            p.setCreatedDate(new Date());
+            return this.productRepository.addProduct(p);
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return false;
+    }   
 }
