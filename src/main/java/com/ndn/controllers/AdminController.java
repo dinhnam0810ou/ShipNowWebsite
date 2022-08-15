@@ -5,6 +5,8 @@
 package com.ndn.controllers;
 
 import com.ndn.pojos.Shipper;
+import com.ndn.service.ProductService;
+import com.ndn.service.ShipOderService;
 import com.ndn.service.ShipperService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-
+    @Autowired
+    private ProductService productService;
+    @Autowired
+    private ShipOderService shipOderService;
     @Autowired
     private ShipperService shipperService;
 
@@ -57,5 +62,15 @@ public class AdminController {
     @GetMapping("/chat")
     public String chat(){
         return "chat";
+    }
+    @GetMapping("/oder")
+    public String oder(Model model){
+        model.addAttribute("oders", this.shipOderService.listOrder());
+        return "oder";
+    }
+    @GetMapping("/proNotauc")
+    public String productnotaucion(Model model){
+        model.addAttribute("products", this.productService.productNotAuction());
+        return "productnotaucion";
     }
 }

@@ -38,14 +38,24 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
                        value="/WEB-INF/jsp/chat.jsp" />
     </definition>
     <definition name="product" extends="baseLayout">
-        <put-attribute name="title" value="Thông tin đơn hàng" />
+        <put-attribute name="title" value="Thông tin sản phẩm" />
         <put-attribute name="content"
                        value="/WEB-INF/jsp/product.jsp" />
     </definition>
     <definition name="addnewproduct" extends="baseLayout">
-        <put-attribute name="title" value="Them thông tin đơn hàng" />
+        <put-attribute name="title" value="Thêm thông tin sản phẩm" />
         <put-attribute name="content"
                        value="/WEB-INF/jsp/addnewproduct.jsp" />
+    </definition>
+    <definition name="oder" extends="baseLayout">
+        <put-attribute name="title" value="Thông tin đơn hàng" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/oder.jsp" />
+    </definition>
+    <definition name="productnotaucion" extends="baseLayout">
+        <put-attribute name="title" value="Sản phẩm chưa được đấu giá" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/productnotaucion.jsp" />
     </definition>
 </tiles-definitions>
 

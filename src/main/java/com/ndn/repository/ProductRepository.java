@@ -13,7 +13,12 @@ import java.util.Map;
  * @author Nguyen Dinh Nam
  */
 public interface ProductRepository {
-     List<Product> getProducts(Map<String, String> params, int page);
-     int countProduct();
-     boolean addProduct(Product p);
+
+    List<Product> getProducts(Map<String, String> params, int page);
+
+    int countProduct();
+
+    boolean addProduct(Product p);
+
+    List<Product> productNotAuction();
 }

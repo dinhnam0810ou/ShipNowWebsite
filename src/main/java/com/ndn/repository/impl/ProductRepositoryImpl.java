@@ -4,6 +4,7 @@
  */
 package com.ndn.repository.impl;
 
+import com.ndn.pojos.Auction;
 import com.ndn.pojos.Product;
 import com.ndn.repository.ProductRepository;
 import java.util.ArrayList;
@@ -87,6 +88,13 @@ public class ProductRepositoryImpl implements ProductRepository {
             ex.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public List<Product> productNotAuction() {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Query q = session.createQuery("From Product Where id NOT IN (Select productId from Auction)");
+        return q.getResultList();
     }
 
 }
