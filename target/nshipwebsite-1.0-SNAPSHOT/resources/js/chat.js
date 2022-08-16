@@ -15,13 +15,16 @@ var database = firebase.database();
 var text = document.getElementById("txtChat");
 var btn = document.getElementById("btnSubmit");
 
-function addText(){
+function addText() {
     database.ref("/messages").update({
-        "text" : text.value
+        "text": text.value
     });
 }
-
-database.ref("/messages/text").on("value", function(snapshot){
+const messages = document.querySelectorAll("#tinnhan");
+database.ref("/messages/text").on("value", function (snapshot) {
     var chat = snapshot.val();
-    document.getElementById("tinnhan").innerHTML = chat;
+    const chatItem = document.createElement("li");
+    chatItem.innerHTML = chat;
+    messages.appendChild(chatItem);
+    text.value = "";
 });

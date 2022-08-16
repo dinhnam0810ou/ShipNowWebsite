@@ -8,9 +8,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <h1 class="text-center text-info">CHAT</h1>
-<h2><span id="tinnhan"></span></h2>
-<input type="text" id="txtChat" placeholder="Nhap tin nhan..."/>
-<button type="submit" id="btnSubmit" onclick="addText()">Gui</button>
+
+<ul id="tinnhan"></ul>
+
+<form id="chat-form">
+    <input type="text" id="txtChat" placeholder="Nhap tin nhan..."/>
+    <button type="submit" id="btnSubmit" onclick="addText()">Gui</button>
+</form>
+
+
+
 <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
 <script src="<c:url value="/js/chat.js"/>"></script>

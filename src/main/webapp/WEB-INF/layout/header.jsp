@@ -18,32 +18,33 @@
         <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/"/>">Trang chủ</a>
+                    <a class="nav-link" href="<c:url value="/"/>"><spring:message code="label1"/></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/"/>">Thông tin shipper</a>
+                    <a class="nav-link" href="<c:url value="/"/>"><spring:message code="label2"/></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/product"/>">Đơn hàng</a>
+                    <a class="nav-link" href="<c:url value="/product"/>"><spring:message code="label3"/></a>
                 </li>
             </ul>
 
             <div class="dropdown" style="padding: 5px">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-                    Chọn ngôn ngữ
+                    <spring:message code="label5"/>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="?lang=vi">Tiếng Việt</a></li>
-                    <li><a class="dropdown-item" href="?lang=en">Tiếng Anh</a></li>
+                    <li><a class="dropdown-item" href="?lang=vi"><spring:message code="label6"/></a></li>
+                    <li><a class="dropdown-item" href="?lang=en"><spring:message code="label7"/></a></li>
                 </ul>
             </div>
 
             <c:url value="/" var="action" />
 
             <form method="get" action="${action}" class="d-flex">
-                <input class="form-control me-2" type="text" name="kw" placeholder="Nhập từ khó để tim...">
-                <button type="submit" class="btn btn-primary" type="button">Tìm</button>
+                <input class="form-control me-2" type="text" name="kw" placeholder="<spring:message code="label8"/>">
+                <button type="submit" class="btn btn-primary" type="button"><spring:message code="label4"/></button>
             </form>
         </div>
     </div>
 </nav>
+
