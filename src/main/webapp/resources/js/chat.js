@@ -14,17 +14,22 @@ var database = firebase.database();
 
 var text = document.getElementById("txtChat");
 var btn = document.getElementById("btnSubmit");
+const messages = document.getElementById("tinnhan");
 
 function addText() {
     database.ref("/messages").update({
         "text": text.value
     });
+   
 }
-const messages = document.querySelectorAll("tinnhan");
+
 database.ref("/messages/text").on("value", function (snapshot) {
+      var chatItem = document.createElement("li");
+      messages.appendChild(chatItem);
+     text.value = "";
     var chat = snapshot.val();
-    const chatItem = document.createElement("li");
-    chatItem.innerHTML = chat;
-    messages.appendChild(chatItem);
-    text.value = "";
+    
+     chatItem.innerHTML = chat;
+   
+ 
 });

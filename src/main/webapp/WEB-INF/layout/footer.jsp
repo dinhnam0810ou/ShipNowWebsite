@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<div class="mt-4 p-5 bg-primary text-white rounded">
+<div class="mt-4 p-5 bg-primary text-white rounded bg-dark" >
   <h1>SHIPNOW ONLINE</h1>
   <p>Nguyễn Đình Nam &copy; 2022</p>
 </div>

@@ -58,5 +58,10 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/jsp/productnotaucion.jsp" />
     </definition>
+    <definition name="promotion" extends="baseLayout">
+        <put-attribute name="title" value="Mã khuyến mãi" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/promotion.jsp" />
+    </definition>
 </tiles-definitions>
 

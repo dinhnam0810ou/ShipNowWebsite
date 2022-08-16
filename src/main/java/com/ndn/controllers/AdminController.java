@@ -4,8 +4,10 @@
  */
 package com.ndn.controllers;
 
+import com.ndn.pojos.Promotion;
 import com.ndn.pojos.Shipper;
 import com.ndn.service.ProductService;
+import com.ndn.service.PromotionService;
 import com.ndn.service.ShipOderService;
 import com.ndn.service.ShipperService;
 import javax.validation.Valid;
@@ -26,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+    @Autowired
+    private PromotionService promotionService;
     @Autowired
     private ProductService productService;
     @Autowired
@@ -73,4 +77,12 @@ public class AdminController {
         model.addAttribute("products", this.productService.productNotAuction());
         return "productnotaucion";
     }
+  
+     @GetMapping("/promotion")
+    public String promotions(Model model) {
+        model.addAttribute("promotions", this.promotionService.getPromotions());
+        model.addAttribute("promotion", new Promotion());
+        return "promotion";
+    }
+   
 }

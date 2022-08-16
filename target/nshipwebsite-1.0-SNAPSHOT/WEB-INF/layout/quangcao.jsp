@@ -14,13 +14,13 @@
     <!-- The slideshow/carousel -->
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="la.jpg" alt="Los Angeles" class="d-block w-100">
+            <img src="https://res.cloudinary.com/da1xygjae/image/upload/v1660657100/nen3_sfdhui.jpg" alt="Nhanh" class="d-block w-100" width="10px" height="350px">
         </div>
         <div class="carousel-item">
-            <img src="chicago.jpg" alt="Chicago" class="d-block w-100">
+            <img src="https://res.cloudinary.com/da1xygjae/image/upload/v1660657091/nen1_tqlslr.png" alt="An toàn" class="d-block w-100" width="10px" height="350px">
         </div>
         <div class="carousel-item">
-            <img src="ny.jpg" alt="New York" class="d-block w-100">
+            <img src="https://res.cloudinary.com/da1xygjae/image/upload/v1660657083/nen2_fmswjf.png" alt="Tiết kiệm" class="d-block w-100" width="10px" height="350px">
         </div>
     </div>
 
