@@ -20,7 +20,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -35,8 +34,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Comment.findAll", query = "SELECT c FROM Comment c"),
     @NamedQuery(name = "Comment.findById", query = "SELECT c FROM Comment c WHERE c.id = :id"),
     @NamedQuery(name = "Comment.findByContent", query = "SELECT c FROM Comment c WHERE c.content = :content"),
-    @NamedQuery(name = "Comment.findByRating", query = "SELECT c FROM Comment c WHERE c.rating = :rating"),
-    @NamedQuery(name = "Comment.findByDate", query = "SELECT c FROM Comment c WHERE c.date = :date")})
+    @NamedQuery(name = "Comment.findByDate", query = "SELECT c FROM Comment c WHERE c.date = :date"),
+    @NamedQuery(name = "Comment.findByRating", query = "SELECT c FROM Comment c WHERE c.rating = :rating")})
 public class Comment implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,22 +44,20 @@ public class Comment implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
+    @Size(max = 255)
     @Column(name = "content")
     private String content;
-    @Column(name = "rating")
-    private Integer rating;
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
+    @Column(name = "rating")
+    private Integer rating;
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    @JsonIgnore   
+    @ManyToOne
+    @JsonIgnore
     private Customer customerId;
     @JoinColumn(name = "shipper_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JsonIgnore
     private Shipper shipperId;
 
@@ -69,11 +66,6 @@ public class Comment implements Serializable {
 
     public Comment(Integer id) {
         this.id = id;
-    }
-
-    public Comment(Integer id, String content) {
-        this.id = id;
-        this.content = content;
     }
 
     public Integer getId() {
@@ -92,20 +84,20 @@ public class Comment implements Serializable {
         this.content = content;
     }
 
-    public Integer getRating() {
-        return rating;
-    }
-
-    public void setRating(Integer rating) {
-        this.rating = rating;
-    }
-
     public Date getDate() {
         return date;
     }
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
     }
 
     public Customer getCustomerId() {

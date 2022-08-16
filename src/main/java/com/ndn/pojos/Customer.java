@@ -7,7 +7,6 @@ package com.ndn.pojos;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -65,10 +64,10 @@ public class Customer implements Serializable {
     private String email;
     @OneToMany(mappedBy = "customerId")
     private Set<Product> productSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
+    @OneToMany(mappedBy = "customerId")
     private Set<Comment> commentSet;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private User userId;
 
     public Customer() {

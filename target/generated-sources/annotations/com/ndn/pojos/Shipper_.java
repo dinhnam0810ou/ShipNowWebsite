@@ -8,7 +8,7 @@ import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2022-08-16T16:37:57")
+@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2022-08-16T17:01:08")
 @StaticMetamodel(Shipper.class)
 public class Shipper_ { 
 
@@ -17,10 +17,10 @@ public class Shipper_ {
     public static volatile SingularAttribute<Shipper, String> identification;
     public static volatile SetAttribute<Shipper, Comment> commentSet;
     public static volatile SingularAttribute<Shipper, String> phone;
-    public static volatile SingularAttribute<Shipper, Boolean> active;
+    public static volatile SingularAttribute<Shipper, Integer> active;
     public static volatile SingularAttribute<Shipper, String> avatar;
     public static volatile SingularAttribute<Shipper, Integer> id;
-    public static volatile SingularAttribute<Shipper, User> userId;
+    public static volatile SingularAttribute<Shipper, User> user;
     public static volatile SingularAttribute<Shipper, String> email;
     public static volatile SingularAttribute<Shipper, String> lastname;
 

@@ -10,6 +10,7 @@
     <class>com.ndn.pojos.Comment</class>
     <class>com.ndn.pojos.Order</class>
     <class>com.ndn.pojos.ShipOrder</class>
+    <class>com.ndn.pojos.Promotion</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/nshipdb?zeroDateTimeBehavior=CONVERT_TO_NULL"/>

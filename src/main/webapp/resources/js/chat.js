@@ -20,7 +20,7 @@ function addText() {
         "text": text.value
     });
 }
-const messages = document.querySelectorAll("#tinnhan");
+const messages = document.querySelectorAll("tinnhan");
 database.ref("/messages/text").on("value", function (snapshot) {
     var chat = snapshot.val();
     const chatItem = document.createElement("li");

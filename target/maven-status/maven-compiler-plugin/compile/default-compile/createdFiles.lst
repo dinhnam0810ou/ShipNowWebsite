@@ -16,6 +16,7 @@ com\ndn\pojos\Comment_.class
 com\ndn\controllers\ApiShipperController.class
 com\ndn\pojos\Customer.class
 com\ndn\repository\ShipOrderRepository.class
+com\ndn\pojos\Promotion_.class
 com\ndn\pojos\Product.class
 com\ndn\pojos\User.class
 com\ndn\pojos\Shipper_.class

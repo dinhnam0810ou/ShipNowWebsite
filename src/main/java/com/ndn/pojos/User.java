@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,8 +36,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id"),
     @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username"),
     @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password"),
+    @NamedQuery(name = "User.findByUserRole", query = "SELECT u FROM User u WHERE u.userRole = :userRole"),
     @NamedQuery(name = "User.findByActive", query = "SELECT u FROM User u WHERE u.active = :active"),
-    @NamedQuery(name = "User.findByUserRole", query = "SELECT u FROM User u WHERE u.userRole = :userRole")})
+    @NamedQuery(name = "User.findByDate", query = "SELECT u FROM User u WHERE u.date = :date")})
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -57,28 +57,20 @@ public class User implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "password")
     private String password;
-    @Column(name = "active")
-    private Boolean active;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 10)
     @Column(name = "user_role")
     private String userRole;
-    @OneToMany(mappedBy = "userId")
-    private Set<Shipper> shipperSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    private Set<Customer> customerSet;
+    @Column(name = "active")
+    private Integer active;
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
+    @OneToMany(mappedBy = "user")
+    private Set<Shipper> shipperSet;
+    @OneToMany(mappedBy = "userId")
+    private Set<Customer> customerSet;
 
     public User() {
     }
@@ -118,20 +110,28 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
-
     public String getUserRole() {
         return userRole;
     }
 
     public void setUserRole(String userRole) {
         this.userRole = userRole;
+    }
+
+    public Integer getActive() {
+        return active;
+    }
+
+    public void setActive(Integer active) {
+        this.active = active;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     @XmlTransient
@@ -176,5 +176,5 @@ public class User implements Serializable {
     public String toString() {
         return "com.ndn.pojos.User[ id=" + id + " ]";
     }
-
+    
 }

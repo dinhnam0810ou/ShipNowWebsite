@@ -5,6 +5,7 @@
 package com.ndn.repository.impl;
 
 import com.ndn.pojos.Auction;
+import com.ndn.pojos.Promotion;
 import com.ndn.pojos.ShipOrder;
 import com.ndn.pojos.Shipper;
 import com.ndn.repository.ShipperRepository;
@@ -143,13 +144,15 @@ public class ShipperRepositoryImpl implements ShipperRepository {
         Root rO = q.from(ShipOrder.class);
         Root rA = q.from(Auction.class);
         Root rS = q.from(Shipper.class);
-
+        Root rP = q.from(Promotion.class);
+        
         q.where(b.equal(rO.get("auctionId"), rA.get("id")),
                 b.equal(rS.get("id"), rA.get("shipperId")),
                 b.equal(b.function("QUARTER", Integer.class, rO.get("orderdate")), quarter),
-                b.equal(b.function("YEAR", Integer.class, rO.get("orderdate")), year));
+                b.equal(b.function("YEAR", Integer.class, rO.get("orderdate")), year),
+                b.equal(rO.get("promotionId"), rP.get("id")));
 
-        q.multiselect(rS.get("id"), rS.get("firstname"), rS.get("lastname"), b.sum(b.prod(rA.get("price"), rO.get("discount"))));
+        q.multiselect(rS.get("id"), rS.get("firstname"), rS.get("lastname"), b.sum(b.prod(rA.get("price"), rP.get("discount"))));
         q.groupBy(rA.get("shipperId"));
         
         Query query = session.createQuery(q);

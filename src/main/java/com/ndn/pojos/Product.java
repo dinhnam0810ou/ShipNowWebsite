@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +22,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -54,22 +52,20 @@ public class Product implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    //@NotNull
-    @Size(min = 1, max = 50)
+    @Size(max = 50)
     @Column(name = "productname")
     private String productname;
     @Size(max = 255)
     @Column(name = "description")
     private String description;
-    @Size(max = 100)
+    @Size(max = 255)
     @Column(name = "image")
     private String image;
     @Column(name = "created_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
     @Column(name = "active")
-    private Boolean active;
+    private Integer active;
     @Size(max = 45)
     @Column(name = "shipaddress")
     private String shipaddress;
@@ -79,7 +75,7 @@ public class Product implements Serializable {
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     @ManyToOne
     private Customer customerId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
+    @OneToMany(mappedBy = "productId")
     private Set<Auction> auctionSet;
     @Transient
     private MultipartFile file;
@@ -96,11 +92,6 @@ public class Product implements Serializable {
 
     public Product(Integer id) {
         this.id = id;
-    }
-
-    public Product(Integer id, String productname) {
-        this.id = id;
-        this.productname = productname;
     }
 
     public Integer getId() {
@@ -143,11 +134,11 @@ public class Product implements Serializable {
         this.createdDate = createdDate;
     }
 
-    public Boolean getActive() {
+    public Integer getActive() {
         return active;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(Integer active) {
         this.active = active;
     }
 

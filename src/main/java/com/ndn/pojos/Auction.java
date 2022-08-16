@@ -21,7 +21,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -45,20 +44,19 @@ public class Auction implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "price")
-    private double price;
+    private Double price;
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
     @OneToMany(mappedBy = "auctionId")
     private Set<ShipOrder> shipOrderSet;
     @JoinColumn(name = "product_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Product productId;
     @JoinColumn(name = "shipper_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Shipper shipperId;
 
     public Auction() {
@@ -66,11 +64,6 @@ public class Auction implements Serializable {
 
     public Auction(Integer id) {
         this.id = id;
-    }
-
-    public Auction(Integer id, double price) {
-        this.id = id;
-        this.price = price;
     }
 
     public Integer getId() {
@@ -81,11 +74,11 @@ public class Auction implements Serializable {
         this.id = id;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

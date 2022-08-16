@@ -19,7 +19,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -42,8 +41,6 @@ public class ShipOrder implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "orderdate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date orderdate;
@@ -53,26 +50,15 @@ public class ShipOrder implements Serializable {
     @JoinColumn(name = "auction_id", referencedColumnName = "id")
     @ManyToOne
     private Auction auctionId;
-    @Column(name = "discount")
-    private double discount;
+    @JoinColumn(name = "promotion_id", referencedColumnName = "id")
+    @ManyToOne
+    private Promotion promotionId;
 
-    public double getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(double discount) {
-        this.discount = discount;
-    }
     public ShipOrder() {
     }
 
     public ShipOrder(Integer id) {
         this.id = id;
-    }
-
-    public ShipOrder(Integer id, Date orderdate) {
-        this.id = id;
-        this.orderdate = orderdate;
     }
 
     public Integer getId() {
@@ -105,6 +91,14 @@ public class ShipOrder implements Serializable {
 
     public void setAuctionId(Auction auctionId) {
         this.auctionId = auctionId;
+    }
+
+    public Promotion getPromotionId() {
+        return promotionId;
+    }
+
+    public void setPromotionId(Promotion promotionId) {
+        this.promotionId = promotionId;
     }
 
     @Override
