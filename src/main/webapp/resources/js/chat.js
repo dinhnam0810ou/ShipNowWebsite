@@ -1,3 +1,9 @@
+/* 
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/javascript.js to edit this template
+ */
+
+
 
 
 const firebaseConfig = {
@@ -12,24 +18,23 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 
-var text = document.getElementById("txtChat");
-var btn = document.getElementById("btnSubmit");
-const messages = document.getElementById("tinnhan");
 
 function addText() {
-    database.ref("/messages").update({
-        "text": text.value
+    var today = new Date();
+    var date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear() + "     " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var text = document.getElementById("txtChat").value;
+    database.ref("messages").update({
+        "text": text,
+        "date": date
     });
-   
 }
 
-database.ref("/messages/text").on("value", function (snapshot) {
-      var chatItem = document.createElement("li");
-      messages.appendChild(chatItem);
-     text.value = "";
-    var chat = snapshot.val();
-    
-     chatItem.innerHTML = chat;
-   
- 
+database.ref("messages").on("value", function (snapshot) {
+    var chat = snapshot.val().text;
+    var date = snapshot.val().date;
+    var item = document.createElement("li");
+    item.textContent = chat + "                    " +"("+ date +")";
+    document.getElementById("tinnhan").appendChild(item);
 });
+
+
