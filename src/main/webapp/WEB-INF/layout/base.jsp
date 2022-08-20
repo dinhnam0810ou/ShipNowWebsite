@@ -4,6 +4,7 @@
     Author     : Nguyen Dinh Nam
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tiles"
            uri="http://tiles.apache.org/tags-tiles" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,15 +19,20 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js"></script>
 
+
+        <link rel="stylesheet" type="text/css"
+              href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/bootstrap.css"/>" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">   
+        <link href="<c:url value="/css/style.css"/>" rel="stylesheet" />
+        <link href="<c:url value="/css/responsive.css"/>" rel="stylesheet" />
     </head>
     <body>
         <tiles:insertAttribute name="header" />
-        <div class="container">
-            <tiles:insertAttribute name="quangcao" />
-        </div>
-        <div class="container">
-            <tiles:insertAttribute name="content" />
-        </div>
+
+        <tiles:insertAttribute name="content" />
+
         <tiles:insertAttribute name="footer" />
     </body>
 </html>

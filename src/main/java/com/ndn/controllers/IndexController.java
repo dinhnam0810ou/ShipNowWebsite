@@ -34,12 +34,16 @@ public class IndexController {
     @Autowired
     private Environment env;
     @RequestMapping("/")
-    public String index(Model model,@RequestParam Map<String,String> params){
+    public String index(){
+        return "index";
+    }
+    @GetMapping("/listshipper")
+    public String listshipper(Model model,@RequestParam Map<String,String> params){
         int page = Integer.parseInt(params.getOrDefault("page", "1"));
         model.addAttribute("shippers", this.shipperService.getShippers(params, page));
         model.addAttribute("shipperCounter", this.shipperService.countShipper());
         model.addAttribute("pageSize", Integer.parseInt(env.getProperty("page.size")));
-        return "index";
+        return "listshipper";
     }
    
 }

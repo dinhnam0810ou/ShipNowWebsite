@@ -8,15 +8,28 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="title" value="" />
         <put-attribute name="header"
                        value="/WEB-INF/layout/header.jsp" />
-        <put-attribute name="quangcao" value="/WEB-INF/layout/quangcao.jsp" />
         <put-attribute name="content" value="" />
         <put-attribute name="footer"
                        value="/WEB-INF/layout/footer.jsp" />
+    </definition>
+     <definition name="adminLayout"
+                template="/WEB-INF/layout/adminbase.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="header"
+                       value="/WEB-INF/layout/adminheader.jsp" />
+        <put-attribute name="content" value="" />
+        <put-attribute name="footer"
+                       value="/WEB-INF/layout/adminfooter.jsp" />
     </definition>
     <definition name="index" extends="baseLayout">
         <put-attribute name="title" value="Trang chủ" />
         <put-attribute name="content"
                        value="/WEB-INF/jsp/index.jsp" />
+    </definition>
+    <definition name="listshipper" extends="baseLayout">
+        <put-attribute name="title" value="Thông tin shipper" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/listshipper.jsp" />
     </definition>
      <definition name="shipper" extends="baseLayout">
         <put-attribute name="title" value="Trang quản trị shipper" />
