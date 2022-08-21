@@ -17,4 +17,5 @@ public interface ProductService {
      int countProduct();
      boolean addProduct(Product p);
      List<Product> productNotAuction();
+      Product getProductById(int productId);
 }

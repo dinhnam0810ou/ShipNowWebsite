@@ -11,15 +11,18 @@ com\ndn\configs\DispatcherServletInitializer.class
 com\ndn\service\impl\ShipperServiceImpl.class
 com\ndn\pojos\Auction_.class
 com\ndn\pojos\Customer_.class
+com\ndn\repository\AuctionRepository.class
 com\ndn\controllers\IndexController.class
 com\ndn\pojos\Promotion.class
 com\ndn\pojos\Comment_.class
+com\ndn\controllers\ApiAuctionController.class
 com\ndn\controllers\ApiShipperController.class
 com\ndn\pojos\Customer.class
 com\ndn\repository\ShipOrderRepository.class
 com\ndn\pojos\Promotion_.class
 com\ndn\controllers\PromotionController.class
 com\ndn\pojos\Product.class
+com\ndn\repository\impl\AuctionRepositoryImpl.class
 com\ndn\pojos\User.class
 com\ndn\pojos\Shipper_.class
 com\ndn\service\impl\ProductServiceImpl.class
@@ -28,6 +31,8 @@ com\ndn\pojos\Auction.class
 com\ndn\repository\CustomerRepository.class
 com\ndn\service\PromotionService.class
 com\ndn\service\impl\PromotionServiceImpl.class
+com\ndn\service\AuctionService.class
+com\ndn\service\impl\AuctionServiceImpl.class
 com\ndn\pojos\Product_.class
 com\ndn\repository\impl\PromotionRepositoryImpl.class
 com\ndn\pojos\ShipOrder.class

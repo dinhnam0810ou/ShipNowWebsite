@@ -97,4 +97,10 @@ public class ProductRepositoryImpl implements ProductRepository {
         return q.getResultList();
     }
 
+    @Override
+    public Product getProductById(int productId) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        return session.get(Product.class, productId);
+    }
+
 }

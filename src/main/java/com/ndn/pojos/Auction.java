@@ -4,6 +4,7 @@
  */
 package com.ndn.pojos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -51,12 +52,15 @@ public class Auction implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
     @OneToMany(mappedBy = "auctionId")
+    @JsonIgnore
     private Set<ShipOrder> shipOrderSet;
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     @ManyToOne
+    @JsonIgnore
     private Product productId;
     @JoinColumn(name = "shipper_id", referencedColumnName = "id")
     @ManyToOne
+    @JsonIgnore
     private Shipper shipperId;
 
     public Auction() {

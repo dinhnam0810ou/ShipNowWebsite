@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+
     @Autowired
     private PromotionService promotionService;
     @Autowired
@@ -36,6 +37,11 @@ public class AdminController {
     private ShipOderService shipOderService;
     @Autowired
     private ShipperService shipperService;
+
+    @GetMapping("/")
+    public String adminindex() {
+        return "adminindex";
+    }
 
     @GetMapping("/shippers")
     public String shipper(Model model) {
@@ -47,42 +53,46 @@ public class AdminController {
     public String add(Model model, @ModelAttribute(value = "shipper") @Valid Shipper s,
             BindingResult r) {
         //if (!r.hasErrors()) {
-            if (this.shipperService.addShipper(s)) {
-                return "redirect:/";
-            } else {
-                model.addAttribute("errMsg", "Fail");
-            }
-       // }
+        if (this.shipperService.addShipper(s)) {
+            return "redirect:/";
+        } else {
+            model.addAttribute("errMsg", "Fail");
+        }
+        // }
         return "shipper";
     }
+
     @GetMapping("/stats")
     public String stats(Model model,
-            @RequestParam(value = "quarter",required = false,defaultValue = "0") int quarter,
-            @RequestParam(value = "year",defaultValue = "2022") int year){
+            @RequestParam(value = "quarter", required = false, defaultValue = "0") int quarter,
+            @RequestParam(value = "year", defaultValue = "2022") int year) {
         model.addAttribute("orderstat", this.shipperService.countOrderByShipper());
         model.addAttribute("revenue", this.shipperService.revenue(quarter, year));
         return "stats";
     }
+
     @GetMapping("/chat")
-    public String chat(){
+    public String chat() {
         return "chat";
     }
+
     @GetMapping("/oder")
-    public String oder(Model model){
+    public String oder(Model model) {
         model.addAttribute("oders", this.shipOderService.listOrder());
         return "oder";
     }
+
     @GetMapping("/proNotauc")
-    public String productnotaucion(Model model){
+    public String productnotaucion(Model model) {
         model.addAttribute("products", this.productService.productNotAuction());
         return "productnotaucion";
     }
-  
-     @GetMapping("/promotion")
+
+    @GetMapping("/promotion")
     public String promotions(Model model) {
         model.addAttribute("promotions", this.promotionService.getPromotions());
         model.addAttribute("promotion", new Promotion());
         return "promotion";
     }
-   
+
 }

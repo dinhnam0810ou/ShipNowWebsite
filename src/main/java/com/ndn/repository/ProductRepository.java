@@ -21,4 +21,5 @@ public interface ProductRepository {
     boolean addProduct(Product p);
 
     List<Product> productNotAuction();
+    Product getProductById(int productId);
 }

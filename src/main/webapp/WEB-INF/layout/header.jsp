@@ -8,8 +8,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<div class="dropdown" style="padding: 5px">
-    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+<div class="dropdown" style="padding: 5px;">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" style="position: relative;right: -1520px;">
         <spring:message code="label5"/>
     </button>
     <ul class="dropdown-menu">

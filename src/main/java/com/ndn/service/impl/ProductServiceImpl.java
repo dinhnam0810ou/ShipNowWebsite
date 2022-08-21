@@ -56,4 +56,9 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> productNotAuction() {
         return this.productRepository.productNotAuction();
     }
+
+    @Override
+    public Product getProductById(int productId) {
+        return this.productRepository.getProductById(productId);
+    }
 }

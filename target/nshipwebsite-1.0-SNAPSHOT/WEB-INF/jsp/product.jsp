@@ -56,10 +56,11 @@
                 <td>${p.description}</td>                   
                 <td>${p.createdDate}</td>  
                 <td>
-                    <button class="btn btn-danger">Đấu giá</button>
+                    <input id="price${p.id}" type="number" placeholder="Nhap gia ma ban muon dau gia san pham nay.."/>
+                    <button class="btn btn-danger" onclick="addAuction(${p.id})">Đấu giá</button>
                 </td>    
             </tr>
         </c:forEach>
     </table>
 </div>
-
+    <script src="<c:url value="/js/auction.js"/>"></script>
