@@ -30,9 +30,9 @@
     </head>
     <body>
         <tiles:insertAttribute name="header" />
-
+        <div class="container">
         <tiles:insertAttribute name="content" />
-
+        </div>
         <tiles:insertAttribute name="footer" />
     </body>
 </html>

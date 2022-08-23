@@ -7,12 +7,16 @@ package com.ndn.service.impl;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.ndn.pojos.Shipper;
+import com.ndn.pojos.User;
 import com.ndn.repository.ShipperRepository;
 import com.ndn.service.ShipperService;
+import com.ndn.service.UserService;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,7 +25,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ShipperServiceImpl implements ShipperService {
-
+    @Autowired
+    private UserService userService;
     @Autowired
     private ShipperRepository shipperRepository;
     @Autowired
@@ -40,9 +45,13 @@ public class ShipperServiceImpl implements ShipperService {
     @Override
     public boolean addShipper(Shipper shipper) {
         try {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            User user = this.userService.getUserByUsername(authentication.getName());
             Map result = this.cloudinary.uploader().upload(shipper.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
             String img = (String) result.get("secure_url");
-            shipper.setAvatar(img);
+            shipper.setAvatar(img);          
+            shipper.setUser(user);
+            this.userService.upadeRole("shipper", user.getId());
             return this.shipperRepository.addShipper(shipper);
         } catch (IOException ex) {
             System.err.println("ADD SHIPPER " + ex.getMessage());

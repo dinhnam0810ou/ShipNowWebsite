@@ -12,4 +12,6 @@ import com.ndn.pojos.Customer;
  */
 public interface CustomerRepository {
      Customer getCustomerById(int id);
+     Customer getCustomerByUserName(String username);
+     boolean addCustomer(Customer customer);
 }

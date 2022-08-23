@@ -14,6 +14,8 @@ import com.ndn.service.CommentService;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -41,12 +43,12 @@ public class CommentServiceImpl implements CommentService{
     @Override
     public Comment addComment(String content, int shipperId) {
         Shipper s = this.shipperRepository.getShipperById(shipperId);
-        Customer c = this.customerRepository.getCustomerById(2);
-        
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+       
         Comment comment = new Comment();
         comment.setContent(content);
         comment.setDate(new Date());
-        comment.setCustomerId(c);
+        comment.setCustomerId(this.customerRepository.getCustomerByUserName(authentication.getName()));
         comment.setShipperId(s);
         
         return this.commentRepository.addComment(comment);

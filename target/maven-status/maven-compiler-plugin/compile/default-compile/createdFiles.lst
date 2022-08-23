@@ -12,6 +12,8 @@ com\ndn\service\impl\ShipperServiceImpl.class
 com\ndn\pojos\Auction_.class
 com\ndn\pojos\Customer_.class
 com\ndn\repository\AuctionRepository.class
+com\ndn\configs\SpringSecurityConfig.class
+com\ndn\service\impl\UserServiceImpl.class
 com\ndn\controllers\IndexController.class
 com\ndn\pojos\Promotion.class
 com\ndn\pojos\Comment_.class
@@ -19,6 +21,7 @@ com\ndn\controllers\ApiAuctionController.class
 com\ndn\controllers\ApiShipperController.class
 com\ndn\pojos\Customer.class
 com\ndn\repository\ShipOrderRepository.class
+com\ndn\repository\impl\UserRepositoryImpl.class
 com\ndn\pojos\Promotion_.class
 com\ndn\controllers\PromotionController.class
 com\ndn\pojos\Product.class
@@ -53,6 +56,10 @@ com\ndn\controllers\ProductController.class
 com\ndn\repository\impl\CommentRepositoryImpl.class
 com\ndn\configs\TilesConfig.class
 com\ndn\controllers\ApiCommentController.class
+com\ndn\repository\UserRepository.class
 com\ndn\repository\ProductRepository.class
 com\ndn\service\ProductService.class
+com\ndn\controllers\UserController.class
 com\ndn\service\impl\CustomerServiceImpl.class
+com\ndn\service\UserService.class
+com\ndn\configs\SecurityWebApplicationInitializer.class

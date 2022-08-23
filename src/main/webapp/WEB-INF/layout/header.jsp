@@ -3,20 +3,41 @@
     Created on : Aug 7, 2022, 8:12:08 PM
     Author     : Nguyen Dinh Nam
 --%>
-
+<%@ taglib prefix="sec"
+           uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<div class="dropdown" style="padding: 5px;">
-    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" style="position: relative;right: -1520px;">
+
+
+ 
+<span>
+    <sec:authorize access="!isAuthenticated()">
+    <a href="<c:url value="/login"/>"><span class="glyphicon glyphicon-user"></span>Dang nhap</a>
+    <a href="<c:url value="/register"/>"><span class="glyphicon glyphicon-log-in"></span>Dang ky</a>
+</sec:authorize>
+<sec:authorize access="isAuthenticated()">
+    <a href="#">${pageContext.request.userPrincipal.name}</a>
+    <a class="text-danger" href="<c:url value="/registercustomer"/>">Dang ky customer</a>
+    <a class="text-danger" href="<c:url value="/registershipper"/>">Dang ky shipper</a>
+    <a class="text-danger" href="<c:url value="/logout"/>">Dang xuat</a>
+</sec:authorize>
+</span>
+<span>
+    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
         <spring:message code="label5"/>
     </button>
+
     <ul class="dropdown-menu">
         <li><a class="dropdown-item" href="?lang=vi"><spring:message code="label6"/></a></li>
         <li><a class="dropdown-item" href="?lang=en"><spring:message code="label7"/></a></li>
     </ul>
-</div>
+</span>
+
+
+
+
 <div class="hero_area">
 
     <!-- header section strats -->

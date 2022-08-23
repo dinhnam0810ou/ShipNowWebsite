@@ -1,7 +1,10 @@
+C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\repository\impl\UserRepositoryImpl.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\service\impl\PromotionServiceImpl.java
+C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\configs\SecurityWebApplicationInitializer.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\repository\CommentRepository.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\repository\impl\PromotionRepositoryImpl.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\repository\impl\ShipOrderRepositoryImpl.java
+C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\service\impl\UserServiceImpl.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\repository\CustomerRepository.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\service\impl\AuctionServiceImpl.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\service\PromotionService.java
@@ -10,9 +13,11 @@ C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\poj
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\repository\PromotionRepository.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\controllers\AdminController.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\configs\WebApplicationContextConfig.java
+C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\controllers\UserController.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\pojos\User.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\repository\impl\CustomerRepositoryImpl.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\service\CommentService.java
+C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\service\UserService.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\configs\TilesConfig.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\controllers\ApiAuctionController.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\controllers\ApiShipperController.java
@@ -41,9 +46,11 @@ C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\ser
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\service\impl\CustomerServiceImpl.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\service\ShipOderService.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\service\ProductService.java
+C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\configs\SpringSecurityConfig.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\pojos\ShipOrder.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\service\CustomerService.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\pojos\Customer.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\controllers\ProductController.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\repository\impl\AuctionRepositoryImpl.java
+C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\repository\UserRepository.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\repository\ShipOrderRepository.java

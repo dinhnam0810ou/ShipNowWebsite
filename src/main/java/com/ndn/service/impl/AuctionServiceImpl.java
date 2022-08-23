@@ -38,7 +38,5 @@ public class AuctionServiceImpl implements AuctionService{
         a.setProductId(p);
         a.setShipperId(s);
         return this.auctionRepository.addAuction(a);
-    }
-   
-    
+    }  
 }
