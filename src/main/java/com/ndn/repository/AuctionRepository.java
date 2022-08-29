@@ -5,6 +5,7 @@
 package com.ndn.repository;
 
 import com.ndn.pojos.Auction;
+import java.util.List;
 
 /**
  *
@@ -12,4 +13,8 @@ import com.ndn.pojos.Auction;
  */
 public interface AuctionRepository {
     Auction addAuction(Auction auction);
+    List<Object[]> getAuctionByShipperId(int shipperId);
+    List<Object[]> getAuctionByCustomerId(int customerId);
+    List<Object[]> getAuctionById(int auctionId);
+    Auction getAuctionByAuctionId(int auctionId);
 }

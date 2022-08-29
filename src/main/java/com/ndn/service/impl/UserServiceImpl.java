@@ -52,14 +52,19 @@ public class UserServiceImpl implements UserService {
         String pass = user.getPassword();
         user.setPassword(this.passwordEncoder.encode(pass));
         user.setActive(1);
-        user.setUserRole("customer");
+        user.setUserRole("ROLE_CUSTOMER");
         user.setDate(new Date());
         return this.userRepository.addUser(user);
     }
 
     @Override
-    public void upadeRole(String role, int userid) {
-        this.userRepository.upadeRole(role, userid);
+    public void updateRole(String role, int userid) {
+        this.userRepository.updateRole(role, userid);
+    }
+
+    @Override
+    public void updatePassword(String password, int userid) {
+        this.userRepository.updatePassword(password, userid);
     }
 
 }

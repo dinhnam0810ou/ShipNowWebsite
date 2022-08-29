@@ -12,7 +12,10 @@ import com.ndn.repository.ProductRepository;
 import com.ndn.repository.ShipperRepository;
 import com.ndn.service.AuctionService;
 import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -20,7 +23,8 @@ import org.springframework.stereotype.Service;
  * @author Nguyen Dinh Nam
  */
 @Service
-public class AuctionServiceImpl implements AuctionService{
+public class AuctionServiceImpl implements AuctionService {
+
     @Autowired
     private ProductRepository productRepository;
     @Autowired
@@ -31,12 +35,33 @@ public class AuctionServiceImpl implements AuctionService{
     @Override
     public Auction addAuction(double price, int productId) {
         Product p = this.productRepository.getProductById(productId);
-        Shipper s = this.shipperRepository.getShipperById(3);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Auction a = new Auction();
         a.setPrice(price);
         a.setDate(new Date());
         a.setProductId(p);
-        a.setShipperId(s);
+        a.setShipperId(this.shipperRepository.getShipperByUserName(authentication.getName()));
         return this.auctionRepository.addAuction(a);
-    }  
+    }
+
+    @Override
+    public List<Object[]> getAuctionByShipperId(int shipperId) {
+        return this.auctionRepository.getAuctionByShipperId(shipperId);
+    }
+
+    @Override
+    public List<Object[]> getAuctionByCustomerId(int customerId) {
+        return this.auctionRepository.getAuctionByCustomerId(customerId);
+    }
+
+    @Override
+    public List<Object[]> getAuctionById(int auctionId) {
+        return this.auctionRepository.getAuctionById(auctionId);
+    }
+
+    @Override
+    public Auction getAuctionByAuctionId(int auctionId) {
+        return this.auctionRepository.getAuctionByAuctionId(auctionId);
+    }
+
 }

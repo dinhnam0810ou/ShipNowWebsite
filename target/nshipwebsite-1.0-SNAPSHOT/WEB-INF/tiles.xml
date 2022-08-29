@@ -21,10 +21,50 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="footer"
                        value="/WEB-INF/layout/adminfooter.jsp" />
     </definition>
+     <definition name="pay" extends="baseLayout">
+        <put-attribute name="title" value="Thanh toán" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/pay.jsp" />
+    </definition>
+    <definition name="oderofcustomer" extends="baseLayout">
+        <put-attribute name="title" value="Đơn hàng" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/oderofcustomer.jsp" />
+    </definition>
+     <definition name="oderofshipper" extends="baseLayout">
+        <put-attribute name="title" value="Đơn hàng" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/oderofshipper.jsp" />
+    </definition>
+    <definition name="forgotpassword" extends="baseLayout">
+        <put-attribute name="title" value="Quên mật khẩu" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/forgotpassword.jsp" />
+    </definition>
+    <definition name="completepassword" extends="baseLayout">
+        <put-attribute name="title" value="Quên mật khẩu" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/completepassword.jsp" />
+    </definition>
+    <definition name="shipperauction" extends="baseLayout">
+        <put-attribute name="title" value="Thông tin đấu giá của bạn" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/shipperauction.jsp" />
+    </definition>
+    <definition name="customerauction" extends="baseLayout">
+        <put-attribute name="title" value="Các đấu giá cho sản phẩm của bạn" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/customerauction.jsp" />
+    </definition>
     <definition name="index" extends="baseLayout">
         <put-attribute name="title" value="Trang chủ" />
         <put-attribute name="content"
                        value="/WEB-INF/jsp/index.jsp" />
+    </definition>
+    <definition name="customerpromotion" extends="baseLayout">
+        <put-attribute name="title" value="Chọn mã giảm giá của bạn" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/customerpromotion.jsp" />
     </definition>
     <definition name="login" extends="baseLayout">
         <put-attribute name="title" value="Login" />

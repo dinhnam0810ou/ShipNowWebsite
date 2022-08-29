@@ -4,6 +4,8 @@
  */
 package com.ndn.service;
 
+import com.ndn.pojos.Auction;
+import com.ndn.pojos.Product;
 import com.ndn.pojos.Shipper;
 import java.util.List;
 import java.util.Map;
@@ -25,4 +27,6 @@ public interface ShipperService {
     Shipper getShipperById(int id);
     List<Object[]> countOrderByShipper();
     List<Object[]> revenue(int quarter,int year);
+    Shipper getShipperByUserName(String username);
+     List<Auction> getListShipperNotChoose(Product productId,Shipper shipperIdchoose);
 }

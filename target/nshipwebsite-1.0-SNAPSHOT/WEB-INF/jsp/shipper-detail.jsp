@@ -3,7 +3,7 @@
     Created on : Aug 10, 2022, 4:26:51 PM
     Author     : Nguyen Dinh Nam
 --%>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -42,9 +42,12 @@
         <button class="star">&#9734;</button>
         <button class="star">&#9734;</button>
     </div>
-    <textarea class="form-control" id="commentId" placeholder="Nhập đánh giá của bạn..."></textarea>
-    <br>
-    <input type="submit" value="Gửi đánh giá" class="btn btn-danger" onclick="addComment(${shipper.id})"/>
+    <sec:authorize access="hasRole('ROLE_CUSTOMER')">
+        <textarea class="form-control" id="commentId" placeholder="Nhập đánh giá của bạn..."></textarea>
+        <br>
+        <input type="submit" value="Gửi đánh giá" class="btn btn-danger" onclick="addComment(${shipper.id})"/>   
+    </sec:authorize>
+
 </div>
 <div id="commentArea" style="margin-top: 10px">
     <ul class="pagination">
@@ -58,12 +61,12 @@
     <c:forEach items="${comments}" var="comment">
         <div class="row">
             <div class="col-md-1" style="padding: 10px">
-                <img src="https://res.cloudinary.com/da1xygjae/image/upload/v1660144588/images_yykwmm.jpg" class="card-img-top img-fluid rounded-circle" 
+                <img src="${comment[1]}" class="card-img-top img-fluid rounded-circle" 
                      width="50" height="50"/>
             </div>
             <div class="col-md-11 my-date">
-                <p>${comment.content}</p>
-                <i>${comment.date}</i>
+                <p>${comment[0]} đã bình luận  <i>${comment[3]}</i></p>
+                <p>${comment[2]}</p>              
             </div>
         </div>
     </c:forEach> 

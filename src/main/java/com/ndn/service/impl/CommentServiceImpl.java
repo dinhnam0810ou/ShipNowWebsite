@@ -31,7 +31,7 @@ public class CommentServiceImpl implements CommentService{
     @Autowired
     private CustomerRepository customerRepository;
     @Override
-    public List<Comment> getCommentByShipperId(int shipperId, int page) {
+    public List<Object[]> getCommentByShipperId(int shipperId, int page) {
         return this.commentRepository.getCommentByShipperId(shipperId, page);
     }
 

@@ -3,12 +3,12 @@
     Created on : Aug 19, 2022, 10:27:13 PM
     Author     : Nguyen Dinh Nam
 --%>
-
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<h1 class="text-center text-info">THÔNG TIN SHIPPER</h1>
+<h1 class="text-center text-info"><spring:message code="label2"/></h1>
 <c:if test="${shippers.size() == 0}">
     <p>
         <strong>Không có shipper nào!!!</strong>
@@ -33,7 +33,7 @@
                     <h4 class="card-title">${s.firstname} ${s.lastname}</h4>
                     <p class="card-text">SĐT: ${s.phone}</p>
                     <p class="card-text">Email: ${s.email}</p>
-                    <a href="<c:url value="/${s.id}"/>" class="btn btn-primary">Xem chi tiết</a>
+                    <a href="<c:url value="/${s.id}"/>" class="btn btn-primary"><spring:message code="label20"/></a>
                 </div>
             </div>
         </div>

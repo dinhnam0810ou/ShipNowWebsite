@@ -9,10 +9,10 @@
 <!DOCTYPE html>
 <h1 class="text-center text-info">CHAT</h1>
 <style>
+    ul {
+        list-style: none;
+    }
 
-    /* Nút Để Mở Chatbox */
-
-    /* Thêm style cho form */
     .form-container {
         margin: auto;
 
@@ -21,7 +21,7 @@
         padding: 10px;
         background-color: white;
     }
-    /* thiết lập style textarea */
+
     .form-container input {
         width: 100%;
         padding: 15px;
@@ -31,12 +31,12 @@
         resize: none;
         min-height: 50px;
     }
-    /*thiết lập style cho textarea khi được focus */
+ 
     .form-container input:focus {
         background-color: #ddd;
         outline: none;
     }
-    /* Thiết lập style cho nút trong form*/
+
     .form-container .btn {
         background-color: #4CAF50;
         color: white;

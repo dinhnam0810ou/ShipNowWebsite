@@ -7,12 +7,13 @@ import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2022-08-23T12:37:18")
+@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2022-08-28T21:53:29")
 @StaticMetamodel(Promotion.class)
 public class Promotion_ { 
 
     public static volatile SetAttribute<Promotion, ShipOrder> shipOrderSet;
     public static volatile SingularAttribute<Promotion, Integer> quantity;
+    public static volatile SingularAttribute<Promotion, String> code;
     public static volatile SingularAttribute<Promotion, Double> discount;
     public static volatile SingularAttribute<Promotion, Date> createdate;
     public static volatile SingularAttribute<Promotion, String> description;

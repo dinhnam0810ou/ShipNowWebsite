@@ -5,11 +5,20 @@
 package com.ndn.service;
 
 import com.ndn.pojos.Auction;
+import java.util.List;
 
 /**
  *
  * @author Nguyen Dinh Nam
  */
 public interface AuctionService {
-     Auction addAuction(double price,int productId);
+
+    Auction addAuction(double price, int productId);
+
+    List<Object[]> getAuctionByShipperId(int shipperId);
+
+    List<Object[]> getAuctionByCustomerId(int customerId);
+
+    List<Object[]> getAuctionById(int auctionId);
+     Auction getAuctionByAuctionId(int auctionId);
 }

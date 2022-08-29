@@ -13,39 +13,46 @@
 <c:url value="/admin/shippers" var="action" />
 <form:form method="post" action="${action}" modelAttribute="shipper" enctype="multipart/form-data">
     <form:errors path="*" cssClass="alert alert-danger" element="div"/>
-    <div class="form-floating mb-3 mt-3">
-        <form:input type="text" path="firstname" class="form-control" id="firstname" placeholder="firstname" name="name" />
-        <label for="name">FirstName</label>
+    <div class="form-group">
+         <label for="name">FirstName</label>
+        <form:input type="text" path="firstname" class="form-control" id="firstname"  name="name" />
+       
 
     </div>
-    <div class="form-floating mb-3 mt-3">
-        <form:input type="text" path="lastname" class="form-control" id="lastname" placeholder="lastname" name="name" />
-        <label for="name">LastName</label>
+    <div class="form-group">
+          <label for="name">LastName</label>
+        <form:input type="text" path="lastname" class="form-control" id="lastname"  name="name" />
+      
 
     </div>
-    <div class="form-floating mb-3 mt-3">
-        <form:input type="text" path="identification" class="form-control" id="identification" placeholder="identification" name="name" />
-        <label for="name">Identification</label>
+    <div class="form-group">
+         <label for="name">Identification</label>
+        <form:input type="text" path="identification" class="form-control" id="identification"  name="name" />
+       
         <form:errors path="identification" cssClass="alert alert-danger" element="div"/>
     </div>
-    <div class="form-floating mb-3 mt-3">
-        <form:input type="text" path="phone" class="form-control" id="phone" placeholder="phone" name="name" />
+    <div class="form-group">
         <label for="name">Phone</label>
+        <form:input type="text" path="phone" class="form-control" id="phone"  name="name" />
+        
         <form:errors path="phone" cssClass="alert alert-danger" element="div"/>
     </div>
-    <div class="form-floating mb-3 mt-3">
-        <form:input type="text" path="email" class="form-control" id="email" placeholder="email" name="name" />
-        <label for="name">Email</label>
+    <div class="form-group">
+         <label for="name">Email</label>
+        <form:input type="text" path="email" class="form-control" id="email"  name="name" />
+       
 
     </div>
-    <div class="form-floating mb-3 mt-3">
-        <form:input type="text" path="active" class="form-control" id="active" placeholder="active" name="name" />
-        <label for="name">Active</label>
+    <div class="form-group">
+          <label for="name">Active</label>
+        <form:input type="text" path="active" class="form-control" id="active"  name="name" />
+      
 
     </div>
-    <div class="form-floating mb-3 mt-3">
-        <form:input type="file" path="file" class="form-control" id="file" placeholder="file" name="name"  size="150px"/>
-        <label for="name">Avatar</label>
+    <div class="form-group">
+          <label for="name">Avatar</label>
+        <form:input type="file" path="file" class="form-control" id="file"  name="name"  size="150px"/>
+      
         <form:errors path="file" cssClass="alert alert-danger" element="div"/>
     </div>
     <div>

@@ -12,7 +12,7 @@ import java.util.List;
  * @author Nguyen Dinh Nam
  */
 public interface CommentService {
-    List<Comment> getCommentByShipperId(int shipperId,int page);
+    List<Object[]> getCommentByShipperId(int shipperId,int page);
      int countComment(int shipperId);
      Comment addComment(String content,int shipperId);
 }

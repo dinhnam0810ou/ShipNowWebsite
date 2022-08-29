@@ -30,5 +30,15 @@ public class PromotionServiceImpl implements PromotionService{
         promotion.setCreatedate(new Date());
         return this.promotionRepository.addPromotion(promotion);
     }
+
+    @Override
+    public Promotion getPromotionByCode(String code) {
+        return this.promotionRepository.getPromotionByCode(code);
+    }
+
+    @Override
+    public Promotion getPromotionById(int promotionId) {
+        return this.promotionRepository.getPromotionById(promotionId);
+    }
     
 }

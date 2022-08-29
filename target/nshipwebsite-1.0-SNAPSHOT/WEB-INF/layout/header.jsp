@@ -11,30 +11,44 @@
 <!DOCTYPE html>
 
 
- 
-<span>
-    <sec:authorize access="!isAuthenticated()">
-    <a href="<c:url value="/login"/>"><span class="glyphicon glyphicon-user"></span>Dang nhap</a>
-    <a href="<c:url value="/register"/>"><span class="glyphicon glyphicon-log-in"></span>Dang ky</a>
-</sec:authorize>
-<sec:authorize access="isAuthenticated()">
-    <a href="#">${pageContext.request.userPrincipal.name}</a>
-    <a class="text-danger" href="<c:url value="/registercustomer"/>">Dang ky customer</a>
-    <a class="text-danger" href="<c:url value="/registershipper"/>">Dang ky shipper</a>
-    <a class="text-danger" href="<c:url value="/logout"/>">Dang xuat</a>
-</sec:authorize>
-</span>
-<span>
-    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-        <spring:message code="label5"/>
-    </button>
+<div style="padding-bottom: 45px;">
+    <span style="float: right; margin-left: 10px;">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+            <spring:message code="label5"/>
+        </button>
 
-    <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="?lang=vi"><spring:message code="label6"/></a></li>
-        <li><a class="dropdown-item" href="?lang=en"><spring:message code="label7"/></a></li>
-    </ul>
-</span>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="?lang=vi"><spring:message code="label6"/></a></li>
+            <li><a class="dropdown-item" href="?lang=en"><spring:message code="label7"/></a></li>
+        </ul>
+    </span>
+    <span style="float: right;">
+        <sec:authorize access="!isAuthenticated()">
+            <button class="btn btn-outline-secondary">
+                <a href="<c:url value="/login"/>"><span class="fa-solid fa-right-to-bracket text-danger"></span> <spring:message code="label9"/></a>
+            </button>
+            <button class="btn btn-outline-secondary">
+                <a href="<c:url value="/register"/>"><span class="fa-solid fa-user-plus text-danger"></span> <spring:message code="label10"/></a>
+            </button>
+        </sec:authorize>
+        <sec:authorize access="isAuthenticated()">   
+            <c:if test="${shipper!=null}">
+                <img  src="${shipper.avatar}" class="img-fluid rounded-circle" width="40" height="40">
+            </c:if>
+            <c:if test="${customer!=null}">
+                <img src="${customer.avatar}" class="img-fluid rounded-circle" width="40" height="40">
+            </c:if>      
+            <a href="#">${pageContext.request.userPrincipal.name}</a>
+            <a class="text-danger" href="<c:url value="/registercustomer"/>">Dang ky customer</a>
+            <a class="text-danger" href="<c:url value="/registershipper"/>">Dang ky shipper</a>
+            <button class="btn btn-outline-secondary">
+                <a href="<c:url value="/logout"/>"><spring:message code="label19"/></a>
+            </button>
+        </sec:authorize>
 
+    </span>
+
+</div>
 
 
 
@@ -60,7 +74,7 @@
 
                                 </div>
                                 <span>
-                                    (+84)976319235
+                                    (+84)976319227
                                 </span>
                             </a>
                             <a href="" class="ml-4">
@@ -121,7 +135,23 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="<c:url value="/product"/>"><spring:message code="label3"/></a>
-                                        </li>                                      
+                                        </li>
+                                        <sec:authorize access="hasRole('ROLE_SHIPPER')">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="<c:url value="/myauction"/>"><spring:message code="label18"/></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="<c:url value="/oderofshipper"/>"><spring:message code="label17"/></a>
+                                            </li>
+                                        </sec:authorize>
+                                        <sec:authorize access="hasRole('ROLE_CUSTOMER')">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="<c:url value="/customerauction"/>"><spring:message code="label16"/></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="<c:url value="/oderofcustomer"/>"><spring:message code="label17"/></a>
+                                            </li>
+                                        </sec:authorize>                  
                                     </ul>
 
                                 </div>

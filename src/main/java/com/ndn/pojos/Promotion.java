@@ -61,7 +61,16 @@ public class Promotion implements Serializable {
     private Set<ShipOrder> shipOrderSet;
     @Column(name = "quantity")
     private int quantity;
+    @Column(name = "code")
+    private String code;
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
     public int getQuantity() {
         return quantity;
     }

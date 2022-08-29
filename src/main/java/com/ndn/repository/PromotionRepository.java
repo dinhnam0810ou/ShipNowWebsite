@@ -14,4 +14,6 @@ import java.util.List;
 public interface PromotionRepository {
     List<Promotion> getPromotions();
     boolean addPromotion(Promotion promotion);
+    Promotion getPromotionByCode(String code);
+    Promotion getPromotionById(int promotionId);
 }

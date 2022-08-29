@@ -6,6 +6,8 @@ package com.ndn.service.impl;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.ndn.pojos.Auction;
+import com.ndn.pojos.Product;
 import com.ndn.pojos.Shipper;
 import com.ndn.pojos.User;
 import com.ndn.repository.ShipperRepository;
@@ -51,7 +53,7 @@ public class ShipperServiceImpl implements ShipperService {
             String img = (String) result.get("secure_url");
             shipper.setAvatar(img);          
             shipper.setUser(user);
-            this.userService.upadeRole("shipper", user.getId());
+            this.userService.updateRole("ROLE_SHIPPER", user.getId());
             return this.shipperRepository.addShipper(shipper);
         } catch (IOException ex) {
             System.err.println("ADD SHIPPER " + ex.getMessage());
@@ -77,5 +79,15 @@ public class ShipperServiceImpl implements ShipperService {
     @Override
     public List<Object[]> revenue(int quarter, int year) {
         return this.shipperRepository.revenue(quarter, year);
+    }
+
+    @Override
+    public Shipper getShipperByUserName(String username) {
+        return this.shipperRepository.getShipperByUserName(username);
+    }
+
+    @Override
+    public List<Auction> getListShipperNotChoose(Product productId, Shipper shipperIdchoose) {
+        return this.shipperRepository.getListShipperNotChoose(productId, shipperIdchoose);
     }
 }

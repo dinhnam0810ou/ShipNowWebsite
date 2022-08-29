@@ -6,10 +6,15 @@ package com.ndn.configs;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.ndn.handlers.LoginHandler;
+import com.ndn.handlers.LogoutHandler;
+import java.util.Properties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -28,10 +33,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan(basePackages = {
     "com.ndn.controllers",
     "com.ndn.repository",
-    "com.ndn.service"
+    "com.ndn.service",
+    "com.ndn.handlers"
 })
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private LoginHandler loginHandler;
+    @Autowired
+    private LogoutHandler logoutHanlder;
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -39,6 +49,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Bean
     public Cloudinary cloudinary() {
         Cloudinary cloudinary
@@ -49,6 +60,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                         "secure", true));
         return cloudinary;
     }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
@@ -61,10 +73,33 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin().loginPage("/login")
                 .usernameParameter("username")
                 .passwordParameter("password");
-        http.formLogin().defaultSuccessUrl("/")
-                .failureUrl("/login?error");
-        http.logout().logoutSuccessUrl("/login");
+        http.formLogin().successHandler(loginHandler);
+        http.logout().logoutSuccessHandler(logoutHanlder);
+        
+        http.authorizeRequests().antMatchers("/").permitAll()
+                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/myauction").access("hasRole('ROLE_SHIPPER')")
+                .antMatchers("/customerauction").access("hasRole('ROLE_CUSTOMER')");
+        
+        
         http.csrf().disable();
     }
+    
+    @Bean
+    public JavaMailSender getJavaMailSender() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(587);
 
+        mailSender.setUsername("shipnowonline@gmail.com");
+        mailSender.setPassword("hfmeobkayaqpthrl");
+
+        Properties props = mailSender.getJavaMailProperties();
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.debug", "true");
+
+        return mailSender;
+    }
 }

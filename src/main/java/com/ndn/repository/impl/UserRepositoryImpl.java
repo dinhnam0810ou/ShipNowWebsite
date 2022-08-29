@@ -54,12 +54,21 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void upadeRole(String role, int userid) {
-          Session session = this.sessionFactory.getObject().getCurrentSession();
-          Query q = session.createQuery("Update User set userRole=:role where id=:userid");
-          q.setParameter("role", role);
-          q.setParameter("userid", userid);
-          int r = q.executeUpdate();
+    public void updateRole(String role, int userid) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Query q = session.createQuery("Update User set userRole=:role where id=:userid");
+        q.setParameter("role", role);
+        q.setParameter("userid", userid);
+        int r = q.executeUpdate();
+    }
+
+    @Override
+    public void updatePassword(String password, int userid) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Query q = session.createQuery("Update User set password=:pass where id=:userid");
+        q.setParameter("pass", password);
+        q.setParameter("userid", userid);
+        int r = q.executeUpdate();
     }
 
 }

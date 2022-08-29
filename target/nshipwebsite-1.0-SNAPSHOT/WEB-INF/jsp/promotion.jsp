@@ -12,24 +12,34 @@
 <c:url value="/admin/promotion" var="action" />
 <form:form method="post" action="${action}" modelAttribute="promotion">
 
-    <div class="form-floating mb-3 mt-3">
-        <form:input type="text" path="discount" class="form-control" id="discount" placeholder="discount" name="name" />
+    <div class="form-group">
         <label for="name">Discount</label>
+        <form:input type="number" path="discount" class="form-control" id="discount"  name="name" />
+
 
     </div>
-    <div class="form-floating mb-3 mt-3">
-        <form:input type="text" path="expirationdate" class="form-control" id="expirationdate" placeholder="expirationdate" name="name" />
+    <div class="form-group">
+        <label for="name">Code</label>
+        <form:input type="text" path="code" class="form-control" id="code"  name="name" />
+
+
+    </div>
+    <div class="form-group">
         <label for="name">Expirationdate</label>
+        <form:input type="text" path="expirationdate" class="form-control" id="expirationdate"  name="name" />
+
 
     </div>
-    <div class="form-floating mb-3 mt-3">
-        <form:input type="text" path="quantity" class="form-control" id="quantity" placeholder="quantity" name="name" />
+    <div class="form-group">
         <label for="name">Quantity</label>
+        <form:input type="number" path="quantity" class="form-control" id="quantity"  name="name" />
+
 
     </div>
-    <div class="form-floating mb-3 mt-3">
-        <form:input type="text" path="description" class="form-control" id="description" placeholder="description" name="name" />
+    <div class="form-group">
         <label for="name">Description</label>
+        <form:input type="text" path="description" class="form-control" id="description"  name="name" />
+
 
     </div> 
     <div>
@@ -48,6 +58,7 @@
             <th>Createdate</th>
             <th>Expirationdate</th>
             <th>Quantity</th>
+            <th>Code</th>
             <th>Description</th>
         </tr>
         <c:forEach items="${promotions}" var="p">
@@ -57,6 +68,7 @@
                 <td>${p.createdate}</td>
                 <td>${p.expirationdate}</td>
                 <td>${p.quantity}</td>
+                <td>${p.code}</td>
                 <td>${p.description}</td>
             </tr>
         </c:forEach>

@@ -13,5 +13,6 @@ import com.ndn.pojos.User;
 public interface UserRepository {
     User getUserByUsername(String username);
     boolean addUser(User user);
-    void upadeRole(String role,int userid);
+    void updateRole(String role,int userid);
+    void updatePassword(String password,int userid);
 }

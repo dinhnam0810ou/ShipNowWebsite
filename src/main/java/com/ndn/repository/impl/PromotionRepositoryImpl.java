@@ -44,4 +44,18 @@ public class PromotionRepositoryImpl implements PromotionRepository {
         }
     }
 
+    @Override
+    public Promotion getPromotionByCode(String code) {
+        Session session = sessionFactory.getObject().getCurrentSession();
+        Query q = session.createQuery("From Promotion Where code=:tcode");
+        q.setParameter("tcode", code);
+        return (Promotion) q.getSingleResult();
+    }
+
+    @Override
+    public Promotion getPromotionById(int promotionId) {
+        Session session = sessionFactory.getObject().getCurrentSession();
+        return session.get(Promotion.class,promotionId);
+    }
+
 }

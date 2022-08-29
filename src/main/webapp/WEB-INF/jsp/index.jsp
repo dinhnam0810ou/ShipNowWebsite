@@ -7,6 +7,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!-- about section -->
+<c:if test="${mess!=null}">
+    <script>window.alert("Tao don hang thanh cong");</script>
+</c:if>
 <section class="about_section ">
     <div class="container">
         <div class="row">
@@ -408,22 +411,22 @@
 
             <div class="col-md-6">
                 <div class="contact_form-container">
-                    <form action="">
+                    <form action="<c:url value="/"/>" method="post">
                         <div>
-                            <input type="text" placeholder="Your Name">
+                            <input name="name" type="text" placeholder="Your Name" autocomplete="off">
                         </div>
                         <div>
-                            <input type="email" placeholder="Your Email">
+                            <input name="email" type="email" placeholder="Your Email" autocomplete="off">
                         </div>
                         <div>
-                            <input type="text" placeholder="Your Phone">
+                            <input name="phone" type="text" placeholder="Your Phone" autocomplete="off">
                         </div>
 
                         <div>
-                            <input type="text" class="message_input" placeholder="Message">
+                            <input name="message" type="text" class="message_input" placeholder="Message" autocomplete="off">
                         </div>
                         <div class="d-flex justify-content-end">
-                            <button type="submit " class="">
+                            <button  >
                                 Send
                             </button>
                         </div>

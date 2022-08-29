@@ -2,6 +2,8 @@ C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\rep
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\service\impl\PromotionServiceImpl.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\configs\SecurityWebApplicationInitializer.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\repository\CommentRepository.java
+C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\handlers\LogoutHandler.java
+C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\service\EmailService.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\repository\impl\PromotionRepositoryImpl.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\repository\impl\ShipOrderRepositoryImpl.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\service\impl\UserServiceImpl.java
@@ -24,6 +26,7 @@ C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\con
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\pojos\Auction.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\service\AuctionService.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\controllers\ApiCommentController.java
+C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\handlers\LoginHandler.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\repository\impl\CommentRepositoryImpl.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\repository\AuctionRepository.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\repository\impl\ProductRepositoryImpl.java
@@ -36,6 +39,7 @@ C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\ser
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\repository\impl\ShipperRepositoryImpl.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\controllers\PromotionController.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\pojos\Promotion.java
+C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\service\impl\EmailServiceImpl.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\controllers\IndexController.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\service\impl\CommentServiceImpl.java
 C:\Users\nam\Documents\NetBeansProjects\ShipNowWebsite\src\main\java\com\ndn\configs\HibernateConfig.java

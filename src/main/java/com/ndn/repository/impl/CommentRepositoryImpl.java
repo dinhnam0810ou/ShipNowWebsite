@@ -5,6 +5,8 @@
 package com.ndn.repository.impl;
 
 import com.ndn.pojos.Comment;
+import com.ndn.pojos.Customer;
+import com.ndn.pojos.User;
 import com.ndn.repository.CommentRepository;
 import java.util.List;
 import javax.persistence.Query;
@@ -32,13 +34,19 @@ public class CommentRepositoryImpl implements CommentRepository{
     @Autowired
     private Environment env;
     @Override
-    public List<Comment> getCommentByShipperId(int shipperId,int page) {
+    public List<Object[]> getCommentByShipperId(int shipperId,int page) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder b = session.getCriteriaBuilder();
-        CriteriaQuery<Comment> q = b.createQuery(Comment.class);
+        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
         Root root = q.from(Comment.class);
+        Root rootC = q.from(Customer.class);
+        Root rootU = q.from(User.class);
         
-        q = q.where(b.equal(root.get("shipperId"), shipperId));
+        
+        q = q.where(b.equal(root.get("shipperId"), shipperId),
+                b.equal(rootU.get("id"), rootC.get("userId")),
+                b.equal(rootC.get("id"), root.get("customerId")));
+        q.multiselect(rootU.get("username"),rootC.get("avatar"),root.get("content"),root.get("date"));
         q = q.orderBy(b.desc(root.get("id")));
         Query query = session.createQuery(q);
         if (page > 0) {

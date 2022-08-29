@@ -5,6 +5,8 @@
 package com.ndn.repository.impl;
 
 import com.ndn.pojos.Auction;
+import com.ndn.pojos.Customer;
+import com.ndn.pojos.Product;
 import com.ndn.pojos.Promotion;
 import com.ndn.pojos.ShipOrder;
 import com.ndn.pojos.Shipper;
@@ -145,7 +147,7 @@ public class ShipperRepositoryImpl implements ShipperRepository {
         Root rA = q.from(Auction.class);
         Root rS = q.from(Shipper.class);
         Root rP = q.from(Promotion.class);
-        
+
         q.where(b.equal(rO.get("auctionId"), rA.get("id")),
                 b.equal(rS.get("id"), rA.get("shipperId")),
                 b.equal(b.function("QUARTER", Integer.class, rO.get("orderdate")), quarter),
@@ -154,9 +156,26 @@ public class ShipperRepositoryImpl implements ShipperRepository {
 
         q.multiselect(rS.get("id"), rS.get("firstname"), rS.get("lastname"), b.sum(b.prod(rA.get("price"), rP.get("discount"))));
         q.groupBy(rA.get("shipperId"));
-        
+
         Query query = session.createQuery(q);
         return query.getResultList();
+    }
+
+    @Override
+    public Shipper getShipperByUserName(String username) {
+        Session s = sessionFactory.getObject().getCurrentSession();
+        Query q = s.createQuery("From Shipper Where user In (From User  Where username=:name)");
+        q.setParameter("name", username);
+        return (Shipper) q.getSingleResult();
+    }
+
+    @Override
+    public List<Auction> getListShipperNotChoose(Product productId, Shipper shipperIdchoose) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Query q = session.createQuery("From Auction Where productId=:pid And shipperId!=:sid");
+        q.setParameter("pid", productId);
+        q.setParameter("sid", shipperIdchoose);
+        return q.getResultList();
     }
 
 }

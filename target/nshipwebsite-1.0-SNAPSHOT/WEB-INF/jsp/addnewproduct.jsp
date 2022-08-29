@@ -11,33 +11,38 @@
 <form:form method="post" action="${action}" modelAttribute="product" enctype="multipart/form-data">
     <form:errors path="*" element="div" cssClass="alert alert-danger" />
 
-    <div class="form-floating mb-3 mt-3">
-        <form:input type="text" path="productname" class="form-control" id="productname" placeholder="productname" name="name" />
-        <label for="name">ProductName:</label>
+    <div class="form-group">
+         <label for="name">ProductName:</label>
+        <form:input type="text" path="productname" class="form-control" id="productname"  name="name" />
+       
     </div>  
-    <div class="form-floating mb-3 mt-3">
-        <form:input type="text" path="description" class="form-control" id="description" placeholder="description" name="name" />
+    <div class="form-group">
         <label for="name">Description:</label>
+        <form:input type="text" path="description" class="form-control" id="description"  name="name" />
+        
     </div>
-    <div class="form-floating mb-3 mt-3">
-        <form:input type="text" path="active" class="form-control" id="active" placeholder="active" name="name" />
-        <label for="name">Active:</label>
+    <div class="form-group">
+         <label for="name">Active:</label>
+        <form:input type="text" path="active" class="form-control" id="active"  name="name" />
+       
     </div> 
-    <div class="form-floating mb-3 mt-3">
-        <form:input type="text" path="shipaddress" class="form-control" id="shipaddress" placeholder="shipaddress" name="name" />
-        <label for="name">Shipaddress:</label>
+    <div class="form-group">
+          <label for="name">Shipaddress:</label>
+        <form:input type="text" path="shipaddress" class="form-control" id="shipaddress"  name="name" />
+      
     </div>  
-    <div class="form-floating mb-3 mt-3">
-        <form:input type="text" path="weight" class="form-control" id="weight" placeholder="weight" name="name" />
-        <label for="name">Weight:</label>
+    <div class="form-group">
+         <label for="name">Weight:</label>
+        <form:input type="text" path="weight" class="form-control" id="weight"  name="name" />
+       
     </div>
-    <div class="form-floating mb-3 mt-3">
-        <form:input type="file" path="file" class="form-control" id="file" placeholder="file" name="name"  size="150px"/>
-        <label for="name">Image</label>
+    <div class="form-group">
+           <label for="name">Image</label>
+        <form:input type="file" path="file" class="form-control" id="file"  name="name"  size="150px"/>
+     
        
     </div>
     <div>
-        <br>
         <input type="submit" value="Them san pham" class="btn btn-danger" />
     </div>
 </form:form>
