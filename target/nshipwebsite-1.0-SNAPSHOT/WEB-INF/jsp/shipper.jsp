@@ -12,48 +12,42 @@
 
 <c:url value="/admin/shippers" var="action" />
 <form:form method="post" action="${action}" modelAttribute="shipper" enctype="multipart/form-data">
-    <form:errors path="*" cssClass="alert alert-danger" element="div"/>
+
     <div class="form-group">
-         <label for="name">FirstName</label>
+        <label for="name">FirstName</label>
         <form:input type="text" path="firstname" class="form-control" id="firstname"  name="name" />
-       
-
+        <form:errors path="firstname" element="div" cssClass="text-danger" />
     </div>
     <div class="form-group">
-          <label for="name">LastName</label>
+        <label for="name">LastName</label>
         <form:input type="text" path="lastname" class="form-control" id="lastname"  name="name" />
-      
-
+        <form:errors path="lastname" element="div" cssClass="text-danger" />
     </div>
     <div class="form-group">
-         <label for="name">Identification</label>
+        <label for="name">Identification</label>
         <form:input type="text" path="identification" class="form-control" id="identification"  name="name" />
-       
-        <form:errors path="identification" cssClass="alert alert-danger" element="div"/>
+        <form:errors path="identification" cssClass="text-danger" element="div"/>
     </div>
     <div class="form-group">
         <label for="name">Phone</label>
         <form:input type="text" path="phone" class="form-control" id="phone"  name="name" />
-        
-        <form:errors path="phone" cssClass="alert alert-danger" element="div"/>
+        <form:errors path="phone" cssClass="text-danger" element="div"/>
     </div>
     <div class="form-group">
-         <label for="name">Email</label>
+        <label for="name">Email</label>
         <form:input type="text" path="email" class="form-control" id="email"  name="name" />
-       
-
+        <form:errors path="email" element="div" cssClass="text-danger" />
     </div>
     <div class="form-group">
-          <label for="name">Active</label>
+        <label for="name">Active</label>
         <form:input type="text" path="active" class="form-control" id="active"  name="name" />
-      
+        <form:errors path="active" element="div" cssClass="text-danger" />
 
     </div>
     <div class="form-group">
-          <label for="name">Avatar</label>
+        <label for="name">Avatar</label>
         <form:input type="file" path="file" class="form-control" id="file"  name="name"  size="150px"/>
-      
-        <form:errors path="file" cssClass="alert alert-danger" element="div"/>
+        <form:errors path="file" cssClass="text-danger" element="div"/>
     </div>
     <div>
         <br>

@@ -4,6 +4,11 @@
  */
 package com.ndn.controllers;
 
+import com.mservice.config.Environment;
+import com.mservice.enums.RequestType;
+import com.mservice.models.PaymentResponse;
+import com.mservice.processor.CreateOrderMoMo;
+import com.mservice.shared.utils.LogUtils;
 import com.ndn.pojos.Auction;
 import com.ndn.pojos.Customer;
 import com.ndn.pojos.Product;
@@ -65,9 +70,12 @@ public class CustomerController {
 
     @PostMapping("/addproduct")
     public String addProduct(@ModelAttribute(value = "product") @Valid Product p, BindingResult rs) {
-        if (this.productService.addProduct(p)) {
+        if(!rs.hasErrors()){
+            if (this.productService.addProduct(p)) {
             return "redirect:/product";
         }
+        }
+        
         return "addnewproduct";
     }
     int auctionIdtemp = 0;
@@ -147,4 +155,22 @@ public class CustomerController {
        
         return "oderofcustomer";
     }
+    @GetMapping("/momo")
+    public String paymomo(Model model) throws Exception {
+        LogUtils.init();
+        String requestId = String.valueOf(System.currentTimeMillis());
+        String orderId = String.valueOf(System.currentTimeMillis());
+        long amount = 50000;
+
+        String orderInfo = "Pay With MoMo";
+        String returnURL = "https://google.com.vn";
+        String notifyURL = "https://google.com.vn";
+
+        Environment environment = Environment.selectEnv("dev");
+
+        PaymentResponse captureWalletMoMoResponse = CreateOrderMoMo.process(environment, orderId, requestId, Long.toString(amount), orderInfo, returnURL, notifyURL, "", RequestType.CAPTURE_WALLET, Boolean.TRUE);
+        model.addAttribute("url", captureWalletMoMoResponse.getPayUrl());
+        return "momo";
+    }
+
 }

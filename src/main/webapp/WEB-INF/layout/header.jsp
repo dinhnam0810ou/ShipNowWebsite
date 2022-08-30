@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 
 
-<div style="padding-bottom: 45px;">
+<div style="padding-bottom: 50px;">
     <span style="float: right; margin-left: 10px;">
         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
             <spring:message code="label5"/>
@@ -32,15 +32,13 @@
             </button>
         </sec:authorize>
         <sec:authorize access="isAuthenticated()">   
-            <c:if test="${shipper!=null}">
-                <img  src="${shipper.avatar}" class="img-fluid rounded-circle" width="40" height="40">
+            <c:if test="${currentshipper!=null}">
+                <img  src="${currentshipper.avatar}" class="img-fluid rounded-circle" width="40" height="40">
             </c:if>
-            <c:if test="${customer!=null}">
-                <img src="${customer.avatar}" class="img-fluid rounded-circle" width="40" height="40">
+            <c:if test="${currentcustomer!=null}">
+                <img src="${currentcustomer.avatar}" class="img-fluid rounded-circle" width="40" height="40">
             </c:if>      
             <a href="#">${pageContext.request.userPrincipal.name}</a>
-            <a class="text-danger" href="<c:url value="/registercustomer"/>">Dang ky customer</a>
-            <a class="text-danger" href="<c:url value="/registershipper"/>">Dang ky shipper</a>
             <button class="btn btn-outline-secondary">
                 <a href="<c:url value="/logout"/>"><spring:message code="label19"/></a>
             </button>

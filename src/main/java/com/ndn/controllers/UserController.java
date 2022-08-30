@@ -12,10 +12,12 @@ import com.ndn.service.EmailService;
 import com.ndn.service.ShipperService;
 import com.ndn.service.UserService;
 import java.util.Random;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,8 +31,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @ControllerAdvice
 public class UserController {
+
     @Autowired
-    private BCryptPasswordEncoder passwordEncoder; 
+    private BCryptPasswordEncoder passwordEncoder;
     @Autowired
     private UserService userService;
     @Autowired
@@ -53,6 +56,7 @@ public class UserController {
     }
     int code;
     int useridtemp;
+
     @PostMapping("/forgotpassword")
     public String forgot(Model model, @RequestParam(value = "username", required = false) String username) {
 
@@ -66,15 +70,15 @@ public class UserController {
             code = rand.nextInt(100000);
             try {
                 Shipper s = this.shipperService.getShipperByUserName(username);
-                this.emailService.sendSimpleMessage(s.getEmail(), "Khoi phuc mat khau", "Ma khoi phuc la: " + code);
+                this.emailService.sendSimpleMessage(s.getEmail(), "Khôi phục mật khẩu", "Mã khôi phục là: " + code);
                 return "redirect:/completepassword";
             } catch (Exception e) {
                 Customer c = this.customerService.getCustomerByUserName(username);
-                this.emailService.sendSimpleMessage(c.getEmail(), "Khoi phuc mat khau", "Ma khoi phuc la: " + code);
+                this.emailService.sendSimpleMessage(c.getEmail(), "Khôi phục mật khẩu", "Mã khôi phục là: " + code);
                 return "redirect:/completepassword";
             }
         } catch (Exception e) {
-            errMsg = "Username ko ton tai";
+            errMsg = "Username không tồn tại";
             model.addAttribute("errMsg", errMsg);
         }
 
@@ -91,18 +95,16 @@ public class UserController {
             @RequestParam(value = "newpassword", required = false) String newpassword,
             @RequestParam(value = "confirmpassword", required = false) String confirmpassword,
             @RequestParam(value = "code", required = false) int codetemp) {
-            String errMsg = null;
-            if(newpassword.equals(confirmpassword)==true&&codetemp==code){
-                this.userService.updatePassword(this.passwordEncoder.encode(newpassword), useridtemp);
-                String success = "1";
-                commonAttr(model, success);
-                return "redirect:/login";
-            }
-            else
-            {
-                errMsg = "Mật khẩu không trùng khớp hoặc mã xác nhận không đúng";
-                model.addAttribute("errMsg", errMsg);
-            }
+        String errMsg = null;
+        if (newpassword.equals(confirmpassword) == true && codetemp == code) {
+            this.userService.updatePassword(this.passwordEncoder.encode(newpassword), useridtemp);
+            String success = "1";
+            commonAttr(model, success);
+            return "redirect:/login";
+        } else {
+            errMsg = "Mật khẩu không trùng khớp hoặc mã xác nhận không đúng";
+            model.addAttribute("errMsg", errMsg);
+        }
         return "completepassword";
     }
 
@@ -119,15 +121,18 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String addUser(Model model, @ModelAttribute(value = "user") User user) {
-        if (user.getPassword().equals(user.getConfirmPassword())) {
-            if (this.userDetailsService.addUser(user)) {
-                return "redirect:/login";
+    public String addUser(Model model, @ModelAttribute(value = "user") @Valid User user, BindingResult result) {
+        if (!result.hasErrors()) {
+            if (user.getPassword().equals(user.getConfirmPassword())) {
+                if (this.userDetailsService.addUser(user)) {
+                    return "redirect:/provision";
+                }
+            } else {
+                String errMsg = "Mat khau ko khop";
+                model.addAttribute("errMsg", errMsg);
             }
-        } else {
-            String errMsg = "Mat khau ko khop";
-            model.addAttribute("errMsg", errMsg);
         }
+
         return "register";
     }
 
@@ -138,9 +143,11 @@ public class UserController {
     }
 
     @PostMapping("/registershipper")
-    public String addShipper(@ModelAttribute(value = "shipper") Shipper shipper) {
-        if (this.shipperService.addShipper(shipper)) {
-            return "redirect:/";
+    public String addShipper(@ModelAttribute(value = "shipper") @Valid Shipper shipper, BindingResult result) {
+        if (!result.hasErrors()) {
+            if (this.shipperService.addShipper(shipper)) {
+                return "redirect:/";
+            }
         }
         return "registerShipper";
     }
@@ -152,10 +159,13 @@ public class UserController {
     }
 
     @PostMapping("/registercustomer")
-    public String addCustomer(@ModelAttribute(value = "customer") Customer customer) {
-        if (this.customerService.addCustomer(customer)) {
-            return "redirect:/";
+    public String addCustomer(@ModelAttribute(value = "customer") @Valid Customer customer, BindingResult result) {
+        if (!result.hasErrors()) {
+            if (this.customerService.addCustomer(customer)) {
+                return "redirect:/";
+            }
         }
+
         return "registerCustomer";
     }
 }

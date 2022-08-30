@@ -53,7 +53,16 @@ public class ShipOrder implements Serializable {
     @JoinColumn(name = "promotion_id", referencedColumnName = "id")
     @ManyToOne
     private Promotion promotionId;
+    @Column(name = "pay")
+    private int pay;
 
+    public int getPay() {
+        return pay;
+    }
+
+    public void setPay(int pay) {
+        this.pay = pay;
+    }
     public ShipOrder() {
     }
 

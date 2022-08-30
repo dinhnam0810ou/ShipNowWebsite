@@ -58,11 +58,20 @@ public class IndexController {
         String role;
         for (int i = 0; i < granted.size(); i++) {
             role = granted.toArray()[i] + "";
+
             if (role.equals("ROLE_CUSTOMER")) {
-                model.addAttribute("customer", this.customerService.getCustomerByUserName(principal.getName()));
+                try {
+                     model.addAttribute("currentcustomer", this.customerService.getCustomerByUserName(principal.getName()));
+                } catch (Exception e) {
+                }
+               
             }
             if (role.equals("ROLE_SHIPPER")) {
-                model.addAttribute("shipper", this.shipperService.getShipperByUserName(principal.getName()));
+                try {
+                      model.addAttribute("currentshipper", this.shipperService.getShipperByUserName(principal.getName()));
+                } catch (Exception e) {
+                }
+            
             }
         }
     }
@@ -71,12 +80,16 @@ public class IndexController {
     public String index() {
         return "index";
     }
+
     @PostMapping("/")
-    public String usersendmail(@RequestParam(value = "name",required = false) String name,
-            @RequestParam(value = "email",required = false) String email,
-            @RequestParam(value = "phone",required = false) String phone,
-            @RequestParam(value = "message",required = false) String message) {
-       this.emailService.userSendMail(email, "Feedback of "+name+" "+phone, message);
+    public String usersendmail(@RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "email", required = false) String email,
+            @RequestParam(value = "phone", required = false) String phone,
+            @RequestParam(value = "message", required = false) String message) {
+        if(name!=""&&phone!=""&&email!=""&&message!=""){
+                 this.emailService.userSendMail(email, "Feedback of " + name + " " + phone, message);
+            }
+       
         return "index";
     }
 
@@ -89,4 +102,8 @@ public class IndexController {
         return "listshipper";
     }
 
+    @GetMapping("/provision")
+    public String provision() {
+        return "provision";
+    }
 }

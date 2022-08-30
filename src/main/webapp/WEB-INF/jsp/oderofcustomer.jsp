@@ -19,8 +19,9 @@
             <th>Orderdate</th>
             <th>Shipdate</th>
         </tr>
-        <c:forEach items="${oderofcus}" var="o">
-        <tr>
+        
+         <c:forEach items="${oderofcus}" var="o">
+        <tr>          
             <td>${o[0]}</td>
             <td>
                 <img src="${o[1]}" width="50" height="50">
@@ -29,8 +30,9 @@
             <td>${o[3]*o[4]}</td>
             <td>${o[5]} ${o[6]}</td>
             <td>${o[7]}</td>
-            <td>${o[8]}</td>
+            <td>${o[8]}</td>         
         </tr>
-        </c:forEach>
+         </c:forEach>
+
     </table>
 </div>

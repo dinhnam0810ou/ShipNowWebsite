@@ -26,6 +26,16 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/jsp/pay.jsp" />
     </definition>
+    <definition name="momo" extends="baseLayout">
+        <put-attribute name="title" value="Thanh toán momo" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/momo.jsp" />
+    </definition>
+     <definition name="provision" extends="baseLayout">
+        <put-attribute name="title" value="Điều khoản" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/provision.jsp" />
+    </definition>
     <definition name="oderofcustomer" extends="baseLayout">
         <put-attribute name="title" value="Đơn hàng" />
         <put-attribute name="content"

@@ -15,32 +15,27 @@
     <div class="form-group">
         <label for="name">Discount</label>
         <form:input type="number" path="discount" class="form-control" id="discount"  name="name" />
-
-
+        <form:errors path="discount" element="div" cssClass="text-danger" />
     </div>
     <div class="form-group">
         <label for="name">Code</label>
         <form:input type="text" path="code" class="form-control" id="code"  name="name" />
-
-
+        <form:errors path="code" element="div" cssClass="text-danger" />
     </div>
     <div class="form-group">
         <label for="name">Expirationdate</label>
         <form:input type="text" path="expirationdate" class="form-control" id="expirationdate"  name="name" />
-
-
+        <form:errors path="expirationdate" element="div" cssClass="text-danger" />
     </div>
     <div class="form-group">
         <label for="name">Quantity</label>
         <form:input type="number" path="quantity" class="form-control" id="quantity"  name="name" />
-
-
+        <form:errors path="quantity" element="div" cssClass="text-danger" />
     </div>
     <div class="form-group">
         <label for="name">Description</label>
         <form:input type="text" path="description" class="form-control" id="description"  name="name" />
-
-
+        <form:errors path="description" element="div" cssClass="text-danger" />
     </div> 
     <div>
         <br>

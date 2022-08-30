@@ -9,25 +9,28 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
+
+<h1 class="text-center text-info"><spring:message code="label10"/></h1>
 <c:if test="${errMsg!=null}">
     <div class="alert alert-danger">
         ${errMsg}
     </div>
 </c:if>
-<h1 class="text-center text-info"><spring:message code="label10"/></h1>
 <c:url value="/register" var="action"/>
 <form:form method="post" action="${action}" modelAttribute="user">
-    <div class="form-floating mb-3 mt-3">
-        <form:input type="text" path="username" class="form-control" id="username" placeholder="username" name="name" />
+    <div class="form-group">
         <label for="name"><spring:message code="label12"/></label>
+        <form:input type="text" path="username" class="form-control" id="username"  name="name" />
+        <form:errors path="username" cssClass="text-danger" element="div"/>
     </div>
-    <div class="form-floating mb-3 mt-3">
-        <form:input type="password" path="password" class="form-control" id="password" placeholder="password" name="name" />
+    <div class="form-group">
         <label for="name"><spring:message code="label13"/></label>
+        <form:input type="password" path="password" class="form-control" id="password"  name="name" />
+        <form:errors path="password" cssClass="text-danger" element="div"/>
     </div>
-    <div class="form-floating mb-3 mt-3">
-        <form:input type="password" path="confirmPassword" class="form-control" id="confirmPassword" placeholder="confirmPassword" name="name" />
+    <div class="form-group">
         <label for="name"><spring:message code="label14"/></label>
+        <form:input type="password" path="confirmPassword" class="form-control" id="confirmPassword"  name="name" />
     </div>
     <div>
         <br>

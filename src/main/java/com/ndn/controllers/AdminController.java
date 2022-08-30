@@ -52,13 +52,13 @@ public class AdminController {
     @PostMapping("/shippers")
     public String add(Model model, @ModelAttribute(value = "shipper") @Valid Shipper s,
             BindingResult r) {
-        //if (!r.hasErrors()) {
+        if (!r.hasErrors()) {
         if (this.shipperService.addShipper(s)) {
-            return "redirect:/";
+            return "redirect:/admin/";
         } else {
             model.addAttribute("errMsg", "Fail");
         }
-        // }
+        }
         return "shipper";
     }
 
