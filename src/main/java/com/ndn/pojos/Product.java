@@ -22,6 +22,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -52,10 +54,10 @@ public class Product implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 50)
+    @Size(min = 1, max = 60)
     @Column(name = "productname")
     private String productname;
-    @Size(max = 255)
+    @Max(value = 255,message = "qua dai")
     @Column(name = "description")
     private String description;
     @Size(max = 255)
@@ -69,7 +71,6 @@ public class Product implements Serializable {
     @Size(max = 45)
     @Column(name = "shipaddress")
     private String shipaddress;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "weight")
     private Double weight;
     @JoinColumn(name = "customer_id", referencedColumnName = "id")

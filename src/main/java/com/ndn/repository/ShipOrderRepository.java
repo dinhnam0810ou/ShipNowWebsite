@@ -4,6 +4,7 @@
  */
 package com.ndn.repository;
 
+import com.ndn.pojos.Auction;
 import com.ndn.pojos.ShipOrder;
 import java.util.List;
 
@@ -17,8 +18,8 @@ public interface ShipOrderRepository {
 
     ShipOrder addShipOrder(ShipOrder shipOrder);
 
-    List<Object[]> listOrderOfCustomer(int customerId);
+    List<ShipOrder> listOrderOfCustomer(int customerId);
 
-    List<Object[]> listOrderOfShipper(int shipperId);
+    List<ShipOrder> listOrderOfShipper(int shipperId);
     void updateShipDate(int shiporderId);
 }

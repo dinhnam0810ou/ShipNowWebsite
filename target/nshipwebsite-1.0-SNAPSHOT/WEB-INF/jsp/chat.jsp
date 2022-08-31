@@ -31,7 +31,7 @@
         resize: none;
         min-height: 50px;
     }
- 
+
     .form-container input:focus {
         background-color: #ddd;
         outline: none;
@@ -47,23 +47,32 @@
         margin-bottom:10px;
         opacity: 0.8;
     }
-
+    img{
+        
+        margin-right: 8px;
+    }
 </style>
-
-
-
 <div class="Chatbox" id="myForm">
-    <form action="" class="form-container" onsubmit="addText()">    
+<c:if test="${chatshipper!=null}">
+  <form  class="form-container" onsubmit="addText('${chatshipper.firstname} ${chatshipper.lastname}','${chatshipper.avatar}')">
+</c:if>
+<c:if test="${chatcustomer!=null}">
+    <form  class="form-container" onsubmit="addText('${chatcustomer.lastname}','${chatcustomer.avatar}')">
+</c:if>   
+        
         <label>
             <ul id="tinnhan">
-
             </ul>
         </label>
-        <input id="txtChat" placeholder="Nhap tin nhan...."></input>
+        <input id="txtChat" placeholder="Nhập tin nhắn..."></input>
         <button type="submit" class="btn">Gửi</button>
 
     </form>
+</div>
 
-    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
-    <script src="<c:url value="/js/chat.js"/>"></script>
+
+
+
+<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
+<script src="<c:url value="/js/chat.js"/>"></script>

@@ -4,6 +4,7 @@
  */
 package com.ndn.service.impl;
 
+import com.ndn.pojos.Auction;
 import com.ndn.pojos.ShipOrder;
 import com.ndn.repository.AuctionRepository;
 import com.ndn.repository.PromotionRepository;
@@ -43,12 +44,12 @@ public class ShipOderServiceImpl implements ShipOderService{
     }
 
     @Override
-    public List<Object[]> listOrderOfCustomer(int customerId) {
+    public List<ShipOrder> listOrderOfCustomer(int customerId) {
         return this.shipOrderRepository.listOrderOfCustomer(customerId);
     }
 
     @Override
-    public List<Object[]> listOrderOfShipper(int shipperId) {
+    public List<ShipOrder> listOrderOfShipper(int shipperId) {
         return this.shipOrderRepository.listOrderOfShipper(shipperId);
     }
 

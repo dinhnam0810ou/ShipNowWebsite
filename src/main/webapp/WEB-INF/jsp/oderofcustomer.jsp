@@ -11,28 +11,37 @@
 <div>
     <table class="table">
         <tr>
-            <th>ProductName</th>
-            <th>Image</th>
-            <th>Shipaddress</th>
-            <th>Price</th>
-            <th>ShipperName</th>
+            <th>OderID</th>
             <th>Orderdate</th>
             <th>Shipdate</th>
+            <th>Price</th>
+            <th>Pay</th>
         </tr>
-        
-         <c:forEach items="${oderofcus}" var="o">
-        <tr>          
-            <td>${o[0]}</td>
-            <td>
-                <img src="${o[1]}" width="50" height="50">
-            </td>
-            <td>${o[2]}</td>
-            <td>${o[3]*o[4]}</td>
-            <td>${o[5]} ${o[6]}</td>
-            <td>${o[7]}</td>
-            <td>${o[8]}</td>         
-        </tr>
-         </c:forEach>
+
+        <c:forEach items="${oderofcus}" var="o">
+            <tr>          
+                <td>${o.id}</td>
+                <td>${o.orderdate}</td>
+                <c:if test="${o.shipdate==null}">
+                    <td>Đang giao</td>
+                </c:if>
+                <c:if test="${o.shipdate!=null}">
+                    <td>${o.shipdate}</td>
+                </c:if>
+                <c:if test="${o.promotionId.discount==null}">
+                    <td>${o.auctionId.price} VND</td>
+                </c:if>
+                <c:if test="${o.promotionId.discount!=null}">
+                    <td>${o.auctionId.price*o.promotionId.discount} VND</td>
+                </c:if>
+                <c:if test="${o.pay==0}">
+                    <td>Chưa thanh toán</td>
+                </c:if>
+                <c:if test="${o.pay==1}">
+                    <td>Đã thanh toán</td>
+                </c:if>
+            </tr>
+        </c:forEach>
 
     </table>
 </div>

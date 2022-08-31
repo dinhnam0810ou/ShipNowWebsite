@@ -20,20 +20,34 @@
             <th>Price</th>
         </tr>
         <c:forEach items="${oderofship}" var="o">
-            <td>${o[0]}</td>
-            <td>
-                <img src="${o[1]}" width="50" height="50">
-            </td>
-            <td>${o[2]}</td>
-            <td>${o[3]} ${o[4]}</td>
-            <td>${o[5]}</td>
-            <td>${o[6]}</td>
-            <td>${o[7]*o[8]}</td>       
-            <td>      
-               <button class="btn btn-danger"><a style="text-decoration: none;color: white;" href="<c:url value="/oderofshipper/${o[10]}"/>">Đã giao</a></button>
-            </td>
-
+            <tr>
+                <td>${o.auctionId.productId.productname}</td>
+                <td>
+                    <img src="${o.auctionId.productId.image}" width="50" height="50">
+                </td>
+                <td>${o.auctionId.productId.shipaddress}</td>
+                <td>${o.auctionId.productId.customerId.firstname} ${o.auctionId.productId.customerId.lastname}</td>
+                <td>${o.auctionId.productId.customerId.phone}</td>
+                <td>${o.auctionId.productId.customerId.address}</td>
+                <c:if test="${o.promotionId.discount==null}">
+                    <td>${o.auctionId.price} VND</td>
+                </c:if>
+                <c:if test="${o.promotionId.discount!=null}">
+                    <td>${o.auctionId.price*o.promotionId.discount} VND</td>
+                </c:if>  
+                <c:if test="${o.shipdate==null}">
+                    <td>      
+                        <button class="btn btn-danger" id="btn${o.id}" onclick="hide(${o.id})"><a style="text-decoration: none;color: white;" href="<c:url value="/oderofshipper/${o.id}"/>">Cập nhật</a></button>
+                    </td>
+                </c:if>
+            </tr>
         </c:forEach>
-
     </table>
 </div>
+<script>
+    function hide(id) {
+        document.getElementById("btn" + id).style.display = 'none';
+        window.alert("Đã xác nhận giao");
+    }
+
+</script>

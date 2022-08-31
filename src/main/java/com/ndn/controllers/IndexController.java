@@ -61,19 +61,44 @@ public class IndexController {
 
             if (role.equals("ROLE_CUSTOMER")) {
                 try {
-                     model.addAttribute("currentcustomer", this.customerService.getCustomerByUserName(principal.getName()));
+                    model.addAttribute("currentcustomer", this.customerService.getCustomerByUserName(principal.getName()));
                 } catch (Exception e) {
                 }
-               
+
             }
             if (role.equals("ROLE_SHIPPER")) {
                 try {
-                      model.addAttribute("currentshipper", this.shipperService.getShipperByUserName(principal.getName()));
+                    model.addAttribute("currentshipper", this.shipperService.getShipperByUserName(principal.getName()));
                 } catch (Exception e) {
                 }
-            
+
             }
         }
+    }
+
+    @GetMapping("/chat")
+    public String chat(Model model, Principal principal, SecurityContextHolder auth) {
+        Collection<? extends GrantedAuthority> granted = auth.getContext().getAuthentication().getAuthorities();
+        String role;
+        for (int i = 0; i < granted.size(); i++) {
+            role = granted.toArray()[i] + "";
+
+            if (role.equals("ROLE_CUSTOMER")) {
+                try {
+                    model.addAttribute("chatcustomer", this.customerService.getCustomerByUserName(principal.getName()));
+                } catch (Exception e) {
+                }
+
+            }
+            if (role.equals("ROLE_SHIPPER")) {
+                try {
+                    model.addAttribute("chatshipper", this.shipperService.getShipperByUserName(principal.getName()));
+                } catch (Exception e) {
+                }
+
+            }
+        }
+        return "chat";
     }
 
     @RequestMapping("/")
@@ -86,10 +111,10 @@ public class IndexController {
             @RequestParam(value = "email", required = false) String email,
             @RequestParam(value = "phone", required = false) String phone,
             @RequestParam(value = "message", required = false) String message) {
-        if(name!=""&&phone!=""&&email!=""&&message!=""){
-                 this.emailService.userSendMail(email, "Feedback of " + name + " " + phone, message);
-            }
-       
+        if (name != "" && phone != "" && email != "" && message != "") {
+            this.emailService.userSendMail(email, "Feedback of " + name + " " + phone, message);
+        }
+
         return "index";
     }
 

@@ -6,12 +6,17 @@ package com.ndn.controllers;
 
 import com.ndn.pojos.Promotion;
 import com.ndn.pojos.Shipper;
+import com.ndn.service.CustomerService;
 import com.ndn.service.ProductService;
 import com.ndn.service.PromotionService;
 import com.ndn.service.ShipOderService;
 import com.ndn.service.ShipperService;
+import java.security.Principal;
+import java.util.Collection;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,7 +33,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-
+    @Autowired
+    private CustomerService customerService;
     @Autowired
     private PromotionService promotionService;
     @Autowired
@@ -71,10 +77,7 @@ public class AdminController {
         return "stats";
     }
 
-    @GetMapping("/chat")
-    public String chat() {
-        return "chat";
-    }
+   
 
     @GetMapping("/oder")
     public String oder(Model model) {

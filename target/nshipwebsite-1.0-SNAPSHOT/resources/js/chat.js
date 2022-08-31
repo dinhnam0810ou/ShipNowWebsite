@@ -19,21 +19,36 @@ firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 
 
-function addText() {
+function addText(name, hinh) {
+    var username = name;
+    var avatar = hinh;
     var today = new Date();
     var date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear() + "     " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     var text = document.getElementById("txtChat").value;
     database.ref("messages").update({
         "text": text,
-        "date": date
+        "date": date,
+        "name": username,
+        "image": avatar
     });
 }
 
 database.ref("messages").on("value", function (snapshot) {
     var chat = snapshot.val().text;
     var date = snapshot.val().date;
+    var avatar = snapshot.val().image;
+    var name = snapshot.val().name;
     var item = document.createElement("li");
-    item.textContent = chat + "                    " +"("+ date +")";
+    var hinh = document.createElement("img");
+    var ten = document.createElement("span");
+    ten.innerHTML = name;
+    hinh.src = avatar;
+    hinh.width = 20;
+    hinh.height = 20;
+    hinh.className = "rounded-circle";
+    item.textContent = chat + "(" + date + ")";
+    document.getElementById("tinnhan").appendChild(hinh);
+    document.getElementById("tinnhan").appendChild(ten);
     document.getElementById("tinnhan").appendChild(item);
 });
 

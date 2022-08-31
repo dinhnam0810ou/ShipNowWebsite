@@ -66,56 +66,19 @@ public class ShipOrderRepositoryImpl implements ShipOrderRepository {
     }
 
     @Override
-    public List<Object[]> listOrderOfCustomer(int customerId) {
+    public List<ShipOrder> listOrderOfCustomer(int customerId) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
-        CriteriaBuilder b = session.getCriteriaBuilder();
-        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
-
-        Root rO = q.from(ShipOrder.class);
-        Root rA = q.from(Auction.class);
-        Root rS = q.from(Shipper.class);
-        Root rP = q.from(Product.class);
-        Root rPromo = q.from(Promotion.class);
-        Root rC = q.from(Customer.class);
-
-        q.where(b.equal(rO.get("promotionId"), rPromo.get("id")),
-                b.equal(rO.get("auctionId"), rA.get("id")),
-                b.equal(rS.get("id"), rA.get("shipperId")),
-                b.equal(rP.get("id"), rA.get("productId")),
-                b.equal(rC.get("id"), rP.get("customerId")),
-                b.equal(rC.get("id"), customerId));
-
-        q.multiselect(rP.get("productname"), rP.get("image"), rP.get("shipaddress"), rPromo.get("discount"), rA.get("price"),
-                rS.get("firstname"), rS.get("lastname"),
-                rO.get("orderdate"), rO.get("shipdate"));
-        Query query = session.createQuery(q);
-        return query.getResultList();
+        Query q = session.createQuery("FROM ShipOrder where auctionId.id in (select id from Auction where productId.id in (select id from Product where customerId.id =:cusId))");
+        q.setParameter("cusId", customerId);
+        return q.getResultList();
     }
 
     @Override
-    public List<Object[]> listOrderOfShipper(int shipperId) {
+    public List<ShipOrder> listOrderOfShipper(int shipperId) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
-        CriteriaBuilder b = session.getCriteriaBuilder();
-        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
-
-        Root rPromo = q.from(Promotion.class);
-        Root rA = q.from(Auction.class);
-        Root rO = q.from(ShipOrder.class);
-        Root rP = q.from(Product.class);
-        Root rC = q.from(Customer.class);
-
-        q.where(b.equal(rPromo.get("id"), rO.get("promotionId")),
-                b.equal(rA.get("id"), rO.get("auctionId")),
-                b.equal(rA.get("productId"), rP.get("id")),
-                b.equal(rP.get("customerId"), rC.get("id")),
-                b.equal(rA.get("shipperId"), shipperId));
-        q.multiselect(rP.get("productname"), rP.get("image"), rP.get("shipaddress"),
-                rC.get("firstname"), rC.get("lastname"), rC.get("phone"), rC.get("address"),
-                rA.get("price"), rPromo.get("discount"),
-                rO.get("shipdate"),rO.get("id"));
-
-        Query query = session.createQuery(q);
-        return query.getResultList();
+        Query q = session.createQuery("FROM ShipOrder where auctionId.id in (select id from Auction where shipperId.id =:shipId)");
+        q.setParameter("shipId", shipperId);
+        return q.getResultList();
     }
 
     @Override
