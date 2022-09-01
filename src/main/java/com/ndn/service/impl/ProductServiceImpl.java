@@ -6,13 +6,17 @@ package com.ndn.service.impl;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.ndn.pojos.Customer;
 import com.ndn.pojos.Product;
 import com.ndn.repository.ProductRepository;
+import com.ndn.service.CustomerService;
 import com.ndn.service.ProductService;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,7 +25,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ProductServiceImpl implements ProductService {
-
+    @Autowired
+    private CustomerService customerService;
     @Autowired
     private Cloudinary cloudinary;
     @Autowired
@@ -40,17 +45,19 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public boolean addProduct(Product p) {
         try {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             Map result = this.cloudinary.uploader().upload(p.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
             String img = (String) result.get("secure_url");
             p.setImage(img);
             p.setCreatedDate(new Date());
+            Customer cus = this.customerService.getCustomerByUserName(authentication.getName());
+            p.setCustomerId(cus);
             return this.productRepository.addProduct(p);
-        }
-        catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return false;
-    }   
+    }
 
     @Override
     public List<Product> productNotAuction() {

@@ -13,6 +13,6 @@
     <input type="checkbox" id="vehicle1" name="vehicle1"><span>Tôi đồng ý với tất cả điều khoản trên</span>
     <br>
     <span><a href="<c:url value="/registershipper"/>">Đăng ký shipper</a></span>
-    <span><a href="<c:url value="/registercustomer"/>">Đăng ký shipper</a></span>
+    <span><a href="<c:url value="/registercustomer"/>">Đăng ký Customer</a></span>
 </div>
 

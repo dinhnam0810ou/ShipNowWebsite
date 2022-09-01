@@ -125,7 +125,7 @@ public class UserController {
         if (!result.hasErrors()) {
             if (user.getPassword().equals(user.getConfirmPassword())) {
                 if (this.userDetailsService.addUser(user)) {
-                    return "redirect:/provision";
+                    return "redirect:/login";
                 }
             } else {
                 String errMsg = "Mat khau ko khop";

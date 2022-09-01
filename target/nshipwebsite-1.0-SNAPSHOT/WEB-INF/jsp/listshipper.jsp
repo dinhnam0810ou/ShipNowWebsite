@@ -16,7 +16,7 @@
 </c:if>
 <ul class="pagination">
     <c:forEach begin="1" end="${Math.ceil(shipperCounter/pageSize)}" var="i">
-        <c:url value="/" var="u">
+        <c:url value="/listshipper" var="u">
             <c:param name="page" value="${i}" />
         </c:url>
         <li class="page-item"><a class="page-link" href="${u}">Trang ${i}</a></li>

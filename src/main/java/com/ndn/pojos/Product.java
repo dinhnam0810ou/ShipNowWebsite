@@ -57,7 +57,6 @@ public class Product implements Serializable {
     @Size(min = 1, max = 60)
     @Column(name = "productname")
     private String productname;
-    @Max(value = 255,message = "qua dai")
     @Column(name = "description")
     private String description;
     @Size(max = 255)

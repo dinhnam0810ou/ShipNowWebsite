@@ -47,6 +47,8 @@
             <button class="btn btn-outline-secondary">
                 <a href="<c:url value="/logout"/>"><spring:message code="label19"/></a>
             </button>
+            <span><a href="<c:url value="/registershipper"/>">Đăng ký shipper</a></span>
+            <span><a href="<c:url value="/registercustomer"/>">Đăng ký Customer</a></span>
         </sec:authorize>
 
     </span>
@@ -93,7 +95,7 @@
                         </div>
                         <div class="header_top-social">
                             <div>
-                                <a href="">
+                                <a href="https://www.facebook.com/">
                                     <img src=" <c:url value="/images/fb.png"/>" alt="" class="img-fluid">
 
                                 </a>
