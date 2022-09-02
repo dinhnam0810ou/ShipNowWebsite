@@ -58,6 +58,16 @@ public class ShipOderServiceImpl implements ShipOderService{
         this.shipOrderRepository.updateShipDate(shiporderId);
     }
 
+    @Override
+    public ShipOrder getShipOrderById(int shiporderId) {
+        return this.shipOrderRepository.getShipOrderById(shiporderId);
+    }
+
+    @Override
+    public void updatePay(int shiporderId) {
+         this.shipOrderRepository.updatePay(shiporderId);
+    }
+
     
     
 }

@@ -5,10 +5,12 @@
 package com.ndn.controllers;
 
 import com.ndn.pojos.Customer;
+import com.ndn.pojos.ShipOrder;
 import com.ndn.pojos.Shipper;
 import com.ndn.service.AuctionService;
 import com.ndn.service.CommentService;
 import com.ndn.service.CustomerService;
+import com.ndn.service.EmailService;
 import com.ndn.service.ShipOderService;
 import com.ndn.service.ShipperService;
 import java.security.Principal;
@@ -33,6 +35,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @PropertySource("classpath:messages.properties")
 public class ShipperController {
+    @Autowired
+    private EmailService emailService;
     @Autowired
     private ShipOderService shipOderService;
     @Autowired
@@ -102,6 +106,9 @@ public class ShipperController {
     @GetMapping("/oderofshipper/{shiporderId}")
     public String updateshipdate(@PathVariable(value = "shiporderId") int shiporderId){
         this.shipOderService.updateShipDate(shiporderId);
+        this.shipOderService.updatePay(shiporderId);
+        ShipOrder order = this.shipOderService.getShipOrderById(shiporderId);
+        this.emailService.sendSimpleMessage(order.getAuctionId().getProductId().getCustomerId().getEmail(), "Thông báo giao hàng", "Đơn hàng đã được giao về địa chỉ yêu cầu");
         return "index";
     }
 }

@@ -23,4 +23,6 @@ public interface ShipOderService {
     List<ShipOrder> listOrderOfShipper(int shipperId);
 
     void updateShipDate(int shiporderId);
+     void updatePay(int shiporderId);
+    ShipOrder getShipOrderById(int shiporderId);
 }

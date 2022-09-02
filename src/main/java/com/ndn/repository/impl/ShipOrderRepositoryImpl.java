@@ -90,4 +90,19 @@ public class ShipOrderRepositoryImpl implements ShipOrderRepository {
         int r = q.executeUpdate();
     }
 
+    @Override
+    public ShipOrder getShipOrderById(int shiporderId) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        return session.get(ShipOrder.class, shiporderId);
+    }
+
+    @Override
+    public void updatePay(int shiporderId) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Query q = session.createQuery("Update ShipOrder set pay=:p where id=:shiporderId");
+        q.setParameter("p", 1);
+        q.setParameter("shiporderId", shiporderId);
+        int r = q.executeUpdate();
+    }
+
 }

@@ -21,5 +21,10 @@ public interface ShipOrderRepository {
     List<ShipOrder> listOrderOfCustomer(int customerId);
 
     List<ShipOrder> listOrderOfShipper(int shipperId);
+
     void updateShipDate(int shiporderId);
+
+    void updatePay(int shiporderId);
+
+    ShipOrder getShipOrderById(int shiporderId);
 }

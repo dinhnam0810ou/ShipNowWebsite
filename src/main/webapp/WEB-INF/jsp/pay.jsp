@@ -32,12 +32,12 @@
             </tr>
 
         </table>
-        <a href="<c:url value="/customerpromotion"/>"><ins>Chon ma giam gia</ins></a>&emsp;&ensp;
+        <a href="<c:url value="/customerpromotion"/>"><ins>Chọn mã giảm giá</ins></a>&emsp;&ensp;
         <span>Tong thanh toan:${dis*a[4]}</span>
         <br>
         <br>
         <form method="post" action="<c:url value="/customerauction/${auctionId}"/>">
-            <button class="btn btn-danger">Xac nhan</button>
+            <button class="btn btn-danger">Xác nhận</button>
         </form>
     </c:forEach>  
 </div>
