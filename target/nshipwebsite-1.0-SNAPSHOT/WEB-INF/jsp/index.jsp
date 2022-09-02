@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!-- about section -->
-<c:if test="${mess!=null}">
+<c:if test="${mess1==101}">
     <script>window.alert("Tao don hang thanh cong");</script>
 </c:if>
 <section class="about_section ">

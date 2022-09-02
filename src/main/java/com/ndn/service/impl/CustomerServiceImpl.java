@@ -44,12 +44,9 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public boolean addCustomer(Customer customer) {
         try {
-            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            User user = this.userService.getUserByUsername(authentication.getName());
             Map result = this.cloudinary.uploader().upload(customer.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
             String img = (String) result.get("secure_url");
             customer.setAvatar(img);
-            customer.setUserId(user);
             return this.customerRepository.addCustomer(customer);
         } catch (Exception e) {
             System.err.println("ADD CUSTOMER " + e.getMessage());

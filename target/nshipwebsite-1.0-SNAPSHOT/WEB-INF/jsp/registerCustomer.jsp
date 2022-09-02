@@ -9,6 +9,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <h1 class="text-center text-info"><spring:message code="label24"/></h1>
+
 <c:url value="/registercustomer" var="action" />
 <form:form method="post" action="${action}" modelAttribute="customer" enctype="multipart/form-data">
 

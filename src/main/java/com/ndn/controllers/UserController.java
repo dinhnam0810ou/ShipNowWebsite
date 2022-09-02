@@ -119,16 +119,18 @@ public class UserController {
         model.addAttribute("user", new User());
         return "register";
     }
+    String regisuser;
 
     @PostMapping("/register")
     public String addUser(Model model, @ModelAttribute(value = "user") @Valid User user, BindingResult result) {
+        regisuser = user.getUsername();
         if (!result.hasErrors()) {
             if (user.getPassword().equals(user.getConfirmPassword())) {
                 if (this.userDetailsService.addUser(user)) {
-                    return "redirect:/login";
+                    return "redirect:/provision";
                 }
             } else {
-                String errMsg = "Mat khau ko khop";
+                String errMsg = "Mật khẩu không khớp";
                 model.addAttribute("errMsg", errMsg);
             }
         }
@@ -143,9 +145,14 @@ public class UserController {
     }
 
     @PostMapping("/registershipper")
-    public String addShipper(@ModelAttribute(value = "shipper") @Valid Shipper shipper, BindingResult result) {
+    public String addShipper(Model model,@ModelAttribute(value = "shipper") @Valid Shipper shipper, BindingResult result) {
         if (!result.hasErrors()) {
+            User u = this.userService.getUserByUsername(regisuser);
+            this.userService.updateRole("ROLE_SHIPPER", u.getId());
+            shipper.setUser(u);
             if (this.shipperService.addShipper(shipper)) {
+                regisuser = null;
+                commonAttr(model, "201");
                 return "redirect:/";
             }
         }
@@ -159,13 +166,16 @@ public class UserController {
     }
 
     @PostMapping("/registercustomer")
-    public String addCustomer(@ModelAttribute(value = "customer") @Valid Customer customer, BindingResult result) {
+    public String addCustomer(Model model,@ModelAttribute(value = "customer") @Valid Customer customer, BindingResult result) {
         if (!result.hasErrors()) {
+            User u = this.userService.getUserByUsername(regisuser);
+            customer.setUserId(u);
             if (this.customerService.addCustomer(customer)) {
+                regisuser = null;
+                commonAttr(model, "201");
                 return "redirect:/";
             }
         }
-
         return "registerCustomer";
     }
 }

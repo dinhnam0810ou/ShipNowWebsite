@@ -8,8 +8,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <h1 class="text-center text-info">Thanh toán</h1>
-<c:if test="${mess==1}">
-    <script>window.alert("Tao don hang ko thanh cong!!Vui long thu lai");</script>
+<c:if test="${mess1==102}">
+    <script>window.alert("Tạo đơn hàng không thành công!!Vui lòng thử lại");</script>
 </c:if>
 <div>
     <table class="table">

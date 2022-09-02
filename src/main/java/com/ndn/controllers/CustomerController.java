@@ -99,7 +99,7 @@ public class CustomerController {
 
     @ModelAttribute
     public void commonAttr(Model model, String mess) {
-        model.addAttribute("mess", mess);
+        model.addAttribute("mess1", mess);
     }
 
     @PostMapping("/customerauction/{auctionId}")
@@ -108,18 +108,18 @@ public class CustomerController {
         if (this.shipOderService.addShipOrder(auctionId, promotionId) != null) {
             Auction auc = this.auctionService.getAuctionByAuctionId(auctionId);
             Shipper shipper = this.shipperService.getShipperById(auc.getShipperId().getId());
-            this.emailService.sendSimpleMessage(shipper.getEmail(), "Thong bao dau gia dc chon",
-                    "Dau gia cua ban da duoc khach hang chon vao luc " + new Date() + " .Hay kiem tra don hang va lien lac voi khach hang");
+            this.emailService.sendSimpleMessage(shipper.getEmail(), "Thông báo đấu giá được chọn",
+                    "Đấu giá của bạn đã được khác hàng chọn vào lúc " + new Date() + " .Hãy nhanh chóng liên lạc với khách hàng");
 
             for (Auction a : this.shipperService.getListShipperNotChoose(auc.getProductId(), shipper)) {
-                this.emailService.sendSimpleMessage(a.getShipperId().getEmail(), "Thong bao dau gia khong dc chon", "Dau gia " + auc.getProductId().getProductname() + " cua ban da bi khach hang tu choi");
+                this.emailService.sendSimpleMessage(a.getShipperId().getEmail(), "Thông báo đấu giá không được chọn", "Đấu giá " + auc.getProductId().getProductname() + " của bạn bị khách hàng từ chối");
             }
-            message = "succesful";
+            message = "101";
             commonAttr(model, message);
             promotionId = 0;
             return "redirect:/";
         } else {
-            message = "1";
+            message = "102";
             commonAttr(model, message);
         }
         return "pay";

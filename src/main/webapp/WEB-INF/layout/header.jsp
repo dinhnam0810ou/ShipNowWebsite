@@ -9,8 +9,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
-
+<style>
+    .imguser{
+        width: 40px;
+        height: 40px;
+        }
+</style>
+<c:if test="${mess==201}">
+    <script>
+        window.alert("Đã đăng ký thành công!!Hãy đăng nhập");
+    </script>
+</c:if>
 <div style="padding-bottom: 50px; margin-top: 8px;">
     <span style="float: right; margin-left: 10px;">
         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
@@ -33,10 +42,10 @@
         </sec:authorize>
         <sec:authorize access="isAuthenticated()">   
             <c:if test="${currentshipper!=null}">
-                <img  src="${currentshipper.avatar}" class="img-fluid rounded-circle" width="40" height="40">
+                <img  src="${currentshipper.avatar}" class="imguser img-fluid rounded-circle" >
             </c:if>
             <c:if test="${currentcustomer!=null}">
-                <img src="${currentcustomer.avatar}" class="img-fluid rounded-circle" width="40" height="40">
+                <img src="${currentcustomer.avatar}" class="imguser img-fluid rounded-circle" >
             </c:if>      
             <a href="#">${pageContext.request.userPrincipal.name}</a>
             <sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -47,8 +56,6 @@
             <button class="btn btn-outline-secondary">
                 <a href="<c:url value="/logout"/>"><spring:message code="label19"/></a>
             </button>
-            <span><a href="<c:url value="/registershipper"/>">Đăng ký shipper</a></span>
-            <span><a href="<c:url value="/registercustomer"/>">Đăng ký Customer</a></span>
         </sec:authorize>
 
     </span>

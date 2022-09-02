@@ -27,6 +27,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ShipperServiceImpl implements ShipperService {
+
     @Autowired
     private UserService userService;
     @Autowired
@@ -47,13 +48,9 @@ public class ShipperServiceImpl implements ShipperService {
     @Override
     public boolean addShipper(Shipper shipper) {
         try {
-            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            User user = this.userService.getUserByUsername(authentication.getName());
             Map result = this.cloudinary.uploader().upload(shipper.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
             String img = (String) result.get("secure_url");
-            shipper.setAvatar(img);          
-            shipper.setUser(user);
-            this.userService.updateRole("ROLE_SHIPPER", user.getId());
+            shipper.setAvatar(img);
             return this.shipperRepository.addShipper(shipper);
         } catch (IOException ex) {
             System.err.println("ADD SHIPPER " + ex.getMessage());
