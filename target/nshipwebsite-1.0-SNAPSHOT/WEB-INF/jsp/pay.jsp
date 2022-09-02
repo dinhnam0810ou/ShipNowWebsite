@@ -33,7 +33,8 @@
 
         </table>
         <a href="<c:url value="/customerpromotion"/>"><ins>Chọn mã giảm giá</ins></a>&emsp;&ensp;
-        <span>Tong thanh toan:${dis*a[4]}</span>
+        <a href="<c:url value="${url}"/>"><ins>Thanh toán momo</ins></a>&emsp;&ensp;
+        <span>Tổng thanh toán:${dis*a[4]}</span>
         <br>
         <br>
         <form method="post" action="<c:url value="/customerauction/${auctionId}"/>">

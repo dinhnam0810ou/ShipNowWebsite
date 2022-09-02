@@ -13,6 +13,7 @@ import com.ndn.pojos.Auction;
 import com.ndn.pojos.Customer;
 import com.ndn.pojos.Product;
 import com.ndn.pojos.Promotion;
+import com.ndn.pojos.ShipOrder;
 import com.ndn.pojos.Shipper;
 import com.ndn.service.AuctionService;
 import com.ndn.service.CustomerService;
@@ -47,6 +48,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @ControllerAdvice
 public class CustomerController {
+
     @Autowired
     private CustomerService customerService;
     @Autowired
@@ -70,20 +72,56 @@ public class CustomerController {
 
     @PostMapping("/addproduct")
     public String addProduct(@ModelAttribute(value = "product") @Valid Product p, BindingResult rs) {
-        if(!rs.hasErrors()){
+        if (!rs.hasErrors()) {
             if (this.productService.addProduct(p)) {
-            return "redirect:/product";
+                return "redirect:/product";
+            }
         }
-        }
-        
+
         return "addnewproduct";
     }
     int auctionIdtemp = 0;
     Double promotiondiscounttemp = 1.0;
     int promotionId = 0;
+    boolean payment = false;
 
     @GetMapping("/customerauction/{auctionId}")
-    public String pay(Model model, @PathVariable(value = "auctionId") int auctionId) {
+    public String pay(Model model, @PathVariable(value = "auctionId") int auctionId) throws Exception {
+        if (promotionId != 0) {
+            LogUtils.init();
+            String requestId = String.valueOf(System.currentTimeMillis());
+            String orderId = String.valueOf(System.currentTimeMillis());
+            Auction auction = this.auctionService.getAuctionByAuctionId(auctionId);
+            double pricetemp = auction.getPrice() * promotiondiscounttemp;
+            String newprice = Integer.toString((int) pricetemp);
+            long amount = Long.parseLong(newprice);
+
+            String orderInfo = "Pay With MoMo";
+            String returnURL = "/customerauction/" + auctionId;
+            String notifyURL = "/customerauction/" + auctionId;
+
+            Environment environment = Environment.selectEnv("dev");
+            payment = true;
+            PaymentResponse captureWalletMoMoResponse = CreateOrderMoMo.process(environment, orderId, requestId, Long.toString(amount), orderInfo, returnURL, notifyURL, "", RequestType.CAPTURE_WALLET, Boolean.TRUE);
+            model.addAttribute("url", captureWalletMoMoResponse.getPayUrl());
+        } else {
+            LogUtils.init();
+            String requestId = String.valueOf(System.currentTimeMillis());
+            String orderId = String.valueOf(System.currentTimeMillis());
+            Auction auction = this.auctionService.getAuctionByAuctionId(auctionId);
+            double pricetemp = auction.getPrice();
+            String newprice = Integer.toString((int) pricetemp);
+            long amount = Long.parseLong(newprice);
+
+            String orderInfo = "Pay With MoMo";
+            String returnURL = "/customerauction/" + auctionId;
+            String notifyURL = "/customerauction/" + auctionId;
+            payment = true;
+            Environment environment = Environment.selectEnv("dev");
+
+            PaymentResponse captureWalletMoMoResponse = CreateOrderMoMo.process(environment, orderId, requestId, Long.toString(amount), orderInfo, returnURL, notifyURL, "", RequestType.CAPTURE_WALLET, Boolean.TRUE);
+            model.addAttribute("url", captureWalletMoMoResponse.getPayUrl());
+        }
 
         auctionIdtemp = auctionId;
         if (promotiondiscounttemp != 1.0) {
@@ -107,6 +145,11 @@ public class CustomerController {
         String message = null;
         if (this.shipOderService.addShipOrder(auctionId, promotionId) != null) {
             Auction auc = this.auctionService.getAuctionByAuctionId(auctionId);
+
+            if (payment == true) {
+                ShipOrder order = this.shipOderService.getShipOrderByAuctionId(auctionId);
+                this.shipOderService.updatePay(order.getId());
+            }
             Shipper shipper = this.shipperService.getShipperById(auc.getShipperId().getId());
             this.emailService.sendSimpleMessage(shipper.getEmail(), "Thông báo đấu giá được chọn",
                     "Đấu giá của bạn đã được khác hàng chọn vào lúc " + new Date() + " .Hãy nhanh chóng liên lạc với khách hàng");
@@ -148,29 +191,13 @@ public class CustomerController {
         for (int i = 0; i < granted.size(); i++) {
             role = granted.toArray()[i] + "";
             if (role.equals("ROLE_CUSTOMER")) {
-                Customer customer  = this.customerService.getCustomerByUserName(principal.getName());
+                Customer customer = this.customerService.getCustomerByUserName(principal.getName());
                 model.addAttribute("oderofcus", this.shipOderService.listOrderOfCustomer(customer.getId()));
             }
         }
-       
+
         return "oderofcustomer";
     }
-    @GetMapping("/momo")
-    public String paymomo(Model model) throws Exception {
-        LogUtils.init();
-        String requestId = String.valueOf(System.currentTimeMillis());
-        String orderId = String.valueOf(System.currentTimeMillis());
-        long amount = 50000;
 
-        String orderInfo = "Pay With MoMo";
-        String returnURL = "https://google.com.vn";
-        String notifyURL = "https://google.com.vn";
-
-        Environment environment = Environment.selectEnv("dev");
-
-        PaymentResponse captureWalletMoMoResponse = CreateOrderMoMo.process(environment, orderId, requestId, Long.toString(amount), orderInfo, returnURL, notifyURL, "", RequestType.CAPTURE_WALLET, Boolean.TRUE);
-        model.addAttribute("url", captureWalletMoMoResponse.getPayUrl());
-        return "momo";
-    }
 
 }

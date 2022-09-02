@@ -27,4 +27,6 @@ public interface ShipOrderRepository {
     void updatePay(int shiporderId);
 
     ShipOrder getShipOrderById(int shiporderId);
+
+    ShipOrder getShipOrderByAuctionId(int auctionId);
 }

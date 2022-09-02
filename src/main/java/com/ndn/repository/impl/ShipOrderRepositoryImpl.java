@@ -105,4 +105,12 @@ public class ShipOrderRepositoryImpl implements ShipOrderRepository {
         int r = q.executeUpdate();
     }
 
+    @Override
+    public ShipOrder getShipOrderByAuctionId(int auctionId) {
+         Session session = this.sessionFactory.getObject().getCurrentSession();
+         Query q = session.createQuery("From ShipOrder where auctionId.id=:aid");
+         q.setParameter("aid", auctionId);
+         return (ShipOrder) q.getSingleResult();
+    }
+
 }
