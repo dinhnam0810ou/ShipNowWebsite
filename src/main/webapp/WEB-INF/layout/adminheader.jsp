@@ -21,7 +21,7 @@
     <!-- Sidebar Start -->
     <div class="sidebar pe-4 pb-3">
         <nav class="navbar bg-light navbar-light">
-            <a href="index.html" class="navbar-brand mx-4 mb-3">
+            <a href="<c:url value="/"/>" class="navbar-brand mx-4 mb-3">
                 <img src=" <c:url value="/images/logo.png"/>" alt="" class="img-fluid">
                 <h3 class="text-primary">SHIPNOW </h3>
             </a>
@@ -31,28 +31,26 @@
                     <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                 </div>
                 <div class="ms-3">
-                    <h6 class="mb-0">Jhon Doe</h6>
+                    <h6 class="mb-0">Nguyễn Đình Nam</h6>
                     <span>Admin</span>
                 </div>
             </div>
             <div class="navbar-nav w-100">
-                <a href="index.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Quản lý shipper</a>
-                    <div class="dropdown-menu bg-transparent border-0">
-                          <a href="signin.html" class="dropdown-item">Sign In</a>
-                        <a href="signup.html" class="dropdown-item">Sign Up</a>
-                    </div>
+                <a href="<c:url value="/admin/"/>" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                <div class="nav-item">
+                    <a href="<c:url value="/admin/shippers"/>" class="nav-link dropdown-toggle"><i class="fa fa-laptop me-2"></i>Quản lý shipper</a>    
                 </div>
-                
-                <div class="nav-item dropdown">
-                    <a href="/admin/" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Quản lý đơn hàng</a>
-                    <div class="dropdown-menu bg-transparent border-0">
-                        <a href="signin.html" class="dropdown-item">Sign In</a>
-                        <a href="signup.html" class="dropdown-item">Sign Up</a>
-                        <a href="404.html" class="dropdown-item">404 Error</a>
-                        <a href="blank.html" class="dropdown-item">Blank Page</a>
-                    </div>
+                <div class="nav-item">
+                    <a href="<c:url value="/admin/order"/>" class="nav-link dropdown-toggle"><i class="fa fa-laptop me-2"></i>Quản lý đơn hàng</a>    
+                </div>
+                 <div class="nav-item">
+                    <a href="<c:url value="/admin/promotion"/>" class="nav-link dropdown-toggle"><i class="fa fa-laptop me-2"></i>Quản lý mãi khuyến mãi</a>    
+                </div>
+                 <div class="nav-item">
+                    <a href="<c:url value="/admin/proNotauc"/>" class="nav-link dropdown-toggle"><i class="fa fa-laptop me-2"></i>Sản phẩm chưa được đấu giá</a>    
+                </div>
+                 <div class="nav-item">
+                    <a href="<c:url value="/admin/stats"/>" class="nav-link dropdown-toggle"><i class="fa fa-laptop me-2"></i>Thống kê doanh thu</a>    
                 </div>
             </div>
         </nav>
@@ -138,16 +136,11 @@
                     </div>
                 </div>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    <a href="#" class="nav-link ">
 
                         <img class="rounded-circle me-lg-2" src="<c:url value="/images/user.jpg"/>" alt="" style="width: 40px; height: 40px;">
-                        <span class="d-none d-lg-inline-flex">John Doe</span>
+                        <span class="d-none d-lg-inline-flex">Nguyễn Đình Nam</span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                        <a href="#" class="dropdown-item">My Profile</a>
-                        <a href="#" class="dropdown-item">Settings</a>
-                        <a href="#" class="dropdown-item">Log Out</a>
-                    </div>
                 </div>
             </div>
         </nav>

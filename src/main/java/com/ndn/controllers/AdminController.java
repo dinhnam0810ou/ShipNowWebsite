@@ -75,10 +75,10 @@ public class AdminController {
 
    
 
-    @GetMapping("/oder")
+    @GetMapping("/order")
     public String oder(Model model) {
-        model.addAttribute("oders", this.shipOderService.listOrder());
-        return "oder";
+        model.addAttribute("orders", this.shipOderService.listOrder());
+        return "order";
     }
 
     @GetMapping("/proNotauc")

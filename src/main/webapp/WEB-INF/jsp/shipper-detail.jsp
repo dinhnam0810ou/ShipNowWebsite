@@ -75,7 +75,7 @@
 <script src="<c:url value="/js/comment.js"/>"></script>
 <script>
         window.onload = function () {
-            let dates = document.querySelectorAll(".my-date > i")
+            let dates = document.querySelectorAll(".my-date >p> i")
             for (let i = 0; i < dates.length; i++) {
                 let d = dates[i];
                 d.innerText = moment(d.innerText).locale("vi").fromNow();

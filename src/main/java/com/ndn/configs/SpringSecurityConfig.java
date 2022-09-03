@@ -79,8 +79,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/").permitAll()
                 .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/myauction").access("hasRole('ROLE_SHIPPER')")
-                .antMatchers("/customerauction").access("hasRole('ROLE_CUSTOMER')");
-        
+                .antMatchers("/customerauction").access("hasRole('ROLE_CUSTOMER')")
+                .antMatchers("/oderofcustomer").access("hasRole('ROLE_CUSTOMER')")
+                .antMatchers("/oderofshipper").access("hasRole('ROLE_SHIPPER')")
+                .antMatchers("/addproduct").access("hasRole('ROLE_CUSTOMER')")
+                .antMatchers("/customerauction/**").access("hasRole('ROLE_CUSTOMER')")
+                .antMatchers("/customerpromotion").access("hasRole('ROLE_CUSTOMER')")
+                .antMatchers("/oderofshipper/**").access("hasRole('ROLE_SHIPPER')");
+                
         
         http.csrf().disable();
     }

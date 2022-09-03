@@ -16,7 +16,7 @@
             <th>ProductName</th>
             <th>OderDate</th>         
         </tr>
-        <c:forEach items="${oders}" var="o">
+        <c:forEach items="${orders}" var="o">
             <tr>
                 <td>${o[0]}</td>
                 <td>${o[1]}</td>

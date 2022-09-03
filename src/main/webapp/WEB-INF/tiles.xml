@@ -67,7 +67,7 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
                        value="/WEB-INF/jsp/index.jsp" />
     </definition>
     <definition name="customerpromotion" extends="baseLayout">
-        <put-attribute name="title" value="Chọn mã giảm giá của bạn" />
+        <put-attribute name="title" value="Mã giảm giá của bạn" />
         <put-attribute name="content"
                        value="/WEB-INF/jsp/customerpromotion.jsp" />
     </definition>
@@ -97,7 +97,7 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
                        value="/WEB-INF/jsp/listshipper.jsp" />
     </definition>
     <definition name="adminindex" extends="adminLayout">
-        <put-attribute name="title" value="Trang chu" />
+        <put-attribute name="title" value="Trang chủ admin" />
         <put-attribute name="content"
                        value="/WEB-INF/jsp/adminindex.jsp" />
     </definition>
@@ -131,10 +131,10 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/jsp/addnewproduct.jsp" />
     </definition>
-    <definition name="oder" extends="adminLayout">
+    <definition name="order" extends="adminLayout">
         <put-attribute name="title" value="Thông tin đơn hàng" />
         <put-attribute name="content"
-                       value="/WEB-INF/jsp/oder.jsp" />
+                       value="/WEB-INF/jsp/order.jsp" />
     </definition>
     <definition name="productnotaucion" extends="adminLayout">
         <put-attribute name="title" value="Sản phẩm chưa được đấu giá" />
