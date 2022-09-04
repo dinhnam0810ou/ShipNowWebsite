@@ -55,7 +55,16 @@ public class PromotionRepositoryImpl implements PromotionRepository {
     @Override
     public Promotion getPromotionById(int promotionId) {
         Session session = sessionFactory.getObject().getCurrentSession();
-        return session.get(Promotion.class,promotionId);
+        return session.get(Promotion.class, promotionId);
+    }
+
+    @Override
+    public void setPromotionDefault(int shiporderId) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Query q = session.createQuery("Update Product set promotionId=:proId where id=:orderId");
+        q.setParameter("proId", 4);
+        q.setParameter("orderId", shiporderId);
+        int r = q.executeUpdate();
     }
 
 }

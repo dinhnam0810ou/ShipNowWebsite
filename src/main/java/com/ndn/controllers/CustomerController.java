@@ -143,6 +143,9 @@ public class CustomerController {
     @PostMapping("/customerauction/{auctionId}")
     public String addShipOrder(Model model, @PathVariable(value = "auctionId") int auctionId) {
         String message = null;
+        if(promotionId==0){
+            promotionId=4;
+        }
         if (this.shipOderService.addShipOrder(auctionId, promotionId) != null) {
             Auction auc = this.auctionService.getAuctionByAuctionId(auctionId);
             this.productService.updateActive(auc.getProductId().getId());

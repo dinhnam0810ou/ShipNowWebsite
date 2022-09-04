@@ -16,4 +16,5 @@ public interface PromotionRepository {
     boolean addPromotion(Promotion promotion);
     Promotion getPromotionByCode(String code);
     Promotion getPromotionById(int promotionId);
+    void setPromotionDefault(int shiporderId);
 }

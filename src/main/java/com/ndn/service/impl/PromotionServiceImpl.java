@@ -17,9 +17,11 @@ import org.springframework.stereotype.Service;
  * @author Nguyen Dinh Nam
  */
 @Service
-public class PromotionServiceImpl implements PromotionService{
+public class PromotionServiceImpl implements PromotionService {
+
     @Autowired
     private PromotionRepository promotionRepository;
+
     @Override
     public List<Promotion> getPromotions() {
         return this.promotionRepository.getPromotions();
@@ -40,5 +42,10 @@ public class PromotionServiceImpl implements PromotionService{
     public Promotion getPromotionById(int promotionId) {
         return this.promotionRepository.getPromotionById(promotionId);
     }
-    
+
+    @Override
+    public void setPromotionDefault(int shiporderId) {
+        this.promotionRepository.setPromotionDefault(shiporderId);
+    }
+
 }
