@@ -18,4 +18,5 @@ public interface ProductService {
      boolean addProduct(Product p);
      List<Product> productNotAuction();
       Product getProductById(int productId);
+        void updateActive(int productId);
 }

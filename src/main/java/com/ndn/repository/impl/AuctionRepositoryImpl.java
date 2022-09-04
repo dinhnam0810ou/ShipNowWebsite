@@ -79,7 +79,7 @@ public class AuctionRepositoryImpl implements AuctionRepository {
                 b.equal(rS.get("id"), rA.get("shipperId")));
 
         q.multiselect(rP.get("productname"), rP.get("image"), rP.get("shipaddress"), rP.get("createdDate"),
-                 rS.get("firstname"), rS.get("lastname"), rA.get("price"), rA.get("date"), rA.get("id"));
+                 rS.get("firstname"), rS.get("lastname"), rA.get("price"), rA.get("date"), rA.get("id"),rP.get("active"));
 
         Query query = session.createQuery(q);
         return query.getResultList();

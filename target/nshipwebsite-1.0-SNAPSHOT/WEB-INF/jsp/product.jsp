@@ -24,7 +24,7 @@
 
 <c:if test="${products.size() == 0}">
     <p>
-        <strong>Khong co san pham nao!!!</strong>
+        <strong>Không có sản phẩm nào!!!</strong>
     </p>
 </c:if>
 <ul class="pagination">
@@ -57,12 +57,14 @@
                 <td><img src="${p.image}"  class="card-img-top rounded-circle" width="40" height="40" /></td>         
                 <td>${p.description}</td>                   
                 <td>${p.createdDate}</td>  
+                <c:if test="${p.active==1}">
                 <sec:authorize access="hasRole('ROLE_SHIPPER')">
                     <td>                 
                         <input id="price${p.id}" type="number" placeholder="Nhập giá cho sản phẩm"/>
                         <button class="btn btn-danger" onclick="addAuction(${p.id})"><spring:message code="label22"/></button>
                     </td>  
                 </sec:authorize>
+                </c:if>
             </tr>
         </c:forEach>
     </table>

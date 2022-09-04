@@ -101,7 +101,7 @@ public class CustomerController {
             String notifyURL = "/customerauction/" + auctionId;
 
             Environment environment = Environment.selectEnv("dev");
-            payment = true;
+//            payment = true;
             PaymentResponse captureWalletMoMoResponse = CreateOrderMoMo.process(environment, orderId, requestId, Long.toString(amount), orderInfo, returnURL, notifyURL, "", RequestType.CAPTURE_WALLET, Boolean.TRUE);
             model.addAttribute("url", captureWalletMoMoResponse.getPayUrl());
         } else {
@@ -116,7 +116,7 @@ public class CustomerController {
             String orderInfo = "Pay With MoMo";
             String returnURL = "/customerauction/" + auctionId;
             String notifyURL = "/customerauction/" + auctionId;
-            payment = true;
+//            payment = true;
             Environment environment = Environment.selectEnv("dev");
 
             PaymentResponse captureWalletMoMoResponse = CreateOrderMoMo.process(environment, orderId, requestId, Long.toString(amount), orderInfo, returnURL, notifyURL, "", RequestType.CAPTURE_WALLET, Boolean.TRUE);
@@ -145,7 +145,7 @@ public class CustomerController {
         String message = null;
         if (this.shipOderService.addShipOrder(auctionId, promotionId) != null) {
             Auction auc = this.auctionService.getAuctionByAuctionId(auctionId);
-
+            this.productService.updateActive(auc.getProductId().getId());
             if (payment == true) {
                 ShipOrder order = this.shipOderService.getShipOrderByAuctionId(auctionId);
                 this.shipOderService.updatePay(order.getId());

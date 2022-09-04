@@ -126,9 +126,14 @@ public class UserController {
         regisuser = user.getUsername();
         if (!result.hasErrors()) {
             if (user.getPassword().equals(user.getConfirmPassword())) {
-                if (this.userDetailsService.addUser(user)) {
-                    return "redirect:/provision";
+                try {
+                    if (this.userDetailsService.addUser(user)) {
+                        return "redirect:/provision";
+                    }
+                } catch (Exception e) {
+                    model.addAttribute("erruser", "1");
                 }
+
             } else {
                 String errMsg = "Mật khẩu không khớp";
                 model.addAttribute("errMsg", errMsg);
@@ -145,7 +150,7 @@ public class UserController {
     }
 
     @PostMapping("/registershipper")
-    public String addShipper(Model model,@ModelAttribute(value = "shipper") @Valid Shipper shipper, BindingResult result) {
+    public String addShipper(Model model, @ModelAttribute(value = "shipper") @Valid Shipper shipper, BindingResult result) {
         if (!result.hasErrors()) {
             User u = this.userService.getUserByUsername(regisuser);
             this.userService.updateRole("ROLE_SHIPPER", u.getId());
@@ -166,7 +171,7 @@ public class UserController {
     }
 
     @PostMapping("/registercustomer")
-    public String addCustomer(Model model,@ModelAttribute(value = "customer") @Valid Customer customer, BindingResult result) {
+    public String addCustomer(Model model, @ModelAttribute(value = "customer") @Valid Customer customer, BindingResult result) {
         if (!result.hasErrors()) {
             User u = this.userService.getUserByUsername(regisuser);
             customer.setUserId(u);

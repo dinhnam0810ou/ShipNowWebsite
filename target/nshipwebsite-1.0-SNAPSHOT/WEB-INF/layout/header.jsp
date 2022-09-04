@@ -13,7 +13,7 @@
     .imguser{
         width: 40px;
         height: 40px;
-        }
+    }
 </style>
 <c:if test="${mess==201}">
     <script>
@@ -53,6 +53,9 @@
                     <a href="<c:url value="/admin/"/>"><span class="fa-solid fa-person-shelter text-danger"></span> Go to Admin Dashboard</a>
                 </button>
             </sec:authorize>
+            <button class="btn btn-outline-secondary">
+                <a href="<c:url value="/chat"/>"><span class="fa-brands fa-rocketchat text-danger"></span> <spring:message code="label25"/></a>
+            </button>
             <button class="btn btn-outline-secondary">
                 <a href="<c:url value="/logout"/>"><spring:message code="label19"/></a>
             </button>

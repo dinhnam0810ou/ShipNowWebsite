@@ -11,6 +11,11 @@
 
 
 <h1 class="text-center text-info"><spring:message code="label10"/></h1>
+<c:if test="${erruser==1}">
+    <div class="alert alert-danger">
+        Username đã tồn tại
+    </div>
+</c:if>
 <c:if test="${errMsg!=null}">
     <div class="alert alert-danger">
         ${errMsg}

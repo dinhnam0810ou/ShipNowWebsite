@@ -22,4 +22,5 @@ public interface ProductRepository {
 
     List<Product> productNotAuction();
     Product getProductById(int productId);
+    void updateActive(int productId);
 }

@@ -27,7 +27,9 @@
                  <td>${a[4]} ${a[5]}</td>
                 <td>${a[6]}</td>
                 <td>${a[7]}</td>
+                <c:if test="${a[9]==1}">
                 <td><button class="btn btn-danger"><a href="<c:url value="/customerauction/${a[8]}"/>" style="text-decoration: none;color: white;"/>Choose</button></td>
+                </c:if>
             </tr>
         </c:forEach>
     </table>

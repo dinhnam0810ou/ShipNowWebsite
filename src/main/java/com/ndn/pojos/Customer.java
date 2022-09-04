@@ -47,21 +47,21 @@ public class Customer implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 45)
+    @Size(min =1,max = 45)
     @Column(name = "lastname")
     private String lastname;
-    @Size(max = 45)
+    @Size(min =1,max = 45)
     @Column(name = "firstname")
     private String firstname;
     // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
-    @Size(max = 45)
+    @Size(min =1,max = 45)
     @Column(name = "phone")
     private String phone;
-    @Size(max = 45)
+    @Size(min =1,max = 45)
     @Column(name = "address")
     private String address;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    @Size(max = 45)
+    @Size(min =1,max = 45)
     @Column(name = "email")
     private String email;
     @OneToMany(mappedBy = "customerId")

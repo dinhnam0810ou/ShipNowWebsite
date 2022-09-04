@@ -23,7 +23,7 @@ function addText(name, hinh) {
     var username = name;
     var avatar = hinh;
     var today = new Date();
-    var date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear() + "     " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var date =  today.getDate()+ '-' +(today.getMonth() + 1)  + '-' + today.getFullYear() + "     " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     var text = document.getElementById("txtChat").value;
     database.ref("messages").update({
         "text": text,
@@ -41,14 +41,17 @@ database.ref("messages").on("value", function (snapshot) {
     var item = document.createElement("li");
     var hinh = document.createElement("img");
     var ten = document.createElement("span");
-    ten.innerHTML = name;
+    var time = document.createElement("i");
+    ten.innerHTML = name+"     ";
     hinh.src = avatar;
     hinh.width = 20;
     hinh.height = 20;
     hinh.className = "rounded-circle";
-    item.textContent = chat + "(" + date + ")";
+    time.innerHTML =  date;
+    item.textContent = chat;
     document.getElementById("tinnhan").appendChild(hinh);
     document.getElementById("tinnhan").appendChild(ten);
+    document.getElementById("tinnhan").appendChild(time);
     document.getElementById("tinnhan").appendChild(item);
 });
 

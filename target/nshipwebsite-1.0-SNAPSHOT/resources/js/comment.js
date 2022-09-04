@@ -15,7 +15,7 @@ function addComment(shipperId) {
         console.info(data);
         setTimeout(function(){
             location.reload();
-        },1000);
+        },800);
         
     })
     

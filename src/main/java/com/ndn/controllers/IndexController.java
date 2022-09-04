@@ -87,6 +87,13 @@ public class IndexController {
                 }
 
             }
+             if (role.equals("ROLE_ADMIN")) {
+                try {
+                    model.addAttribute("chatadmin", "admin");
+                } catch (Exception e) {
+                }
+
+            }
         }
         return "chat";
     }

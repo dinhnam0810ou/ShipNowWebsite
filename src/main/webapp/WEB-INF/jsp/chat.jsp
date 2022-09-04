@@ -48,31 +48,30 @@
         opacity: 0.8;
     }
     img{
-        
+
         margin-right: 8px;
     }
 </style>
 <div class="Chatbox" id="myForm">
-<c:if test="${chatshipper!=null}">
-  <form  class="form-container" onsubmit="addText('${chatshipper.firstname} ${chatshipper.lastname}','${chatshipper.avatar}')">
-</c:if>
-<c:if test="${chatcustomer!=null}">
-    <form  class="form-container" onsubmit="addText('${chatcustomer.lastname}','${chatcustomer.avatar}')">
-</c:if>   
-        
-        <label>
-            <ul id="tinnhan">
-            </ul>
-        </label>
-        <input id="txtChat" placeholder="Nhập tin nhắn..."></input>
-        <button type="submit" class="btn">Gửi</button>
+    <c:if test="${chatshipper!=null}">
+        <form  class="form-container" onsubmit="addText('${chatshipper.firstname} ${chatshipper.lastname}', '${chatshipper.avatar}')">
+        </c:if>
+        <c:if test="${chatcustomer!=null}">
+            <form  class="form-container" onsubmit="addText('${chatcustomer.lastname}', '${chatcustomer.avatar}')">
+            </c:if>   
+            <c:if test="${chatadmin!=null}">
+                <form  class="form-container" onsubmit="addText('admin', 'https://res.cloudinary.com/da1xygjae/image/upload/v1662258082/277764882_1349870718813976_2593622922434845603_n_vw9jju.jpg')">
+                </c:if>          
+                <label class="date">
+                    <ul id="tinnhan" >
+                    </ul>
+                </label>
+                <input id="txtChat" placeholder="Nhập tin nhắn..."></input>
+                <button type="submit" class="btn">Gửi</button>
 
-    </form>
-</div>
+            </form>
+            </div>
 
-
-
-
-<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
-<script src="<c:url value="/js/chat.js"/>"></script>
+            <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
+            <script src="<c:url value="/js/chat.js"/>"></script>

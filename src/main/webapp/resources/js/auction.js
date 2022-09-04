@@ -16,7 +16,7 @@ function addAuction(productId) {
     }).then(function (data) {
         console.info(data);
        document.getElementById("price"+productId).value="";
-       window.alert("Dau gia thanh cong");
+       window.alert("Đấu giá thành công");
     })
     
 }

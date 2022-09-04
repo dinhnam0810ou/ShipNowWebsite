@@ -68,4 +68,9 @@ public class ProductServiceImpl implements ProductService {
     public Product getProductById(int productId) {
         return this.productRepository.getProductById(productId);
     }
+
+    @Override
+    public void updateActive(int productId) {
+        this.productRepository.updateActive(productId);
+    }
 }

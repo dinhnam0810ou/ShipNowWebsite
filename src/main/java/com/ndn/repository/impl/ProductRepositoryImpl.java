@@ -103,4 +103,13 @@ public class ProductRepositoryImpl implements ProductRepository {
         return session.get(Product.class, productId);
     }
 
+    @Override
+    public void updateActive(int productId) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Query q = session.createQuery("Update Product set active=:ac where id=:productid");
+        q.setParameter("ac", 0);
+        q.setParameter("productid", productId);
+        int r = q.executeUpdate();
+    }
+
 }

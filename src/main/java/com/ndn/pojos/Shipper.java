@@ -51,7 +51,7 @@ public class Shipper implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 45)
+    @Size(min=1,max = 45)
     @Column(name = "firstname")
     private String firstname;
     @Size(max = 45)

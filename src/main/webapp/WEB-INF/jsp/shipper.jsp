@@ -35,7 +35,7 @@
     </div>
     <div class="form-group">
         <label for="name">Email</label>
-        <form:input type="text" path="email" class="form-control" id="email"  name="name" />
+        <form:input type="email" path="email" class="form-control" id="email"  name="name" />
         <form:errors path="email" element="div" cssClass="text-danger" />
     </div>
     <div class="form-group">
