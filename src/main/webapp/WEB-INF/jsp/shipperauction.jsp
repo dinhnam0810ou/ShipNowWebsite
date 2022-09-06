@@ -20,12 +20,13 @@
         <c:forEach items="${auctions}" var="a">
         <tr>
             <td>${a[0]}</td>
-            <td><img src="${a[1]}" width="50" height="50"/></td>
+            <td><img class="rounded-circle" src="${a[1]}" width="70" height="70"/></td>
             <td>${a[2]}</td>
             <td>${a[3]}</td>
             <td>${a[4]}</td>
-            <td><button class="btn btn-danger">Delete</button></td>
+            <td><button class="btn btn-danger" onclick="deleteAuction(${a[5]})">Delete</button></td>
         </tr>
         </c:forEach>
     </table>
 </div>
+<script src="<c:url value="/js/auction.js"/>"></script>

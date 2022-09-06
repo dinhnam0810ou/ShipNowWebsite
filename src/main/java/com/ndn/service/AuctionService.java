@@ -20,5 +20,9 @@ public interface AuctionService {
     List<Object[]> getAuctionByCustomerId(int customerId);
 
     List<Object[]> getAuctionById(int auctionId);
-     Auction getAuctionByAuctionId(int auctionId);
+
+    Auction getAuctionByAuctionId(int auctionId);
+
+    boolean deleteAuction(int id);
+      List<Auction> getAuctions();
 }

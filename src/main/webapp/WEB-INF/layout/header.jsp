@@ -207,9 +207,9 @@
                                         </div>
                                         <div>
                                             <h1>
-                                                Unbeatable <br>
-                                                trucking & Transport <br>
-                                                Services
+                                               <spring:message code="label27"/> <br>
+                                               <spring:message code="label26"/>  <br>
+                                       
                                             </h1>
 
                                             <div class="d-flex">

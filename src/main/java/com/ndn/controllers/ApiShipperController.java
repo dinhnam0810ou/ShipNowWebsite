@@ -4,7 +4,9 @@
  */
 package com.ndn.controllers;
 
+import com.ndn.pojos.Auction;
 import com.ndn.pojos.Shipper;
+import com.ndn.service.AuctionService;
 import com.ndn.service.ShipperService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +27,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class ApiShipperController {
     @Autowired
+    private AuctionService auctionService;
+    @Autowired
     private ShipperService shipppService;
+
     @GetMapping("/shippers")
-    public ResponseEntity<List<Shipper>> list(){
-        return new ResponseEntity<>(this.shipppService.getShippers(null, 0),HttpStatus.OK);
+    public ResponseEntity<List<Shipper>> list() {
+        return new ResponseEntity<>(this.shipppService.getShippers(null, 0), HttpStatus.OK);
     }
+
     @DeleteMapping("/shippers/{shipperId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable(value = "shipperId") int id) {
         this.shipppService.deleteShipper(id);
     }
+
+   
 }

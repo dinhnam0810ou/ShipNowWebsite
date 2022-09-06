@@ -182,13 +182,14 @@ public class ShipperRepositoryImpl implements ShipperRepository {
     public boolean updateShipper(Shipper shipper) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         try {
-            Query q = session.createQuery("Update Shipper Set firstname =:f,lastname=:l,email=:e,phone=:p,identification=:i,avatar=:a where id=:sid");
+            Query q = session.createQuery("Update Shipper Set firstname =:f,lastname=:l,email=:e,phone=:p,identification=:i,avatar=:a,active=:ac where id=:sid");
             q.setParameter("f", shipper.getFirstname());
             q.setParameter("l", shipper.getLastname());
             q.setParameter("e", shipper.getEmail());
             q.setParameter("p", shipper.getPhone());
             q.setParameter("i", shipper.getIdentification());
             q.setParameter("a", shipper.getAvatar());
+            q.setParameter("ac", shipper.getActive());
             q.setParameter("sid", shipper.getId()); 
             q.executeUpdate();
             return true;

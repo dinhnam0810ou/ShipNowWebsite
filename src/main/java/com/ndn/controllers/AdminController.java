@@ -16,8 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,8 +29,10 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author Nguyen Dinh Nam
  */
 @Controller
+@ControllerAdvice
 @RequestMapping("/admin")
 public class AdminController {
+
     @Autowired
     private CustomerService customerService;
     @Autowired
@@ -51,15 +55,47 @@ public class AdminController {
         return "shipper";
     }
 
+    @ModelAttribute
+    public void commonAttr(Model model) {
+       if(sId!=0){
+           model.addAttribute("editshipper", this.shipperService.getShipperById(sId));
+       }
+    }
+    int sId=0;
+
+    @GetMapping("/shippers/{shipperId}")
+    public String adminupdateShipper(Model model, @PathVariable(value = "shipperId") int shipperId) {
+        sId = shipperId;
+        model.addAttribute("editshipper", this.shipperService.getShipperById(shipperId));
+        return "adminupdate";
+    }
+
+    @PostMapping("/shippers/{shipperId}")
+    public String updateprofile(Model model,
+            @ModelAttribute(value = "editshipper") @Valid Shipper shipper,
+            BindingResult result) {
+        System.out.println(shipper.getId());
+        if (!result.hasErrors()) {
+            if (shipper != null) {
+                if (this.shipperService.updateShipper(shipper)) {
+                    model.addAttribute("update", "Update Success");
+                } else {
+                    model.addAttribute("update", "Update Fail");
+                }
+            }
+        }
+        return "adminupdate";
+    }
+
     @PostMapping("/shippers")
     public String add(Model model, @ModelAttribute(value = "shipper") @Valid Shipper s,
             BindingResult r) {
         if (!r.hasErrors()) {
-        if (this.shipperService.addShipper(s)) {
-            return "redirect:/admin/";
-        } else {
-            model.addAttribute("errMsg", "Fail");
-        }
+            if (this.shipperService.addShipper(s)) {
+                return "redirect:/admin/";
+            } else {
+                model.addAttribute("errMsg", "Fail");
+            }
         }
         return "shipper";
     }
@@ -72,8 +108,6 @@ public class AdminController {
         model.addAttribute("revenue", this.shipperService.revenue(quarter, year));
         return "stats";
     }
-
-   
 
     @GetMapping("/order")
     public String oder(Model model) {

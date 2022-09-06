@@ -55,7 +55,7 @@
                 <td>${p.weight}</td>
                 <td>${p.shipaddress}</td>
                 <td>${p.active}</td>
-                <td><img src="${p.image}"  class="card-img-top rounded-circle" width="40" height="40" /></td>         
+                <td><img src="${p.image}"  class="card-img-top rounded-circle" width="70" height="70" /></td>         
                 <td>${p.description}</td>                   
                 <td>${p.createdDate}</td>  
                 <c:if test="${p.active==1}">

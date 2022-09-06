@@ -21,7 +21,7 @@
                     </span>
                 </div>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sedconsectetur
+                    <spring:message code="label26"/>
                 </p>
                 <div class="info_social">
                     <div>

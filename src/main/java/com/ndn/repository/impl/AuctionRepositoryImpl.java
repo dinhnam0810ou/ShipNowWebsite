@@ -57,7 +57,7 @@ public class AuctionRepositoryImpl implements AuctionRepository {
         q.where(b.equal(rP.get("id"), rA.get("productId")),
                 b.equal(rA.get("shipperId"), shipperId));
 
-        q.multiselect(rP.get("productname"), rP.get("image"), rP.get("shipaddress"), rA.get("price"), rA.get("date"));
+        q.multiselect(rP.get("productname"), rP.get("image"), rP.get("shipaddress"), rA.get("price"), rA.get("date"),rA.get("id"));
         Query query = session.createQuery(q);
         return query.getResultList();
     }
@@ -108,6 +108,26 @@ public class AuctionRepositoryImpl implements AuctionRepository {
     public Auction getAuctionByAuctionId(int auctionId) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         return session.get(Auction.class, auctionId);
+    }
+
+    @Override
+    public boolean deleteAuction(int id) {
+         Session session = this.sessionFactory.getObject().getCurrentSession();
+        try {
+            Auction a = session.get(Auction.class, id);
+            session.delete(a);
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public List<Auction> getAuctions() {
+         Session session = this.sessionFactory.getObject().getCurrentSession();
+         Query q = session.createQuery("From Auction");
+         return q.getResultList();
     }
 
 }

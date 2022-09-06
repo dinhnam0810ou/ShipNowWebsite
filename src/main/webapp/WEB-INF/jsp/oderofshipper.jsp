@@ -23,7 +23,7 @@
             <tr>
                 <td>${o.auctionId.productId.productname}</td>
                 <td>
-                    <img src="${o.auctionId.productId.image}" width="50" height="50">
+                    <img class="rounded-circle" src="${o.auctionId.productId.image}" width="70" height="70">
                 </td>
                 <td>${o.auctionId.productId.shipaddress}</td>
                 <td>${o.auctionId.productId.customerId.firstname} ${o.auctionId.productId.customerId.lastname}</td>
