@@ -12,7 +12,7 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="footer"
                        value="/WEB-INF/layout/footer.jsp" />
     </definition>
-     <definition name="adminLayout"
+    <definition name="adminLayout"
                 template="/WEB-INF/layout/adminbase.jsp">
         <put-attribute name="title" value="" />
         <put-attribute name="header"
@@ -21,12 +21,22 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="footer"
                        value="/WEB-INF/layout/adminfooter.jsp" />
     </definition>
-     <definition name="pay" extends="baseLayout">
+    <definition name="updateprofile" extends="baseLayout">
+        <put-attribute name="title" value="Thông tin người dùng" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/updateprofile.jsp" />
+    </definition>
+    <definition name="updateprofilecustomer" extends="baseLayout">
+        <put-attribute name="title" value="Thông tin người dùng" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/updateprofilecustomer.jsp" />
+    </definition>
+    <definition name="pay" extends="baseLayout">
         <put-attribute name="title" value="Thanh toán" />
         <put-attribute name="content"
                        value="/WEB-INF/jsp/pay.jsp" />
     </definition>
-     <definition name="provision" extends="baseLayout">
+    <definition name="provision" extends="baseLayout">
         <put-attribute name="title" value="Điều khoản" />
         <put-attribute name="content"
                        value="/WEB-INF/jsp/provision.jsp" />
@@ -36,7 +46,7 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/jsp/oderofcustomer.jsp" />
     </definition>
-     <definition name="oderofshipper" extends="baseLayout">
+    <definition name="oderofshipper" extends="baseLayout">
         <put-attribute name="title" value="Đơn hàng" />
         <put-attribute name="content"
                        value="/WEB-INF/jsp/oderofshipper.jsp" />
@@ -101,7 +111,7 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/jsp/adminindex.jsp" />
     </definition>
-     <definition name="shipper" extends="adminLayout">
+    <definition name="shipper" extends="adminLayout">
         <put-attribute name="title" value="Trang quản trị shipper" />
         <put-attribute name="content"
                        value="/WEB-INF/jsp/shipper.jsp" />

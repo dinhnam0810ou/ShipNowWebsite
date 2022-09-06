@@ -11,6 +11,7 @@ import com.ndn.pojos.User;
 import com.ndn.repository.CustomerRepository;
 import com.ndn.service.CustomerService;
 import com.ndn.service.UserService;
+import java.io.IOException;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -54,4 +55,20 @@ public class CustomerServiceImpl implements CustomerService {
         return false;
     }
 
+    @Override
+    public boolean updateCustomer(Customer customer) {
+        try {
+            if (!customer.getFile().isEmpty()) {
+                Map result = this.cloudinary.uploader().upload(customer.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
+                String img = (String) result.get("secure_url");
+                customer.setAvatar(img);
+                return this.customerRepository.updateCustomer(customer);
+            } else {
+                return this.customerRepository.updateCustomer(customer);
+            }
+        } catch (IOException ex) {
+            System.err.println("UPDATE Customer " + ex.getMessage());
+        }
+        return false;
+    }
 }

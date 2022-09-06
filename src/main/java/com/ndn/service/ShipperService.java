@@ -25,8 +25,14 @@ public interface ShipperService {
     boolean deleteShipper(int id);
 
     Shipper getShipperById(int id);
+
     List<Object[]> countOrderByShipper();
-    List<Object[]> revenue(int quarter,int year);
+
+    List<Object[]> revenue(int quarter, int year);
+
     Shipper getShipperByUserName(String username);
-     List<Auction> getListShipperNotChoose(Product productId,Shipper shipperIdchoose);
+
+    List<Auction> getListShipperNotChoose(Product productId, Shipper shipperIdchoose);
+
+    boolean updateShipper(Shipper shipper);
 }

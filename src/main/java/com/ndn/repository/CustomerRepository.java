@@ -5,13 +5,19 @@
 package com.ndn.repository;
 
 import com.ndn.pojos.Customer;
+import com.ndn.pojos.Shipper;
 
 /**
  *
  * @author Nguyen Dinh Nam
  */
 public interface CustomerRepository {
-     Customer getCustomerById(int id);
-     Customer getCustomerByUserName(String username);
-     boolean addCustomer(Customer customer);
+
+    Customer getCustomerById(int id);
+
+    Customer getCustomerByUserName(String username);
+
+    boolean addCustomer(Customer customer);
+
+    boolean updateCustomer(Customer customer);
 }

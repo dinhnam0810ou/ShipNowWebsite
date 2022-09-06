@@ -15,4 +15,5 @@ public interface CommentService {
     List<Object[]> getCommentByShipperId(int shipperId,int page);
      int countComment(int shipperId);
      Comment addComment(String content,int shipperId);
+     
 }

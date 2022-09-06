@@ -43,11 +43,12 @@
         <sec:authorize access="isAuthenticated()">   
             <c:if test="${currentshipper!=null}">
                 <img  src="${currentshipper.avatar}" class="imguser img-fluid rounded-circle" >
+                <a class="dropdown-toggle" href="<c:url value="/updateprofile"/>">${pageContext.request.userPrincipal.name}</a>
             </c:if>
             <c:if test="${currentcustomer!=null}">
                 <img src="${currentcustomer.avatar}" class="imguser img-fluid rounded-circle" >
+                <a class="dropdown-toggle" href="<c:url value="/updateprofilecustomer"/>">${pageContext.request.userPrincipal.name}</a>
             </c:if>      
-            <a href="#">${pageContext.request.userPrincipal.name}</a>
             <sec:authorize access="hasRole('ROLE_ADMIN')">
                 <button class="btn btn-outline-secondary">
                     <a href="<c:url value="/admin/"/>"><span class="fa-solid fa-person-shelter text-danger"></span> Go to Admin Dashboard</a>

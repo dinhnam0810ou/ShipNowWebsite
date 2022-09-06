@@ -87,4 +87,22 @@ public class ShipperServiceImpl implements ShipperService {
     public List<Auction> getListShipperNotChoose(Product productId, Shipper shipperIdchoose) {
         return this.shipperRepository.getListShipperNotChoose(productId, shipperIdchoose);
     }
+
+    @Override
+    public boolean updateShipper(Shipper shipper) {
+        try {
+            if (!shipper.getFile().isEmpty()) {
+                Map result = this.cloudinary.uploader().upload(shipper.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
+                String img = (String) result.get("secure_url");
+                shipper.setAvatar(img);
+                return this.shipperRepository.updateShipper(shipper);
+            }
+            else
+                 return this.shipperRepository.updateShipper(shipper);
+
+        } catch (IOException ex) {
+            System.err.println("UPDATE SHIPPER " + ex.getMessage());
+        }
+        return false;
+    }
 }

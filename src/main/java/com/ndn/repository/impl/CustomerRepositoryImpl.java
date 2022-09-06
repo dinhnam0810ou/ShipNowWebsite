@@ -53,5 +53,24 @@ public class CustomerRepositoryImpl implements CustomerRepository{
         return false;
     }
 
+    @Override
+    public boolean updateCustomer(Customer customer) {
+         Session session = this.sessionFactory.getObject().getCurrentSession();
+        try {
+            Query q = session.createQuery("Update Customer Set firstname =:f,lastname=:l,email=:e,phone=:p,avatar=:a,address=:adr where id=:cid");
+            q.setParameter("f", customer.getFirstname());
+            q.setParameter("l", customer.getLastname());
+            q.setParameter("e", customer.getEmail());
+            q.setParameter("p", customer.getPhone());
+            q.setParameter("a", customer.getAvatar());
+            q.setParameter("adr", customer.getAddress());
+            q.setParameter("cid", customer.getId()); 
+            q.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
   
 }

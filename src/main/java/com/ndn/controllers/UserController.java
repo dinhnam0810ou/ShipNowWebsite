@@ -50,6 +50,48 @@ public class UserController {
         model.addAttribute("mess", mess);
     }
 
+    @GetMapping("/updateprofilecustomer")
+    public String updateprofilecustomer() {
+        return "updateprofilecustomer";
+    }
+
+    @PostMapping("/updateprofilecustomer")
+    public String updateprofilecustomer(Model model,
+            @ModelAttribute(value = "currentcustomer") @Valid Customer customer,
+            BindingResult result) {
+         if (!result.hasErrors()) {
+            if (customer != null) {
+                if (this.customerService.updateCustomer(customer)) {
+                    model.addAttribute("update", "Update Success");
+                } else {
+                    model.addAttribute("update", "Update Fail");
+                }
+            }
+        }
+        return "updateprofilecustomer";
+    }
+
+    @GetMapping("/updateprofile")
+    public String updateprofile() {
+        return "updateprofile";
+    }
+
+    @PostMapping("/updateprofile")
+    public String updateprofile(Model model,
+            @ModelAttribute(value = "currentshipper") @Valid Shipper shipper,
+            BindingResult result) {
+        if (!result.hasErrors()) {
+            if (shipper != null) {
+                if (this.shipperService.updateShipper(shipper)) {
+                    model.addAttribute("update", "Update Success");
+                } else {
+                    model.addAttribute("update", "Update Fail");
+                }
+            }
+        }
+        return "updateprofile";
+    }
+
     @GetMapping("/forgotpassword")
     public String forgotpassword() {
         return "forgotpassword";

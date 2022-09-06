@@ -24,4 +24,5 @@ public interface ShipperRepository {
     List<Object[]> revenue(int quarter,int year);
     Shipper getShipperByUserName(String username);
     List<Auction> getListShipperNotChoose(Product productId,Shipper shipperIdchoose);
+    boolean updateShipper(Shipper shipper);
 }
