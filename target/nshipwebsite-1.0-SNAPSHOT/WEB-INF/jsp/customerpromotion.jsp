@@ -16,11 +16,13 @@
             <th>ExpirationDate</th>
         </tr>
         <c:forEach items="${promotions}" var="p">
-        <tr>
-            <td>${p.code}</td>
-            <td>${p.quantity}</td>
-            <td>${p.expirationdate}</td>
-        </tr>
+            <c:if test="${p.id!=4}">
+                <tr>
+                    <td>${p.code}</td>
+                    <td>${p.quantity}</td>
+                    <td>${p.expirationdate}</td>
+                </tr>
+            </c:if>
         </c:forEach>
     </table>
     <form action="<c:url value="/customerpromotion"/>" method="get">

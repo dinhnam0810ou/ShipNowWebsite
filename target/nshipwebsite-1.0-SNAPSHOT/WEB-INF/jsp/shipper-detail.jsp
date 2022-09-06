@@ -17,7 +17,10 @@
     .star:hover{
         cursor: pointer;
     }
-
+    .imgcmt{
+        width: 80px;
+        height: 80px;
+    }
 </style>
 
 <h1 class="text-center text-info">CHI TIẾT SHIPPER</h1>
@@ -29,7 +32,7 @@
     <div class="col-md-9">
         <h1>${shipper.firstname} ${shipper.lastname}</h1>
         <p>Số điện thoại: ${shipper.phone}</p>
-        <p>Căn cước công dân: ${shipper.identification}</p>
+<!--        <p>Căn cước công dân: ${shipper.identification}</p>-->
         <p>Email: ${shipper.email}</p>      
     </div> 
 </div>
@@ -61,8 +64,7 @@
     <c:forEach items="${comments}" var="comment">
         <div class="row">
             <div class="col-md-1" style="padding: 10px">
-                <img src="${comment[1]}" class="card-img-top img-fluid rounded-circle" 
-                     width="50" height="50"/>
+                <img src="${comment[1]}" class="card-img-top rounded-circle imgcmt"/>
             </div>
             <div class="col-md-11 my-date">
                 <p>${comment[0]} đã bình luận  <i>${comment[3]}</i></p>

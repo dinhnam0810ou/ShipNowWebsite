@@ -29,9 +29,24 @@
         <link href="<c:url value="/css/responsive.css"/>" rel="stylesheet" />
     </head>
     <body>
+        <style>
+            table tr:nth-child(1){
+                background-color:skyblue;
+            }
+            table, th, td{
+                border:1px solid #ccc;
+            }
+            table{
+                border-collapse:collapse;
+            }
+            tr:hover{
+                background-color:#ddd;
+                cursor:pointer;
+            }
+        </style>
         <tiles:insertAttribute name="header" />
         <div class="container">
-        <tiles:insertAttribute name="content" />
+            <tiles:insertAttribute name="content" />
         </div>
         <tiles:insertAttribute name="footer" />
     </body>

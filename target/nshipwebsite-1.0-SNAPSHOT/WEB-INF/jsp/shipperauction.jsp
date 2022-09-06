@@ -12,6 +12,7 @@
     <table class="table">
         <tr>
             <th>ProductName</th>
+            <th>Image</th>
             <th>ShipAddress</th>
             <th>Price</th>
             <th>AuctionDate</th>

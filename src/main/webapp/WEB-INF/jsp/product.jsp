@@ -9,6 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <h1 class="text-center text-info"><spring:message code="label3"/></h1>
 <c:url value="/product" var="action" />
 <form method="get" action="${action}" class="d-flex">
@@ -16,9 +17,9 @@
     <button type="submit" class="btn btn-primary" type="button"><spring:message code="label4"/></button>  
 </form>
 <br>
- <sec:authorize access="hasRole('ROLE_CUSTOMER')">
-<button type="button" class="btn btn-danger" type="button"><a href="/nshipwebsite/addproduct" style="text-decoration: none;color: white;"><spring:message code="label21"/></a></button>  
- </sec:authorize>
+<sec:authorize access="hasRole('ROLE_CUSTOMER')">
+    <button type="button" class="btn btn-danger" type="button"><a href="/nshipwebsite/addproduct" style="text-decoration: none;color: white;"><spring:message code="label21"/></a></button>  
+    </sec:authorize>
 
 
 
@@ -38,7 +39,7 @@
 
 
 <div>
-    <table class="table">
+    <table class="table tp">
         <tr>
             <th>ProductName</th>
             <th>Weight</th>
@@ -58,12 +59,12 @@
                 <td>${p.description}</td>                   
                 <td>${p.createdDate}</td>  
                 <c:if test="${p.active==1}">
-                <sec:authorize access="hasRole('ROLE_SHIPPER')">
-                    <td>                 
-                        <input id="price${p.id}" type="number" placeholder="Nhập giá cho sản phẩm"/>
-                        <button class="btn btn-danger" onclick="addAuction(${p.id})"><spring:message code="label22"/></button>
-                    </td>  
-                </sec:authorize>
+                    <sec:authorize access="hasRole('ROLE_SHIPPER')">
+                        <td>                 
+                            <input id="price${p.id}" type="number" placeholder="Nhập giá cho sản phẩm"/>
+                            <button class="btn btn-danger" onclick="addAuction(${p.id})"><spring:message code="label22"/></button>
+                        </td>  
+                    </sec:authorize>
                 </c:if>
             </tr>
         </c:forEach>

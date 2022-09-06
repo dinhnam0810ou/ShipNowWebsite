@@ -41,6 +41,21 @@
         <link href="<c:url value="/css/styleadmin.css"/>" rel="stylesheet">
     </head>
     <body>
+         <style>
+            table tr:nth-child(1){
+                background-color:skyblue;
+            }
+            table, th, td{
+                border:1px solid #ccc;
+            }
+            table{
+                border-collapse:collapse;
+            }
+            tr:hover{
+                background-color:#ddd;
+                cursor:pointer;
+            }
+        </style>
         <tiles:insertAttribute name="header" />
 
         <tiles:insertAttribute name="content" />

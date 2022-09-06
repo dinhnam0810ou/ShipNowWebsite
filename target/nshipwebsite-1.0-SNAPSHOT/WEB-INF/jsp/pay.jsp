@@ -11,8 +11,16 @@
 <c:if test="${mess1==102}">
     <script>window.alert("Tạo đơn hàng không thành công!!Vui lòng thử lại");</script>
 </c:if>
+    <style>
+        .tpay tr:nth-child(1){
+                background-color:white;
+            }
+         .tpay th{
+                background-color:skyblue;
+            }
+    </style>
 <div>
-    <table class="table">
+    <table class="table tpay">
         <c:forEach items="${auction}" var="a">
             <tr>
                 <th>ProductName</th>
