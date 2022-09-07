@@ -3,7 +3,7 @@
     Created on : Aug 27, 2022, 9:36:33 PM
     Author     : Nguyen Dinh Nam
 --%>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -30,10 +30,14 @@
                 <td>${o.auctionId.productId.customerId.phone}</td>
                 <td>${o.auctionId.productId.customerId.address}</td>
                 <c:if test="${o.promotionId.discount==null}">
-                    <td>${o.auctionId.price} VND</td>
+                    <td>
+                        <fmt:formatNumber type="number" value=" ${o.auctionId.price}" maxFractionDigits="3" /> VND    
+                    </td>
                 </c:if>
                 <c:if test="${o.promotionId.discount!=null}">
-                    <td>${o.auctionId.price*o.promotionId.discount} VND</td>
+                    <td>
+                        <fmt:formatNumber type="number" value=" ${o.auctionId.price*o.promotionId.discount}" maxFractionDigits="3" /> VND 
+                    </td>
                 </c:if>  
                 <c:if test="${o.shipdate==null}">
                     <td>      

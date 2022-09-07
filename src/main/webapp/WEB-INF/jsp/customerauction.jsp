@@ -3,6 +3,7 @@
     Created on : Aug 24, 2022, 4:02:48 PM
     Author     : Nguyen Dinh Nam
 --%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -25,7 +26,9 @@
                 <td>${a[2]}</td>
                 <td>${a[3]}</td>
                  <td>${a[4]} ${a[5]}</td>
-                <td>${a[6]}</td>
+                <td>
+                     <fmt:formatNumber type="number" value="${a[6]}" maxFractionDigits="3" /> VND                  
+                </td>
                 <td>${a[7]}</td>
                 <c:if test="${a[9]==1}">
                 <td><button class="btn btn-danger"><a href="<c:url value="/customerauction/${a[8]}"/>" style="text-decoration: none;color: white;"/>Choose</button></td>

@@ -3,6 +3,7 @@ function addComment(shipperId) {
         method: 'post',
         body: JSON.stringify({
             "content": document.getElementById("commentId").value,
+            "rating": document.getElementById("countrating").value,
             "shipperId": shipperId
         }),
         headers: {
@@ -13,11 +14,11 @@ function addComment(shipperId) {
         return res.json();
     }).then(function (data) {
         console.info(data);
-        setTimeout(function(){
+        setTimeout(function () {
             location.reload();
-        },800);
-        
+        }, 800);
+
     })
-    
+
 }
 

@@ -49,7 +49,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Comment addComment(String content, int shipperId) {
+    public Comment addComment(String content, int shipperId,int rating) {
         Shipper s = this.shipperRepository.getShipperById(shipperId);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
@@ -58,7 +58,7 @@ public class CommentServiceImpl implements CommentService {
         comment.setDate(new Date());
         comment.setCustomerId(this.customerRepository.getCustomerByUserName(authentication.getName()));
         comment.setShipperId(s);
-
+        comment.setRating(rating);
         return this.commentRepository.addComment(comment);
     }
 

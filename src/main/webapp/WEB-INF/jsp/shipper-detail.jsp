@@ -8,8 +8,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <style>
+    .starshipper{
+        font-size: 30px;
+        color: #ff9800;
+        background-color: unset;
+        border: none;
+    }
     .star{
-        font-size: 3rem;
+        font-size:60px;
         color: #ff9800;
         background-color: unset;
         border: none;
@@ -18,8 +24,9 @@
         cursor: pointer;
     }
     .imgcmt{
-        width: 80px;
-        height: 80px;
+        width: 100px;
+        height: 100px;
+
     }
 </style>
 
@@ -32,11 +39,11 @@
     <div class="col-md-9">
         <h1>${shipper.firstname} ${shipper.lastname}</h1>
         <p>Số điện thoại: ${shipper.phone}</p>
-<!--        <p>Căn cước công dân: ${shipper.identification}</p>-->
         <p>Email: ${shipper.email}</p>      
     </div> 
 </div>
-<br>
+<input id="countrating" style=" visibility: hidden;">
+<h2>Đánh giá Shipper</h2>
 <div class="form-group">
     <div class="star_rating">
         <button class="star">&#9734;</button>
@@ -52,7 +59,7 @@
     </sec:authorize>
 
 </div>
-<div id="commentArea" style="margin-top: 10px">
+<div id="commentArea" style="margin-top: 10px;">
     <ul class="pagination">
         <c:forEach begin="1" end="${Math.ceil(countComment/pageSize)}" var="i">
             <c:url value="/${shipper.id}" var="u">  
@@ -63,12 +70,15 @@
     </ul>
     <c:forEach items="${comments}" var="comment">
         <div class="row">
-            <div class="col-md-1" style="padding: 10px">
+            <div class="col-md-1" style="padding: 10px;">
                 <img src="${comment[1]}" class="card-img-top rounded-circle imgcmt"/>
             </div>
-            <div class="col-md-11 my-date">
-                <p>${comment[0]} đã bình luận  <i>${comment[3]}</i></p>
-                <p>${comment[2]}</p>              
+            <div class="col-md-11 my-date" >
+                <c:forEach begin="1" end="${comment[4]}">
+                    <button class="starshipper" disabled="false">&#9733;</button>
+                </c:forEach>
+                    <p style="margin-left: 10px;"><b>${comment[0]}</b> đã bình luận  <i>${comment[3]}</i></p>
+                <p style="margin-left: 10px;">${comment[2]}</p>              
             </div>
         </div>
     </c:forEach> 
@@ -76,11 +86,11 @@
 <script src="<c:url value="/js/rating.js"/>"></script>
 <script src="<c:url value="/js/comment.js"/>"></script>
 <script>
-        window.onload = function () {
-            let dates = document.querySelectorAll(".my-date >p> i")
-            for (let i = 0; i < dates.length; i++) {
-                let d = dates[i];
-                d.innerText = moment(d.innerText).locale("vi").fromNow();
+            window.onload = function () {
+                let dates = document.querySelectorAll(".my-date >p> i")
+                for (let i = 0; i < dates.length; i++) {
+                    let d = dates[i];
+                    d.innerText = moment(d.innerText).locale("vi").fromNow();
+                }
             }
-        }
 </script>

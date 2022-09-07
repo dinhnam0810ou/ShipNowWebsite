@@ -17,7 +17,7 @@
     <div class="alert alert-danger">Đã có lỗi!!Vui lòng quay lại sau</div>
 </c:if>
 <c:if test="${param.accessDenied != null}">
-<spring:message code="user.login.error2" />
+    <spring:message code="user.login.error2" />
 </c:if>
 <c:url value="/login" var="action"/>
 <form method="post" action="${action}">
@@ -29,7 +29,15 @@
         <label for="password"><spring:message code="label13"/></label>
         <input type="password" id="password" name="password" class="form-control"/>
     </div>
-    <div class="form-group">
+    <div class="form-group"> 
+        <div style="margin-bottom: 5px;border:1px solid graytext; text-align: center">      
+            <img alt="Cdnlogo.com_google-icon" class="google-icon" width="20" height="20" src="https://res.cloudinary.com/da1xygjae/image/upload/v1662527472/t%E1%BA%A3i_xu%E1%BB%91ng_zklxhh.png">
+            <span><a href="<c:url value="/"/>">LOG IN WITH FACEBOOK</a></span>
+        </div>
+        <div style="margin-bottom: 5px;border:1px solid graytext; text-align: center">      
+            <img alt="Cdnlogo.com_google-icon" class="google-icon" width="20" height="20" src="https://cloudinary-res.cloudinary.com/image/upload/v1645708175/sign_up/cdnlogo.com_google-icon.svg">
+            <span><a href="<c:url value="/"/>">LOG IN WITH GOOGLE</a></span>
+        </div>
         <input type="submit" value="<spring:message code="label9"/>" class="btn btn-danger"/>
         <span style="margin-left: 900px;"><a href="<c:url value="/forgotpassword"/>"><spring:message code="label11"/></a></span>
     </div>

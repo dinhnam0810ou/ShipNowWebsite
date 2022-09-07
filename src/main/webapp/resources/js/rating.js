@@ -5,6 +5,7 @@ allStars.forEach((star,i)=>{
         allStars.forEach((star,j)=>{
             if(current_star >=j+1){
                 star.innerHTML = "&#9733";
+                document.getElementById("countrating").value = j+1;
             }
             else{
                 star.innerHTML = "&#9734";

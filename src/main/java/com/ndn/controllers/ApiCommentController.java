@@ -32,7 +32,8 @@ public class ApiCommentController {
         try {
             String content = params.get("content");
             int shipperId = Integer.parseInt(params.get("shipperId"));
-            Comment c = this.commentService.addComment(content, shipperId);
+            int rating = Integer.parseInt(params.get("rating"));
+            Comment c = this.commentService.addComment(content, shipperId,rating);
             return new ResponseEntity<>(c,HttpStatus.CREATED);
         } catch (Exception ex) {
             ex.printStackTrace();

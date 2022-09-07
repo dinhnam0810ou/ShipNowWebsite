@@ -57,6 +57,7 @@
             <th>Description</th>
         </tr>
         <c:forEach items="${promotions}" var="p">
+            <c:if test="${p.id!=4}">
             <tr>
                 <td>${p.id}</td>
                 <td>${p.discount}%</td>
@@ -66,6 +67,7 @@
                 <td>${p.code}</td>
                 <td>${p.description}</td>
             </tr>
+            </c:if>
         </c:forEach>
     </table>
 </div>

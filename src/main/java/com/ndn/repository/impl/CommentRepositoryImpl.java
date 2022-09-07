@@ -46,7 +46,7 @@ public class CommentRepositoryImpl implements CommentRepository{
         q = q.where(b.equal(root.get("shipperId"), shipperId),
                 b.equal(rootU.get("id"), rootC.get("userId")),
                 b.equal(rootC.get("id"), root.get("customerId")));
-        q.multiselect(rootU.get("username"),rootC.get("avatar"),root.get("content"),root.get("date"));
+        q.multiselect(rootU.get("username"),rootC.get("avatar"),root.get("content"),root.get("date"),root.get("rating"));
         q = q.orderBy(b.desc(root.get("id")));
         Query query = session.createQuery(q);
         if (page > 0) {
