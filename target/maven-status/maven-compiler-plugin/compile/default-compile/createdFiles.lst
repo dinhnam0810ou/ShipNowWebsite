@@ -81,12 +81,14 @@ com\ndn\controllers\IndexController.class
 com\mservice\processor\RefundTransaction.class
 com\ndn\pojos\Promotion.class
 com\mservice\shared\utils\Encoder.class
+com\ndn\googleservice\UserGoogleDto.class
 com\ndn\pojos\Comment_.class
 com\ndn\pojos\Promotion_.class
 com\mservice\processor\InquiryCbToken.class
 com\ndn\pojos\Product.class
 com\ndn\repository\impl\AuctionRepositoryImpl.class
 com\ndn\pojos\User.class
+com\ndn\googleservice\GetToken.class
 com\ndn\service\impl\ProductServiceImpl.class
 com\mservice\models\ConfirmResponse.class
 com\mservice\processor\BindingToken.class
@@ -98,6 +100,7 @@ com\ndn\pojos\Shipper.class
 com\mservice\models\RefundOfQueryStatusTransaction.class
 com\ndn\service\CustomerService.class
 com\mservice\models\HttpResponse.class
+com\ndn\googleservice\Constants.class
 com\mservice\models\QueryStatusTransactionResponse.class
 com\mservice\shared\utils\LogUtils.class
 com\ndn\configs\WebApplicationContextConfig.class

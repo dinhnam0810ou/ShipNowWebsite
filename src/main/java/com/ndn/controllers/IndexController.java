@@ -4,12 +4,19 @@
  */
 package com.ndn.controllers;
 
+import static com.ndn.googleservice.GetToken.getToken;
+import static com.ndn.googleservice.GetToken.getUserInfo;
+import com.ndn.googleservice.UserGoogleDto;
 import com.ndn.service.CustomerService;
 import com.ndn.service.EmailService;
 import com.ndn.service.ShipperService;
+import java.io.IOException;
 import java.security.Principal;
 import java.util.Collection;
 import java.util.Map;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -31,7 +38,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @ControllerAdvice
 @Controller
 @PropertySource("classpath:messages.properties")
-public class IndexController {
+public class IndexController extends HttpServlet {
 
     @Autowired
     private EmailService emailService;
@@ -87,7 +94,7 @@ public class IndexController {
                 }
 
             }
-             if (role.equals("ROLE_ADMIN")) {
+            if (role.equals("ROLE_ADMIN")) {
                 try {
                     model.addAttribute("chatadmin", "admin");
                 } catch (Exception e) {
@@ -125,7 +132,14 @@ public class IndexController {
     }
 
     @GetMapping("/provision")
-    public String provision() {
+    public String provision(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String code = request.getParameter("code");
+
+        if (code != null) {
+            String accessToken = String.valueOf(getToken(code));
+            UserGoogleDto user = getUserInfo(accessToken);
+            System.out.println(user);
+        }
         return "provision";
     }
 }

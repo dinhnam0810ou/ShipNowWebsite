@@ -59,7 +59,7 @@ public class UserController {
     public String updateprofilecustomer(Model model,
             @ModelAttribute(value = "currentcustomer") @Valid Customer customer,
             BindingResult result) {
-         if (!result.hasErrors()) {
+        if (!result.hasErrors()) {
             if (customer != null) {
                 if (this.customerService.updateCustomer(customer)) {
                     model.addAttribute("update", "Update Success");
@@ -193,16 +193,21 @@ public class UserController {
 
     @PostMapping("/registershipper")
     public String addShipper(Model model, @ModelAttribute(value = "shipper") @Valid Shipper shipper, BindingResult result) {
-        if (!result.hasErrors()) {
-            User u = this.userService.getUserByUsername(regisuser);
-            this.userService.updateRole("ROLE_SHIPPER", u.getId());
-            shipper.setUser(u);
-            if (this.shipperService.addShipper(shipper)) {
-                regisuser = null;
-                commonAttr(model, "201");
-                return "redirect:/";
+        try {
+            if (!result.hasErrors()) {
+                User u = this.userService.getUserByUsername(regisuser);
+                this.userService.updateRole("ROLE_SHIPPER", u.getId());
+                shipper.setUser(u);
+                if (this.shipperService.addShipper(shipper)) {
+                    regisuser = null;
+                    commonAttr(model, "201");
+                    return "redirect:/";
+                }
             }
+        } catch (Exception e) {
+             model.addAttribute("notusermsg", "Hãy đăng ký tài khoản trước khi đăng kí thông tin");
         }
+
         return "registerShipper";
     }
 
@@ -214,15 +219,20 @@ public class UserController {
 
     @PostMapping("/registercustomer")
     public String addCustomer(Model model, @ModelAttribute(value = "customer") @Valid Customer customer, BindingResult result) {
-        if (!result.hasErrors()) {
-            User u = this.userService.getUserByUsername(regisuser);
-            customer.setUserId(u);
-            if (this.customerService.addCustomer(customer)) {
-                regisuser = null;
-                commonAttr(model, "201");
-                return "redirect:/";
+        try {
+            if (!result.hasErrors()) {
+                User u = this.userService.getUserByUsername(regisuser);
+                customer.setUserId(u);
+                if (this.customerService.addCustomer(customer)) {
+                    regisuser = null;
+                    commonAttr(model, "201");
+                    return "redirect:/";
+                }
             }
+        } catch (Exception e) {
+            model.addAttribute("notusermsg", "Hãy đăng ký tài khoản trước khi đăng kí thông tin");
         }
+
         return "registerCustomer";
     }
 }
