@@ -51,7 +51,6 @@ public class UserServiceImpl implements UserService {
                 user.getUsername(), user.getPassword(), authorities);
     }
 
-
     @Override
     public boolean addUser(User user) {
         String pass = user.getPassword();
@@ -72,5 +71,14 @@ public class UserServiceImpl implements UserService {
         this.userRepository.updatePassword(password, userid);
     }
 
-   
+    @Override
+    public boolean addUserRoleShipper(User user) {
+        String pass = user.getPassword();
+        user.setPassword(this.passwordEncoder.encode(pass));
+        user.setActive(1);
+        user.setUserRole("ROLE_SHIPPER");
+        user.setDate(new Date());
+        return this.userRepository.addUser(user);
+    }
+
 }

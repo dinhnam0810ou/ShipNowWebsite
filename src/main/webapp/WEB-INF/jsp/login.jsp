@@ -30,13 +30,16 @@
         <input type="password" id="password" name="password" class="form-control"/>
     </div>
     <div class="form-group"> 
-        <div style="margin-bottom: 5px;border:1px solid graytext; text-align: center">      
+        <div style="text-align:center;">
+        <div style="margin-bottom: 5px;border:1px solid graytext;border-radius: 15px; text-align: center;width: 800px;display: inline-block;">      
             <img alt="Cdnlogo.com_google-icon" class="google-icon" width="20" height="20" src="https://res.cloudinary.com/da1xygjae/image/upload/v1662527472/t%E1%BA%A3i_xu%E1%BB%91ng_zklxhh.png">
             <span><a href="#">LOG IN WITH FACEBOOK</a></span>
-        </div>
-        <div style="margin-bottom: 5px;border:1px solid graytext; text-align: center">      
+        </div>  
+            <br>
+        <div style="margin-bottom: 5px;border:1px solid graytext;border-radius: 15px; text-align: center;width: 800px;display: inline-block;">      
             <img alt="Cdnlogo.com_google-icon" class="google-icon" width="20" height="20" src="https://cloudinary-res.cloudinary.com/image/upload/v1645708175/sign_up/cdnlogo.com_google-icon.svg">
             <span><a href="https://accounts.google.com/o/oauth2/auth?scope=email%20profile%20openid&redirect_uri=http://localhost:8080/nshipwebsite/login&response_type=code&client_id=990893174800-qnfnmksq5h18ul4qo916d04rml9jqi94.apps.googleusercontent.com&approval_prompt=force">LOG IN WITH GOOGLE</a></span>
+        </div>
         </div>
         <input type="submit" value="<spring:message code="label9"/>" class="btn btn-danger"/>
         <span style="margin-left: 900px;"><a href="<c:url value="/forgotpassword"/>"><spring:message code="label11"/></a></span>

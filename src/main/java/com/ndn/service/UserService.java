@@ -17,7 +17,9 @@ public interface UserService extends UserDetailsService {
 
     User getUserByUsername(String username);
 
-    boolean addUser(User user);
+    boolean addUser(User user);// role la customer
+
+    boolean addUserRoleShipper(User user);
 
     void updateRole(String role, int userid);
 

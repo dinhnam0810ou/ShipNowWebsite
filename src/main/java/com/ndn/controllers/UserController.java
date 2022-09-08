@@ -161,6 +161,8 @@ public class UserController {
     }
     Shipper ggshiper;
     Customer ggcustomer;
+    UserGoogleDto usergg;
+    HttpServletRequest req;
 
     @GetMapping("/login")
     public String login(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -168,34 +170,30 @@ public class UserController {
 
         if (code != null) {
             String accessToken = String.valueOf(getToken(code));
-            UserGoogleDto user = getUserInfo(accessToken);
-            String id = user.getId().substring(0, 6);
+            usergg = getUserInfo(accessToken);
+            req = request;
+            String id = usergg.getId().substring(0, 6);
+            try {
+                if (this.userService.getUserByUsername(usergg.getName() + id) != null) {
+                    UserDetails userDetail = this.userDetailsService.loadUserByUsername(usergg.getName() + id);
+                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null,
+                            userDetail.getAuthorities());
+                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                    return "redirect:/";
+                }
+            } catch (Exception e) {
+                ggshiper = new Shipper();
+                ggshiper.setLastname(usergg.getName());
+                ggshiper.setEmail(usergg.getEmail());
+                ggshiper.setAvatar(usergg.getPicture());
 
-            User newuser = new User();
-            newuser.setUsername(user.getName() + id);
-            newuser.setPassword("123456");
-            this.userService.addUser(newuser);
-            User temp = this.userService.getUserByUsername(user.getName() + id);
-
-            UserDetails userDetail = this.userDetailsService.loadUserByUsername(user.getName() + id);
-            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null,
-                    userDetail.getAuthorities());
-            authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-
-            ggshiper = new Shipper();
-            ggshiper.setLastname(user.getName());
-            ggshiper.setEmail(user.getEmail());
-            ggshiper.setAvatar(user.getPicture());
-            ggshiper.setUser(temp);
-
-            ggcustomer = new Customer();
-            ggcustomer.setLastname(user.getName());
-            ggcustomer.setEmail(user.getEmail());
-            ggcustomer.setAvatar(user.getPicture());
-            ggcustomer.setUserId(temp);
-
-            return "redirect:/ggprovision";
+                ggcustomer = new Customer();
+                ggcustomer.setLastname(usergg.getName());
+                ggcustomer.setEmail(usergg.getEmail());
+                ggcustomer.setAvatar(usergg.getPicture());
+                return "redirect:/ggprovision";
+            }
         }
         return "login";
     }
@@ -298,9 +296,22 @@ public class UserController {
     @PostMapping("/registerggcustomer")
     public String addggcustomer(Model model, @ModelAttribute(value = "ggcustomer") Customer customer) {
         try {
+            String id = usergg.getId().substring(0, 6);
+            User newuser = new User();
+            newuser.setUsername(usergg.getName() + id);
+            newuser.setPassword("123456");
+            this.userService.addUser(newuser);
+            User temp = this.userService.getUserByUsername(usergg.getName() + id);
+
+            UserDetails userDetail = this.userDetailsService.loadUserByUsername(usergg.getName() + id);
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null,
+                    userDetail.getAuthorities());
+            authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(req));
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+
+            customer.setUserId(temp);
             if (customer != null) {
                 if (this.customerService.addGgCustomer(customer)) {
-
                     return "redirect:/";
                 }
             }
@@ -317,11 +328,23 @@ public class UserController {
 
     @PostMapping("/registerggshipper")
     public String addggshipper(Model model, @ModelAttribute(value = "ggshiper") Shipper shipper) {
-        System.out.println(shipper.getId());
         try {
+            String id = usergg.getId().substring(0, 6);
+            User newuser = new User();
+            newuser.setUsername(usergg.getName() + id);
+            newuser.setPassword("123456");
+            this.userService.addUserRoleShipper(newuser);
+            User temp = this.userService.getUserByUsername(usergg.getName() + id);
+
+            UserDetails userDetail = this.userDetailsService.loadUserByUsername(usergg.getName() + id);
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null,
+                    userDetail.getAuthorities());
+            authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(req));
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+
+            shipper.setUser(temp);
             if (shipper != null) {
                 if (this.shipperService.addGgShipper(shipper)) {
-                    this.userService.updateRole("ROLE_SHIPPER", shipper.getUser().getId());
                     return "redirect:/";
                 }
             }
