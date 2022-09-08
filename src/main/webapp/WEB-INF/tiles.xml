@@ -26,6 +26,16 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/jsp/updateprofile.jsp" />
     </definition>
+    <definition name="registerggcustomer" extends="baseLayout">
+        <put-attribute name="title" value="Thông tin người dùng" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/registerggcustomer.jsp" />
+    </definition>
+    <definition name="registerggshipper" extends="baseLayout">
+        <put-attribute name="title" value="Thông tin người dùng" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/registerggshipper.jsp" />
+    </definition>
     <definition name="updateprofilecustomer" extends="baseLayout">
         <put-attribute name="title" value="Thông tin người dùng" />
         <put-attribute name="content"
@@ -40,6 +50,11 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="title" value="Điều khoản" />
         <put-attribute name="content"
                        value="/WEB-INF/jsp/provision.jsp" />
+    </definition>
+    <definition name="ggprovision" extends="baseLayout">
+        <put-attribute name="title" value="Điều khoản" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/ggprovision.jsp" />
     </definition>
     <definition name="oderofcustomer" extends="baseLayout">
         <put-attribute name="title" value="Đơn hàng" />

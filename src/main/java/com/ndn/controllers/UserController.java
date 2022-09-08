@@ -4,6 +4,9 @@
  */
 package com.ndn.controllers;
 
+import static com.ndn.googleservice.GetToken.getToken;
+import static com.ndn.googleservice.GetToken.getUserInfo;
+import com.ndn.googleservice.UserGoogleDto;
 import com.ndn.pojos.Customer;
 import com.ndn.pojos.Shipper;
 import com.ndn.pojos.User;
@@ -11,10 +14,17 @@ import com.ndn.service.CustomerService;
 import com.ndn.service.EmailService;
 import com.ndn.service.ShipperService;
 import com.ndn.service.UserService;
+import java.io.IOException;
 import java.util.Random;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -149,11 +159,55 @@ public class UserController {
         }
         return "completepassword";
     }
+    Shipper ggshiper;
+    Customer ggcustomer;
 
     @GetMapping("/login")
-    public String login() {
+    public String login(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String code = request.getParameter("code");
 
+        if (code != null) {
+            String accessToken = String.valueOf(getToken(code));
+            UserGoogleDto user = getUserInfo(accessToken);
+            String id = user.getId().substring(0, 6);
+
+            User newuser = new User();
+            newuser.setUsername(user.getName() + id);
+            newuser.setPassword("123456");
+            this.userService.addUser(newuser);
+            User temp = this.userService.getUserByUsername(user.getName() + id);
+
+            UserDetails userDetail = this.userDetailsService.loadUserByUsername(user.getName() + id);
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null,
+                    userDetail.getAuthorities());
+            authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+
+            ggshiper = new Shipper();
+            ggshiper.setLastname(user.getName());
+            ggshiper.setEmail(user.getEmail());
+            ggshiper.setAvatar(user.getPicture());
+            ggshiper.setUser(temp);
+
+            ggcustomer = new Customer();
+            ggcustomer.setLastname(user.getName());
+            ggcustomer.setEmail(user.getEmail());
+            ggcustomer.setAvatar(user.getPicture());
+            ggcustomer.setUserId(temp);
+
+            return "redirect:/ggprovision";
+        }
         return "login";
+    }
+
+    @ModelAttribute
+    public void commonUserGG(Model model) {
+        if (ggshiper != null) {
+            model.addAttribute("ggshiper", ggshiper);
+        }
+        if (ggcustomer != null) {
+            model.addAttribute("ggcustomer", ggcustomer);
+        }
     }
 
     @GetMapping("/register")
@@ -205,7 +259,7 @@ public class UserController {
                 }
             }
         } catch (Exception e) {
-             model.addAttribute("notusermsg", "Hãy đăng ký tài khoản trước khi đăng kí thông tin");
+            model.addAttribute("notusermsg", "Hãy đăng ký tài khoản trước khi đăng kí thông tin");
         }
 
         return "registerShipper";
@@ -234,5 +288,57 @@ public class UserController {
         }
 
         return "registerCustomer";
+    }
+
+    @GetMapping("/registerggcustomer")
+    public String registerggcustomer() {
+        return "registerggcustomer";
+    }
+
+    @PostMapping("/registerggcustomer")
+    public String addggcustomer(Model model, @ModelAttribute(value = "ggcustomer") Customer customer) {
+        try {
+            if (customer != null) {
+                if (this.customerService.addGgCustomer(customer)) {
+
+                    return "redirect:/";
+                }
+            }
+        } catch (Exception e) {
+
+        }
+        return "registerggcustomer";
+    }
+
+    @GetMapping("/registerggshipper")
+    public String registerggshipper() {
+        return "registerggshipper";
+    }
+
+    @PostMapping("/registerggshipper")
+    public String addggshipper(Model model, @ModelAttribute(value = "ggshiper") Shipper shipper) {
+        System.out.println(shipper.getId());
+        try {
+            if (shipper != null) {
+                if (this.shipperService.addGgShipper(shipper)) {
+                    this.userService.updateRole("ROLE_SHIPPER", shipper.getUser().getId());
+                    return "redirect:/";
+                }
+            }
+        } catch (Exception e) {
+        }
+        return "registerggshipper";
+    }
+
+    @GetMapping("/provision")
+    public String provision() {
+
+        return "provision";
+    }
+
+    @GetMapping("/ggprovision")
+    public String ggprovision() throws IOException {
+
+        return "ggprovision";
     }
 }

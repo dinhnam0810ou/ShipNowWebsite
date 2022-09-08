@@ -7,6 +7,8 @@ package com.ndn.controllers;
 import static com.ndn.googleservice.GetToken.getToken;
 import static com.ndn.googleservice.GetToken.getUserInfo;
 import com.ndn.googleservice.UserGoogleDto;
+import com.ndn.pojos.Customer;
+import com.ndn.pojos.Shipper;
 import com.ndn.service.CustomerService;
 import com.ndn.service.EmailService;
 import com.ndn.service.ShipperService;
@@ -130,16 +132,5 @@ public class IndexController extends HttpServlet {
         model.addAttribute("pageSize", Integer.parseInt(env.getProperty("page.size")));
         return "listshipper";
     }
-
-    @GetMapping("/provision")
-    public String provision(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String code = request.getParameter("code");
-
-        if (code != null) {
-            String accessToken = String.valueOf(getToken(code));
-            UserGoogleDto user = getUserInfo(accessToken);
-            System.out.println(user);
-        }
-        return "provision";
-    }
+      
 }

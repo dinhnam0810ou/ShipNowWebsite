@@ -105,4 +105,9 @@ public class ShipperServiceImpl implements ShipperService {
         }
         return false;
     }
+
+    @Override
+    public boolean addGgShipper(Shipper shipper) {
+        return this.shipperRepository.addShipper(shipper);
+    }
 }

@@ -4,11 +4,14 @@
  */
 package com.ndn.service.impl;
 
+import com.ndn.googleservice.UserGoogleDto;
 import com.ndn.pojos.User;
 import com.ndn.repository.UserRepository;
 import com.ndn.service.UserService;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -24,6 +27,7 @@ import org.springframework.stereotype.Service;
  */
 @Service("userDetailsService")
 public class UserServiceImpl implements UserService {
+
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
     @Autowired
@@ -47,6 +51,7 @@ public class UserServiceImpl implements UserService {
                 user.getUsername(), user.getPassword(), authorities);
     }
 
+
     @Override
     public boolean addUser(User user) {
         String pass = user.getPassword();
@@ -67,4 +72,5 @@ public class UserServiceImpl implements UserService {
         this.userRepository.updatePassword(password, userid);
     }
 
+   
 }

@@ -22,6 +22,8 @@ public interface ShipperService {
 
     boolean addShipper(Shipper shipper);
 
+    boolean addGgShipper(Shipper shipper);
+
     boolean deleteShipper(int id);
 
     Shipper getShipperById(int id);

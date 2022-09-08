@@ -4,7 +4,9 @@
  */
 package com.ndn.service;
 
+import com.ndn.googleservice.UserGoogleDto;
 import com.ndn.pojos.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
@@ -20,4 +22,5 @@ public interface UserService extends UserDetailsService {
     void updateRole(String role, int userid);
 
     void updatePassword(String password, int userid);
+
 }

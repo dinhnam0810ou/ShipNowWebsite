@@ -66,10 +66,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
             throws Exception {
         auth.userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder());
+
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+       
         http.formLogin().loginPage("/login")
                 .usernameParameter("username")
                 .passwordParameter("password");

@@ -71,4 +71,9 @@ public class CustomerServiceImpl implements CustomerService {
         }
         return false;
     }
+
+    @Override
+    public boolean addGgCustomer(Customer customer) {
+        return this.customerRepository.addCustomer(customer);
+    }
 }
